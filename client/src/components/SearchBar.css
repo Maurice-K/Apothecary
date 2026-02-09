@@ -1,0 +1,48 @@
+.search-bar {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  background: white;
+  color: var(--color-text);
+  transition: border-color 0.2s;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--color-green);
+}
+
+.search-bar input::placeholder {
+  color: #a09888;
+}
+
+.search-bar button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-green);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.search-bar button:hover:not(:disabled) {
+  background: var(--color-green-light);
+}
+
+.search-bar button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

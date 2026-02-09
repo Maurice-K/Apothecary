@@ -1,0 +1,37 @@
+:root {
+  --color-green: #2d5016;
+  --color-green-light: #3a6b1e;
+  --color-cream: #faf6f0;
+  --color-cream-dark: #f0e8d8;
+  --color-terracotta: #c4703f;
+  --color-terracotta-light: #d4884f;
+  --color-text: #2c2416;
+  --color-text-light: #5a4e3e;
+  --color-border: #d6cbb8;
+
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-cream);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
