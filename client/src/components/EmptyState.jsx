@@ -1,9 +1,19 @@
 import "./EmptyState.css";
 
-export default function EmptyState({ hasSearched }) {
+const SUGGESTIONS = [
+  "what helps with sleep?",
+  "herbs for digestion",
+  "immunity boost",
+  "stress and anxiety",
+  "something for my skin",
+  "liver support",
+];
+
+export default function EmptyState({ hasSearched, onSearch }) {
   if (hasSearched) {
     return (
       <div className="empty-state">
+        <p className="empty-state-icon" aria-hidden="true">&#x2698;</p>
         <p className="empty-state-message">
           No herbs matched your search. Try a different query.
         </p>
@@ -16,8 +26,22 @@ export default function EmptyState({ hasSearched }) {
       <h2 className="empty-state-title">Welcome to the Apothecary</h2>
       <p className="empty-state-message">
         Search our collection of 134 bulk herbs using plain English.
-        Try queries like "what helps with sleep?" or "herbs for digestion".
+        Describe what you need and we'll find the right remedy.
       </p>
+      <div className="suggestion-chips">
+        <p className="suggestion-label">Try searching for:</p>
+        <div className="chips">
+          {SUGGESTIONS.map((suggestion) => (
+            <button
+              key={suggestion}
+              className="chip"
+              onClick={() => onSearch(suggestion)}
+            >
+              {suggestion}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,10 +3,15 @@ import "./HerbCardList.css";
 
 export default function HerbCardList({ results }) {
   return (
-    <div className="herb-card-list">
-      {results.map((herb) => (
-        <HerbCard key={herb.id} herb={herb} />
-      ))}
-    </div>
+    <section className="herb-card-list">
+      <p className="results-count">
+        {results.length} herb{results.length !== 1 ? "s" : ""} found
+      </p>
+      <div className="herb-card-list-items">
+        {results.map((herb) => (
+          <HerbCard key={herb.id} herb={herb} />
+        ))}
+      </div>
+    </section>
   );
 }

@@ -11,6 +11,11 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
+        <div className="app-header-ornament" aria-hidden="true">
+          <span className="ornament-line"></span>
+          <span className="ornament-leaf">&#x2E19;</span>
+          <span className="ornament-line"></span>
+        </div>
         <h1 className="app-title">The Apothecary</h1>
         <p className="app-subtitle">Discover herbs for what ails you</p>
       </header>
@@ -27,9 +32,14 @@ export default function App() {
         )}
 
         {!loading && results.length === 0 && (
-          <EmptyState hasSearched={hasSearched} />
+          <EmptyState hasSearched={hasSearched} onSearch={search} />
         )}
       </main>
+
+      <footer className="app-footer">
+        <span className="footer-ornament" aria-hidden="true">&#x2E19;</span>
+        <p>134 herbs &middot; Powered by semantic search</p>
+      </footer>
     </div>
   );
 }

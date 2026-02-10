@@ -6,6 +6,11 @@ All notable changes to the Apothecary project are documented here. Updated after
 
 ## [Unreleased]
 
+### Security
+- Enabled Row Level Security (RLS) on the `herbs` table
+- Added `"Public read access"` SELECT policy for `anon` and `authenticated` roles
+- Write operations (INSERT, UPDATE, DELETE) now blocked via the Data API
+
 ### Project Setup
 - Initialized project spec and CLAUDE.md
 - Defined architecture: Supabase Edge Functions (Deno) + React SPA (Vite)
