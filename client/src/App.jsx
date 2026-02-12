@@ -36,10 +36,10 @@ export default function App() {
         )}
       </main>
 
-      <footer className="app-footer">
+      {/* <footer className="app-footer">
         <span className="footer-ornament" aria-hidden="true">&#x2E19;</span>
         <p>134 herbs &middot; Powered by semantic search</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
