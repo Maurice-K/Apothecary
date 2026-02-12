@@ -16,7 +16,7 @@ export default function App() {
           <span className="ornament-leaf">&#x2E19;</span>
           <span className="ornament-line"></span>
         </div>
-        <h1 className="app-title">The Apothecary</h1>
+        <h1 className="app-title">The Herbary</h1>
         <p className="app-subtitle">Discover herbs for what ails you</p>
       </header>
 
