@@ -1,0 +1,80 @@
+:root {
+  --green-900: #1a3409;
+  --green-800: #22450e;
+  --green-700: #2d5016;
+  --green-600: #3a6b1e;
+  --green-500: #4a8528;
+  --green-100: #e8f0e0;
+
+  --cream-50: #fdfcfa;
+  --cream-100: #faf6f0;
+  --cream-200: #f5efe4;
+  --cream-300: #ede4d4;
+  --cream-400: #ddd2be;
+
+  --terracotta-700: #9e5a30;
+  --terracotta-600: #b8673a;
+  --terracotta-500: #c4703f;
+  --terracotta-400: #d4884f;
+  --terracotta-300: #e0a06a;
+
+  --brown-900: #2c2416;
+  --brown-800: #3d3223;
+  --brown-700: #5a4e3e;
+  --brown-600: #7a6e5e;
+  --brown-500: #9a8e7e;
+  --brown-400: #b5a898;
+  --brown-300: #d6cbb8;
+
+  --red-600: #a33333;
+  --red-100: #fde8e8;
+  --red-border: #e6b0b0;
+
+  --shadow-sm: 0 1px 3px rgba(44, 36, 22, 0.06);
+  --shadow-md: 0 4px 12px rgba(44, 36, 22, 0.08);
+  --shadow-lg: 0 8px 24px rgba(44, 36, 22, 0.12);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 100px;
+
+  --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--brown-900);
+  background-color: var(--cream-100);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 1.5rem 1rem 3rem;
+  }
+}

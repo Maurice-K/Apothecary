@@ -1,0 +1,142 @@
+.herb-card {
+  background: var(--cream-50);
+  border: 1px solid var(--cream-300);
+  border-left: 3px solid var(--green-600);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.5rem 1.25rem;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.herb-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.herb-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.herb-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--green-800);
+  line-height: 1.2;
+}
+
+.similarity-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  background: var(--green-100);
+  color: var(--green-700);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.herb-description {
+  color: var(--brown-800);
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.herb-card:hover .herb-description,
+.herb-card:focus-within .herb-description {
+  -webkit-line-clamp: unset;
+}
+
+.how-to-use-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  color: var(--terracotta-600);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  transition: color var(--transition-fast);
+}
+
+.how-to-use-toggle:hover {
+  color: var(--terracotta-500);
+}
+
+.toggle-chevron {
+  transition: transform var(--transition-fast);
+}
+
+.how-to-use-toggle.is-expanded .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.herb-how-to-use {
+  animation: slideDown var(--transition-base);
+}
+
+.herb-how-to-use p {
+  color: var(--brown-700);
+  font-size: 0.85rem;
+  line-height: 1.75;
+  margin: 0 0 0.75rem;
+  padding: 0.875rem 1rem;
+  background: var(--cream-200);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--terracotta-400);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.herb-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.category-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  background: var(--cream-300);
+  color: var(--brown-700);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 600px) {
+  .herb-card {
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .herb-name {
+    font-size: 1.2rem;
+  }
+
+  .herb-description {
+    font-size: 0.85rem;
+  }
+}

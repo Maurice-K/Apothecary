@@ -1,0 +1,1 @@
+I want to make an apothecary that has a predetermined list of bulks herbs. I want the user to be able to write search queries in plain english and return in plain english as well with a list of products that have their descriptions and benefits of use returned as well. 
