@@ -11,7 +11,7 @@ CREATE TABLE recipes (
   instructions TEXT NOT NULL CHECK (char_length(instructions) >= 10),
   prep_time INTEGER,
   photo_path TEXT,
-  embedding VECTOR(1536),
+  embedding extensions.vector(1536),
   embedding_status TEXT NOT NULL DEFAULT 'pending'
     CHECK (embedding_status IN ('pending', 'complete', 'failed')),
   created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -25,7 +25,7 @@ CREATE INDEX idx_recipes_user_created ON recipes (user_id, created_at DESC);
 
 -- 3. HNSW vector index
 CREATE INDEX idx_recipes_embedding ON recipes
-  USING hnsw (embedding vector_cosine_ops)
+  USING hnsw (embedding extensions.vector_cosine_ops)
   WITH (m = 16, ef_construction = 64);
 
 -- 4. Auto-update trigger for updated_at

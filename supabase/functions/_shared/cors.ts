@@ -1,10 +1,11 @@
 const ALLOWED_ORIGINS = [
   "http://localhost:5173",
   "http://localhost:54321",
+  "https://herbary.app",
 ];
 
 const productionUrl = Deno.env.get("PUBLIC_SITE_URL");
-if (productionUrl) {
+if (productionUrl && !ALLOWED_ORIGINS.includes(productionUrl)) {
   ALLOWED_ORIGINS.push(productionUrl);
 }
 

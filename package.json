@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Semantic herb search web app",
   "scripts": {
-    "ingest": "node scripts/ingest.js"
+    "ingest": "node scripts/ingest.js",
+    "dev": "npx supabase functions serve --env-file .env & cd client && npm run dev"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
