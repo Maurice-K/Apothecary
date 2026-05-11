@@ -1,4 +1,6 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
+dotenv.config();
 import { readFileSync } from "fs";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";

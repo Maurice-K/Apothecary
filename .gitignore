@@ -1,5 +1,11 @@
 node_modules/
 .env
+.env.local
+.env*.local
 dist/
 .supabase/
 .superdesign
+.DS_Store
+*.log
+*.sw?
+.claude/memory/

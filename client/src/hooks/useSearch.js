@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { searchHerbs } from "../api/search";
+import { searchHerbs, searchAll } from "../api/search";
 
 export function useSearch() {
-  const [results, setResults] = useState([]);
+  const [herbs, setHerbs] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
@@ -14,16 +15,22 @@ export function useSearch() {
     setError(null);
 
     try {
-      const data = await searchHerbs(query);
-      setResults(data);
+      const [herbResult, recipeResult] = await Promise.allSettled([
+        searchHerbs(query),
+        searchAll(query).then((d) => d.recipes),
+      ]);
+
+      setHerbs(herbResult.status === "fulfilled" ? herbResult.value : []);
+      setRecipes(recipeResult.status === "fulfilled" ? recipeResult.value : []);
       setHasSearched(true);
     } catch (err) {
       setError(err.message || "Search failed");
-      setResults([]);
+      setHerbs([]);
+      setRecipes([]);
     } finally {
       setLoading(false);
     }
   }
 
-  return { results, loading, error, hasSearched, search };
+  return { herbs, recipes, loading, error, hasSearched, search };
 }

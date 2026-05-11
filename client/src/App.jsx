@@ -1,45 +1,41 @@
-import { useSearch } from "./hooks/useSearch";
-import SearchBar from "./components/SearchBar";
-import HerbCardList from "./components/HerbCardList";
-import LoadingSpinner from "./components/LoadingSpinner";
-import EmptyState from "./components/EmptyState";
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth.jsx";
+import NavBar from "./components/NavBar";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import RecipeDetailPage from "./pages/RecipeDetailPage";
+import MyRecipesPage from "./pages/MyRecipesPage";
+import AddRecipePage from "./pages/AddRecipePage";
 import "./App.css";
 
 export default function App() {
-  const { results, loading, error, hasSearched, search } = useSearch();
-
   return (
-    <div className="app">
-      <header className="app-header">
-        <div className="app-header-ornament" aria-hidden="true">
-          <span className="ornament-line"></span>
-          <span className="ornament-leaf">&#x2E19;</span>
-          <span className="ornament-line"></span>
-        </div>
-        <h1 className="app-title">The Herbary</h1>
-        <p className="app-subtitle">Discover herbs for what ails you</p>
-      </header>
+    <AuthProvider>
+      <div className="app">
+        <header className="app-header">
+          <div className="app-header-ornament" aria-hidden="true">
+            <span className="ornament-line"></span>
+            <span className="ornament-leaf">&#x2E19;</span>
+            <span className="ornament-line"></span>
+          </div>
+          <h1 className="app-title">The Herbary</h1>
+          <p className="app-subtitle">Discover herbs for what ails you</p>
+        </header>
 
-      <main className="app-main">
-        <SearchBar onSearch={search} loading={loading} />
+        <NavBar />
 
-        {error && <p className="error-message">{error}</p>}
-
-        {loading && <LoadingSpinner />}
-
-        {!loading && results.length > 0 && (
-          <HerbCardList results={results} />
-        )}
-
-        {!loading && results.length === 0 && (
-          <EmptyState hasSearched={hasSearched} onSearch={search} />
-        )}
-      </main>
-
-      {/* <footer className="app-footer">
-        <span className="footer-ornament" aria-hidden="true">&#x2E19;</span>
-        <p>134 herbs &middot; Powered by semantic search</p>
-      </footer> */}
-    </div>
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/recipe/:id" element={<RecipeDetailPage />} />
+            <Route path="/my-recipes" element={<MyRecipesPage />} />
+            <Route path="/add-recipe" element={<AddRecipePage />} />
+          </Routes>
+        </main>
+      </div>
+    </AuthProvider>
   );
 }
