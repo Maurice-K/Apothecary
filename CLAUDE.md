@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 Apothecary is a herbal wellness app with two experiences:
-- **Herb Search (`/`)** — semantic search over 134 herbs using OpenAI embeddings + pgvector cosine similarity.
+- **Herb Search (`/`)** — semantic search over 156 herbs using OpenAI embeddings + pgvector cosine similarity.
 - **Nutritionist (`/nutritionist`)** — conversational AI nutritionist powered by Anthropic's API (tool-use + SSE streaming).
 
 ## Architecture
@@ -16,23 +16,33 @@ Three Edge Functions + a React SPA (`client/`).
 
 **Nutritionist flow:** User message → `nutritionist` Edge Function → agentic loop (Anthropic `claude-sonnet-4-6`) → `herb_search` tool (pgvector) + `web_search` tool (Anthropic-hosted) → SSE stream → chat UI with inline herb cards.
 
-**Data pipeline:** `chioma_products.json` (134 herbs) → `scripts/ingest.js` embeds `"<name>: <description>"` via OpenAI `text-embedding-3-small` → stores in Supabase `herbs` table with VECTOR(1536) column. Only `name + description` are embedded; `how_to_use` and `category` are stored but not embedded (brewing instructions and metadata dilute semantic signal).
+**Data pipeline:** Chioma's Shopify storefront → `scripts/enrich_herbs.js` (pulls tags, energetics, scientific name, plant part, origin, form) → `chioma_products.json` (156 herbs) → `scripts/ingest.js` embeds a multi-line labeled input (name → tags → category → energetics → plant_part → description) via OpenAI `text-embedding-3-small` → stores in Supabase `herbs` table with VECTOR(1536) column. High-signal labels go first so they aren't drowned by the long prose description; `how_to_use` is stored but not embedded (brewing instructions dilute signal). Search queries are prefixed with `"Herb for "` in `search/index.ts` and `_shared/tools.ts` to pull bare keywords closer to the document embeddings.
 
 ## Development Commands
 
 ```bash
-# Edge Functions (local dev on port 54321)
-supabase functions serve --env-file .env --no-verify-jwt   # all functions; --no-verify-jwt needed locally
+# Edge Functions + Vite client together
+npm run dev                       # local functions on :54321 + client on :5173
 
-# Ingestion (one-time)
-node scripts/ingest.js            # embed herbs + upload to Supabase
+# Edge Functions only
+npm run functions                 # wraps supabase functions serve --env-file .env --no-verify-jwt
 
-# Herb catalog comparison
-node scripts/compare_herbs.js     # compare Chioma site catalog against chioma_products.json
+# Data pipeline
+npm run enrich                    # pull metadata from sources.json into chioma_products.json
+npm run ingest                    # embed + upsert to LOCAL Supabase (default)
+npm run ingest:prod               # embed + upsert to REMOTE — typed 'yes' confirmation required
 
-# Client (React + Vite on port 5173)
+# Catalog audit (no DB writes)
+node scripts/compare_herbs.js     # diff Chioma site against chioma_products.json
+node scripts/verify_search.js     # query failure cases against LOCAL match_herbs
+node scripts/verify_search.js prod  # query against REMOTE
+
+# Client only
 cd client && npm run dev          # start Vite dev server
 cd client && npm run build        # production build to client/dist/
+
+# Deploy Edge Functions to remote (manual, intentional)
+npx supabase functions deploy search nutritionist --project-ref donareoeoobqmomarisf
 ```
 
 ## API
@@ -40,7 +50,11 @@ cd client && npm run build        # production build to client/dist/
 **Search** (Supabase SDK):
 ```js
 supabase.functions.invoke('search', { body: { query: "string", limit: 8 } })
-// Returns: { results: [{ id, name, description, how_to_use, category, similarity }] }
+// Returns: { results: [{
+//   id, name, description, how_to_use, category,
+//   tags, energetics, botanical_name, plant_part, origin, form,
+//   similarity
+// }] }
 ```
 
 **Nutritionist** (raw fetch + SSE):
@@ -55,11 +69,13 @@ fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
 
 ## Key Files
 
-- `chioma_products.json` — source herb data (134 herbs)
-- `scripts/ingest.js` — embeds herbs and upserts to Supabase. Safe to re-run.
-- `scripts/sources.json` — list of URLs to crawl for herb catalog comparison. Add new sources here.
-- `scripts/compare_herbs.js` — fetches product listings from sources.json via Shopify JSON API and diffs against chioma_products.json. Outputs which herbs are in the DB and which are missing.
-- `supabase/functions/search/index.ts` — search Edge Function
+- `chioma_products.json` — source herb data (156 herbs, enriched with Shopify tags + HTML metadata)
+- `scripts/sources.json` — URLs to crawl for catalog comparison and enrichment. Add new sources here.
+- `scripts/enrich_herbs.js` — crawls sources.json (Shopify JSON + product HTML) and merges tags/energetics/scientific_name/plant_part/origin/form into chioma_products.json. Idempotent.
+- `scripts/ingest.js` — embeds herbs and upserts to Supabase. Defaults to LOCAL; pass `prod` to target remote (with confirmation).
+- `scripts/compare_herbs.js` — diffs Chioma site catalog against chioma_products.json.
+- `scripts/verify_search.js` — runs canned failure queries against `match_herbs` for before/after checks.
+- `supabase/functions/search/index.ts` — search Edge Function (prepends "Herb for " stem)
 - `supabase/functions/nutritionist/index.ts` — nutritionist Edge Function (agentic loop + SSE)
 - `supabase/functions/_shared/` — CORS, embedding, types, validation, anthropic, tools, sse, rate-limit
 - `client/src/api/nutritionist.js` — fetch + SSE parser for the nutritionist
@@ -69,7 +85,9 @@ fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
 
 ## Supabase
 
-The `herbs` table uses pgvector. Columns: `id`, `name` (UNIQUE), `description`, `how_to_use`, `category` (text[]), `embedding` (vector(1536)), `created_at`. The `match_herbs` SQL function performs cosine similarity search with a configurable threshold (default 0.3) and result limit. The ivfflat index uses `lists = 10` appropriate for <1000 rows. Ingestion uses upsert on `name` — re-running updates existing rows and adds new ones.
+The `herbs` table uses pgvector. Columns: `id`, `name` (UNIQUE), `description`, `how_to_use`, `category` (text[]), `tags` (text[]), `energetics` (text[]), `botanical_name`, `plant_part`, `origin`, `form`, `embedding` (vector(1536)), `created_at`. The `match_herbs` SQL function returns all of these plus `similarity`, performing cosine similarity search with a configurable threshold (default 0.3) and result limit. Indexes: ivfflat on `embedding` (`lists = 10`, appropriate for <1000 rows) and GIN on `tags` (future-proofing for tag filtering). Ingestion upserts on `name` — re-running updates existing rows.
+
+**Remote project:** `donareoeoobqmomarisf`. Local stack runs at `127.0.0.1:54321` via `supabase start`. Migrations live in `supabase/migrations/`; apply locally with `npx supabase migration up --local` and to remote with `npx supabase db push`.
 
 ## Git & Branching
 
@@ -90,9 +108,9 @@ Project docs live in `docs/`. Update these after major milestones and significan
 
 ## Environment Variables
 
-Root `.env`: `OPENAI_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `ANTHROPIC_API_KEY`, `APOTHECARY_ENV=development`
-
-`client/.env.local`: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+- Root `.env` — production credentials: `OPENAI_API_KEY`, `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `ANTHROPIC_API_KEY`, `APOTHECARY_ENV=development`.
+- Root `.env.local` — local-Supabase overrides: `SUPABASE_URL=http://127.0.0.1:54321`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`. Node scripts (`ingest`, `verify_search`) load this first by default so they target the local stack; `.env` fills in keys `.env.local` doesn't define (like `OPENAI_API_KEY`).
+- `client/.env.local` — Vite: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`. Independent of the root `.env.local`.
 
 ## Conventions
 
