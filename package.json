@@ -6,17 +6,18 @@
   "description": "Semantic herb search web app",
   "scripts": {
     "ingest": "node scripts/ingest.js",
+    "ingest:prod": "node scripts/ingest.js prod",
+    "enrich": "node scripts/enrich_herbs.js",
     "compare": "node scripts/compare_herbs.js",
-    "dev:functions": "npx supabase functions serve --env-file .env --no-verify-jwt",
-    "dev:client": "cd client && npm run dev",
-    "dev": "npm-run-all --parallel dev:functions dev:client",
+    "functions": "npx supabase functions serve --env-file .env --no-verify-jwt",
+    "client": "cd client && npm run dev",
+    "dev": "npm-run-all --parallel functions client",
     "build": "cd client && npm run build",
-    "deploy:search": "npx supabase functions deploy search",
-    "deploy:nutritionist": "npx supabase functions deploy nutritionist",
-    "deploy": "npm-run-all deploy:search deploy:nutritionist"
+    "deploy": "npx supabase functions deploy search nutritionist --project-ref donareoeoobqmomarisf"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
+    "cheerio": "^1.2.0",
     "dotenv": "^16.4.7",
     "openai": "^4.77.0"
   },
