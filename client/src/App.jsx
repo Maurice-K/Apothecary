@@ -15,26 +15,30 @@ export default function App() {
     <AuthProvider>
       <div className="app">
         <header className="app-header">
-          <div className="app-header-ornament" aria-hidden="true">
-            <span className="ornament-line"></span>
-            <span className="ornament-leaf">&#x2E19;</span>
-            <span className="ornament-line"></span>
+          <div className="app-header-frame">
+            <div className="app-header-ornament" aria-hidden="true">
+              <span className="ornament-line"></span>
+              <span className="ornament-dot">⁙</span>
+              <span className="ornament-line"></span>
+            </div>
+            <h1 className="app-title">The Herbary</h1>
+            <div className="app-header-divider" aria-hidden="true"></div>
+            <p className="app-subtitle">Discover herbs for what ails you</p>
+            <p className="app-tagline">Est. 1892 · Botanical Wellness · AI Guided</p>
           </div>
-          <h1 className="app-title">The Herbary</h1>
-          <p className="app-subtitle">Discover herbs for what ails you</p>
         </header>
 
         <NavBar />
 
         <main className="app-main">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<NutritionistPage />} />
+            <Route path="/herb-search" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/recipe/:id" element={<RecipeDetailPage />} />
             <Route path="/my-recipes" element={<MyRecipesPage />} />
             <Route path="/add-recipe" element={<AddRecipePage />} />
-            <Route path="/nutritionist" element={<NutritionistPage />} />
           </Routes>
         </main>
       </div>

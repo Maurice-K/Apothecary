@@ -87,21 +87,29 @@
   padding: 0.1em 0.35em;
 }
 
-/* Blinking cursor shown while streaming */
-.chat-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 0.9em;
-  background: var(--green-600);
-  border-radius: 1px;
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  animation: blink 0.9s step-end infinite;
+/* Animated ellipsis shown while waiting for full response */
+.chat-ellipsis {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.25rem 0;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.chat-ellipsis span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brown-400);
+  animation: ellipsis-bounce 1.2s ease-in-out infinite;
+}
+
+.chat-ellipsis span:nth-child(2) { animation-delay: 0.2s; }
+.chat-ellipsis span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes ellipsis-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
 }
 
 /* Herb cards below the assistant message */
