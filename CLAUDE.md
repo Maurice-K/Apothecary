@@ -27,6 +27,9 @@ supabase functions serve --env-file .env --no-verify-jwt   # all functions; --no
 # Ingestion (one-time)
 node scripts/ingest.js            # embed herbs + upload to Supabase
 
+# Herb catalog comparison
+node scripts/compare_herbs.js     # compare Chioma site catalog against chioma_products.json
+
 # Client (React + Vite on port 5173)
 cd client && npm run dev          # start Vite dev server
 cd client && npm run build        # production build to client/dist/
@@ -54,6 +57,8 @@ fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
 
 - `chioma_products.json` — source herb data (134 herbs)
 - `scripts/ingest.js` — embeds herbs and upserts to Supabase. Safe to re-run.
+- `scripts/sources.json` — list of URLs to crawl for herb catalog comparison. Add new sources here.
+- `scripts/compare_herbs.js` — fetches product listings from sources.json via Shopify JSON API and diffs against chioma_products.json. Outputs which herbs are in the DB and which are missing.
 - `supabase/functions/search/index.ts` — search Edge Function
 - `supabase/functions/nutritionist/index.ts` — nutritionist Edge Function (agentic loop + SSE)
 - `supabase/functions/_shared/` — CORS, embedding, types, validation, anthropic, tools, sse, rate-limit
