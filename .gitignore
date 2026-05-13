@@ -1,13 +1,81 @@
-node_modules/
+# --- Secrets & environment ---
 .env
-.env.local
-.env*.local
+.env.*
+!.env.example
+!.env.*.example
+
+# --- Dependencies ---
+node_modules/
+.pnp
+.pnp.js
+.pnp.cjs
+
+# --- Build output ---
 dist/
-.supabase/
-.superdesign
-.DS_Store
+build/
+client/dist/
+client/build/
+*.tsbuildinfo
+
+# --- Vite ---
+.vite/
+client/.vite/
+
+# --- Logs ---
 *.log
-*.sw?
-.claude/memory/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Test & coverage ---
+coverage/
+.nyc_output/
+*.lcov
+
+# --- Caches ---
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.turbo/
+
+# --- Supabase ---
+.supabase/
+supabase/.temp/
+supabase/.branches/
+
+# --- Deno (Edge Functions) ---
+.deno/
+
+# --- Editors & IDEs ---
 .vscode/
+!.vscode/extensions.json
+!.vscode/settings.json.example
 .idea/
+*.sw?
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# --- Claude Code ---
+.claude/memory/
+.superdesign/
+
+# --- Misc ---
+*.pid
+*.seed
+*.pid.lock
+.tmp/
+tmp/
