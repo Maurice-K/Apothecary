@@ -4,8 +4,18 @@
 // call match_herbs directly. Prints the top-5 herbs + similarity per query.
 
 import dotenv from "dotenv";
-dotenv.config();
 import OpenAI from "openai";
+
+// `node scripts/verify_search.js`        -> local
+// `node scripts/verify_search.js prod`   -> remote
+const target = process.argv[2] === "prod" ? "prod" : "local";
+if (target === "local") {
+  dotenv.config({ path: ".env.local" });
+  dotenv.config();
+} else {
+  dotenv.config();
+}
+console.log(`Target: ${target.toUpperCase()} (${process.env.SUPABASE_URL})\n`);
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const SUPABASE_URL = process.env.SUPABASE_URL;

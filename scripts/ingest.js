@@ -1,14 +1,36 @@
 import dotenv from "dotenv";
-// Ingest always targets the remote/production DB defined in .env.
-// .env.local is a developer override for the Edge Function dev loop and would
-// otherwise route this script at the local Supabase stack.
-dotenv.config();
 import { readFileSync } from "fs";
+import { createInterface } from "readline";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// Pick target: `node scripts/ingest.js`        -> local (.env.local wins)
+//              `node scripts/ingest.js prod`   -> remote (.env only)
+const target = process.argv[2] === "prod" ? "prod" : "local";
+
+if (target === "local") {
+  dotenv.config({ path: ".env.local" });
+  // .env.local intentionally omits OPENAI_API_KEY; fall back to .env for that.
+  dotenv.config();
+} else {
+  dotenv.config();
+}
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+
+console.log(`Target: ${target.toUpperCase()} (${SUPABASE_URL})`);
+
+if (target === "prod") {
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  const answer = await new Promise((r) => rl.question("Ingest to PRODUCTION. Type 'yes' to continue: ", r));
+  rl.close();
+  if (answer.trim() !== "yes") {
+    console.log("Aborted.");
+    process.exit(0);
+  }
+}
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const herbs = JSON.parse(readFileSync("chioma_products.json", "utf-8"));
 
