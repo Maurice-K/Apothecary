@@ -9,3 +9,5 @@ dist/
 *.log
 *.sw?
 .claude/memory/
+.vscode/
+.idea/
