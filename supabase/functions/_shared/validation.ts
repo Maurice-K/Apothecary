@@ -1,4 +1,10 @@
-import type { SearchRequest, CreateRecipeRequest, UpdateRecipeRequest } from "./types.ts";
+import type {
+  CreateRecipeRequest,
+  NutritionistMessage,
+  NutritionistRequest,
+  SearchRequest,
+  UpdateRecipeRequest,
+} from "./types.ts";
 
 export function validateSearchRequest(body: unknown): SearchRequest {
   if (!body || typeof body !== "object") {
@@ -114,4 +120,47 @@ export class ValidationError extends Error {
     super(message);
     this.name = "ValidationError";
   }
+}
+
+export function validateNutritionistRequest(body: unknown): NutritionistRequest {
+  if (!body || typeof body !== "object") {
+    throw new ValidationError("Request body must be a JSON object");
+  }
+
+  const { messages } = body as Record<string, unknown>;
+
+  if (!Array.isArray(messages) || messages.length === 0) {
+    throw new ValidationError("messages must be a non-empty array");
+  }
+
+  if (messages.length > 50) {
+    throw new ValidationError("messages cannot exceed 50 entries");
+  }
+
+  const validated: NutritionistMessage[] = [];
+  for (const msg of messages) {
+    if (!msg || typeof msg !== "object") {
+      throw new ValidationError("each message must be an object");
+    }
+    const { role, content } = msg as Record<string, unknown>;
+    if (role !== "user" && role !== "assistant") {
+      throw new ValidationError("message role must be 'user' or 'assistant'");
+    }
+    if (typeof content !== "string") {
+      throw new ValidationError("message content must be a string");
+    }
+    if (role === "user" && content.length === 0) {
+      throw new ValidationError("user message content must be non-empty");
+    }
+    if (role === "user" && content.length > 4000) {
+      throw new ValidationError("user message content exceeds 4000 characters");
+    }
+    validated.push({ role, content });
+  }
+
+  if (validated[validated.length - 1].role !== "user") {
+    throw new ValidationError("last message must have role 'user'");
+  }
+
+  return { messages: validated };
 }

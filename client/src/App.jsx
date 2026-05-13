@@ -7,6 +7,7 @@ import SignupPage from "./pages/SignupPage";
 import RecipeDetailPage from "./pages/RecipeDetailPage";
 import MyRecipesPage from "./pages/MyRecipesPage";
 import AddRecipePage from "./pages/AddRecipePage";
+import NutritionistPage from "./pages/Nutritionist";
 import "./App.css";
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/recipe/:id" element={<RecipeDetailPage />} />
             <Route path="/my-recipes" element={<MyRecipesPage />} />
             <Route path="/add-recipe" element={<AddRecipePage />} />
+            <Route path="/nutritionist" element={<NutritionistPage />} />
           </Routes>
         </main>
       </div>

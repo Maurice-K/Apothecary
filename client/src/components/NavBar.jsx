@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.jsx";
 import "./NavBar.css";
 
@@ -7,7 +7,8 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="nav-link">Search</Link>
+      <NavLink to="/" end className={({ isActive }) => `nav-link${isActive ? " nav-link--active" : ""}`}>Search</NavLink>
+      <NavLink to="/nutritionist" className={({ isActive }) => `nav-link${isActive ? " nav-link--active" : ""}`}>Nutritionist</NavLink>
       {user ? (
         <>
           <Link to="/my-recipes" className="nav-link">My Recipes</Link>

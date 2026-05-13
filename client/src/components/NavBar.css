@@ -20,6 +20,11 @@
   color: var(--green-700);
 }
 
+.nav-link--active {
+  color: var(--green-700);
+  font-weight: 600;
+}
+
 .nav-button {
   background: none;
   border: none;
