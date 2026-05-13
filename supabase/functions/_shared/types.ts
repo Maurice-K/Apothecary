@@ -5,6 +5,12 @@ export interface Herb {
   description: string;
   how_to_use: string;
   category: string[];
+  tags: string[] | null;
+  energetics: string[] | null;
+  botanical_name: string | null;
+  plant_part: string | null;
+  origin: string | null;
+  form: string | null;
   similarity: number;
 }
 

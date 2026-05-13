@@ -6,7 +6,28 @@
     "category": [
       "Digestive Support",
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "Colon Cleanse Support",
+      "Constipation Support",
+      "Detox & Cleanse",
+      "Diuretic Support Support",
+      "General Toxin Elimination Support",
+      "Gut Cleanse",
+      "Gut Stimulant Support",
+      "Hard Reset Support",
+      "Laxative",
+      "Safe For Kids"
+    ],
+    "energetics": [
+      "bitter",
+      "cold",
+      "dry"
+    ],
+    "botanical_name": "Senna alexandrina",
+    "plant_part": "Leaf",
+    "origin": "Africa",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Hyssop Herb",
@@ -20,7 +41,25 @@
       "Heart & Circulation",
       "Nutritive",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Airway Relaxation Support",
+      "Anti-inflammatory Support",
+      "Cold & Flu Support",
+      "Cough Soother Support",
+      "Mucus Reduction Support",
+      "Sinus Support",
+      "Throat Soother"
+    ],
+    "energetics": [
+      "aromatic",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Hyssopus officinalis.",
+    "plant_part": "Herb (Leaves and Flowers).",
+    "origin": "Southern Europe, Middle East, and Western Asia.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Sarsaparilla Root",
@@ -32,7 +71,26 @@
       "Heart & Circulation",
       "Nutritive",
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Blood Purification Support",
+      "Deep Cellular Detox",
+      "Joint Support",
+      "Men’s Hormone Balance Support",
+      "Skin Inflammation Support",
+      "Women's Libido Support"
+    ],
+    "energetics": [
+      "dry",
+      "neutral",
+      "pungent",
+      "sweet"
+    ],
+    "botanical_name": "Smilax ornata",
+    "plant_part": "Root",
+    "origin": "South America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Elderberries",
@@ -48,7 +106,25 @@
       "Urinary & Kidney",
       "Cognitive Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Cold & Flu Support",
+      "Cough Soother Support",
+      "Fever Support",
+      "Immunity Support",
+      "Safe For Kids",
+      "Tart"
+    ],
+    "energetics": [
+      "cooling",
+      "moistening",
+      "toning"
+    ],
+    "botanical_name": "Sambucus nigra",
+    "plant_part": "Berry",
+    "origin": "Bulgaria or Poland",
+    "form": "Whole Dried Berries"
   },
   {
     "name": "Alfalfa Leaf",
@@ -62,7 +138,26 @@
       "Nutritive",
       "Blood Sugar Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Blood Purification Support",
+      "Energy & Endurance Support",
+      "Inner Hydration Support",
+      "Iron Boost",
+      "Minerals & Vitamins Boost",
+      "Nutritive",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy"
+    ],
+    "energetics": [
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Medicago sativa",
+    "plant_part": "Leaf",
+    "origin": "United States",
+    "form": "Cut and sifted"
   },
   {
     "name": "Angelica Root (Dong Quai)",
@@ -71,7 +166,25 @@
     "category": [
       "Women's Health",
       "Men's Health"
-    ]
+    ],
+    "tags": [
+      "Emmenagogue Support",
+      "Endometriosis Support",
+      "Iron Boost",
+      "Menstrual Cramps Support",
+      "Ovulation Support",
+      "Uterine Tonic Support",
+      "Women's Hormone Balance"
+    ],
+    "energetics": [
+      "pungent",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Angelica archangelica officinalis",
+    "origin": "Europe",
+    "form": "Cut and sifted",
+    "plant_part": "Root"
   },
   {
     "name": "Anise Seed",
@@ -79,7 +192,28 @@
     "how_to_use": "Use in herbal tea or culinary applications. Steep 1-2 teaspoons per 8 oz cup of water for 5-10 minutes.",
     "category": [
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Bloating Relief Support",
+      "Carminative",
+      "Cough Soother Support",
+      "Digestion Support",
+      "Gut Soothing",
+      "Gut Stimulant Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "tonifying",
+      "warm"
+    ],
+    "botanical_name": "Pimpinella anisum",
+    "plant_part": "Seed",
+    "origin": "Turkey",
+    "form": "Whole"
   },
   {
     "name": "Arnica Flower",
@@ -87,7 +221,23 @@
     "how_to_use": "Primarily for topical use. Not recommended for internal consumption. Consult a healthcare practitioner before use.",
     "category": [
       "Anti-Inflammatory"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Joint & Mobility Support",
+      "Muscle Recovery Support",
+      "Post-workout Recovery Support",
+      "Stimulating",
+      "Swelling Support"
+    ],
+    "energetics": [
+      "astringent",
+      "warm"
+    ],
+    "botanical_name": "Heterotheca inuloides",
+    "plant_part": "Flower",
+    "origin": "North America",
+    "form": "Whole"
   },
   {
     "name": "Ashwagandha Root Powder",
@@ -99,7 +249,42 @@
       "Stress & Relaxation",
       "Energy & Vitality",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adhd Support",
+      "Adrenal Balance Support",
+      "Cortisol Balance Support",
+      "Energy & Endurance Support",
+      "Erectile Dysfunction Support",
+      "Fibromyalgia Support",
+      "Men’s Fertility Support",
+      "Men’s Hormone Balance Support",
+      "Men’s Muscle Building Support",
+      "Men’s Stress Relief Support",
+      "Mind Centering Support",
+      "Nervine Relaxant Support",
+      "Nervous System Tonic",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Sleep Support",
+      "Stress Relief Support",
+      "Testosterone Booster Support",
+      "Tonic",
+      "Women’s Energy Support",
+      "Women’s Libido Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Withania somnifera",
+    "plant_part": "Root",
+    "origin": "India",
+    "form": "Cut and sifted"
   },
   {
     "name": "Ashwagandha Root, c/s",
@@ -110,7 +295,40 @@
       "Stress & Relaxation",
       "Energy & Vitality",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adhd Support",
+      "Adrenal Balance Support",
+      "Cortisol Balance Support",
+      "Energy & Endurance Support",
+      "Erectile Dysfunction Support",
+      "Fibromyalgia Support",
+      "Men’s Fertility Support",
+      "Men’s Hormone Balance Support",
+      "Men’s Muscle Building Support",
+      "Men’s Stress Relief Support",
+      "Mind Centering Support",
+      "Nervine Relaxant Support",
+      "Nervous System Tonic",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Sleep Support",
+      "Stress Relief Support",
+      "Testosterone Booster Support",
+      "Tonic",
+      "Women’s Energy Support",
+      "Women’s Libido Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "moist",
+      "warm"
+    ],
+    "botanical_name": "Withania somnifera",
+    "plant_part": "Root",
+    "origin": "India",
+    "form": "Cut and sifted"
   },
   {
     "name": "Astragalus Root",
@@ -118,7 +336,26 @@
     "how_to_use": "Brew as herbal tea or use in decoctions. Simmer in water for 20-30 minutes for best extraction.",
     "category": [
       "Immune Support"
-    ]
+    ],
+    "tags": [
+      "Adaptogen",
+      "Cardiovascular Support",
+      "Cold & Flu Support",
+      "Energy & Endurance Support",
+      "Immunity Support",
+      "Lung Support",
+      "Men’s Stress Relief Support",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "moist",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Astragalus membranaceus",
+    "origin": "Asia",
+    "form": "Cut and sifted",
+    "plant_part": "Root"
   },
   {
     "name": "Barberry Root Bark",
@@ -127,7 +364,26 @@
     "category": [
       "Digestive Support",
       "Detox & Cleansing"
-    ]
+    ],
+    "tags": [
+      "Blood Pressure Balance",
+      "Blood Sugar Balance",
+      "Gallbladder Support",
+      "Gentle Detox Support",
+      "Glp-1 Alternative",
+      "Gut Repair Support",
+      "Gut Stimulant Support",
+      "Liver Detox Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Berberis vulgaris",
+    "plant_part": "Bark",
+    "origin": "Asia",
+    "form": "Cut and sifted"
   },
   {
     "name": "Beet Root Powder",
@@ -136,7 +392,28 @@
     "category": [
       "Heart & Circulation",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Blood Flow Support",
+      "Blood Pressure Support",
+      "Cardiovascular Support",
+      "Circulation Support",
+      "Energy & Endurance Support",
+      "Iron Boost",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "sweet"
+    ],
+    "botanical_name": "Beta vulgaris",
+    "origin": "North America",
+    "form": "Powder",
+    "plant_part": "Root"
   },
   {
     "name": "Black Cohosh",
@@ -153,7 +430,26 @@
     "how_to_use": "Add to smoothies, honey, or food. Can be taken with warm water or used in culinary applications.",
     "category": [
       "Immune Support"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Asthma Support",
+      "Blood Sugar Support",
+      "Immunity Support",
+      "Respiratory Care",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Nigella Sativa",
+    "plant_part": "Seed",
+    "origin": "India",
+    "form": "Powder"
   },
   {
     "name": "Black Peppercorn",
@@ -161,7 +457,26 @@
     "how_to_use": "Use in culinary applications or add small amounts to herbal preparations to enhance absorption.",
     "category": [
       "Digestive Support"
-    ]
+    ],
+    "tags": [
+      "Bio-enhancer",
+      "Circulation Support",
+      "Digestion Support",
+      "Metabolism Boost Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Stimulant"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Piper nigrum",
+    "plant_part": "Fruit",
+    "origin": "Asia",
+    "form": "Whole"
   },
   {
     "name": "Black Tea, Whole",
@@ -169,7 +484,23 @@
     "how_to_use": "Steep 1-2 teaspoons in hot water for 3-5 minutes. Adjust steeping time based on desired strength.",
     "category": [
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Caffeine",
+      "Cardiovascular Support",
+      "Energy & Endurance Support",
+      "Mental Clarity Support",
+      "Safe For Kids",
+      "Safe For Pregnancy",
+      "Stimulant"
+    ],
+    "energetics": [
+      "dry",
+      "warm"
+    ],
+    "form": "Cut & Sifted",
+    "plant_part": "Whole"
   },
   {
     "name": "Black Walnut Hull",
@@ -179,6 +510,17 @@
       "Digestive Support",
       "Detox & Cleansing",
       "Parasitic Cleanse"
+    ],
+    "tags": [
+      "Blood Purification Support",
+      "Colon Cleanse Support",
+      "Gut Repair Support",
+      "Heavy Metal Elimination Support",
+      "Parasite Support"
+    ],
+    "energetics": [
+      "astringent",
+      "dry"
     ]
   },
   {
@@ -188,7 +530,24 @@
     "category": [
       "Nutritive",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Cardiovascular Support",
+      "Detox & Cleanse",
+      "Minerals & Vitamins Boost",
+      "Safe For Pets",
+      "Thyroid Support",
+      "Weight Management"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "salty"
+    ],
+    "plant_part": "Whole plant",
+    "origin": "North America",
+    "form": "Cut and sifted",
+    "botanical_name": "Fucus vesiculosus"
   },
   {
     "name": "Blue Lotus, Whole",
@@ -209,7 +568,30 @@
       "Detox & Cleansing",
       "Urinary & Kidney",
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "4c Hair Care",
+      "Blood Purification Support",
+      "Curly Hair Care",
+      "Dandruff Support",
+      "Fibroid Support",
+      "Gentle Detox Support",
+      "Gut Wellness",
+      "Hair Thickening",
+      "Liver Detox Support",
+      "Lymphatic Support",
+      "Safe For Pets",
+      "Scalp Detox",
+      "Skin Inflammation Support"
+    ],
+    "energetics": [
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Arctium lappa",
+    "plant_part": "Root",
+    "origin": "Europe",
+    "form": "Cut and sifted"
   },
   {
     "name": "Burdock Root Tea",
@@ -219,7 +601,30 @@
       "Skin & Beauty",
       "Detox & Cleansing",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "4c Hair Care",
+      "Blood Purification Support",
+      "Curly Hair Care",
+      "Dandruff Support",
+      "Fibroid Support",
+      "Gentle Detox Support",
+      "Gut Wellness",
+      "Hair Thickening",
+      "Liver Detox Support",
+      "Lymphatic Support",
+      "Safe For Pets",
+      "Scalp Detox",
+      "Skin Inflammation Support"
+    ],
+    "energetics": [
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Arctium lappa",
+    "plant_part": "Root",
+    "origin": "Europe",
+    "form": "Cut and sifted"
   },
   {
     "name": "Butterfly Pea Flower",
@@ -230,6 +635,14 @@
       "Skin & Beauty",
       "Cognitive Support",
       "Antioxidant"
+    ],
+    "botanical_name": "Clitoria ternatea",
+    "plant_part": "Flower",
+    "origin": "Thailand",
+    "form": "Whole",
+    "energetics": [
+      "cool",
+      "relaxant"
     ]
   },
   {
@@ -240,7 +653,30 @@
       "Digestive Support",
       "Skin & Beauty",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Dandruff Support",
+      "Itch Relief",
+      "Lymphatic Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Skin Hydration Support",
+      "Skin Inflammation Support",
+      "Smokeables",
+      "Vaginal Odor Support",
+      "Vulnerary",
+      "Wound Healing Support",
+      "bv Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Calendula officinalis",
+    "plant_part": "Flower (Ray Florets/Petals)",
+    "origin": "Southern Europe",
+    "form": "Dried Flower"
   },
   {
     "name": "Cascara Sagrada",
@@ -248,7 +684,22 @@
     "how_to_use": "Steep 1 teaspoon of bark in hot water for 10-15 minutes. Best used short-term. Consult healthcare practitioner before use. Not recommended for long-term use or during pregnancy.",
     "category": [
       "Digestive Support"
-    ]
+    ],
+    "tags": [
+      "Colon Cleanse Support",
+      "Constipation Support",
+      "Gut Stimulant Support",
+      "Hard Reset",
+      "Stimulating"
+    ],
+    "energetics": [
+      "bitter",
+      "cool"
+    ],
+    "botanical_name": "Frangula purshiana (formerly Rhamnus purshiana)",
+    "plant_part": "Dried, Aged Bark",
+    "origin": "Western North America (Pacific Northwest)",
+    "form": "Dried Bark"
   },
   {
     "name": "Catnip",
@@ -260,7 +711,11 @@
       "Stress & Relaxation",
       "Pain Relief",
       "Urinary & Kidney"
-    ]
+    ],
+    "botanical_name": "Nepeta cataria",
+    "plant_part": "Leaves and Flowering Tops",
+    "origin": "Eurasia (widely naturalized in North America)",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Chaga Mushroom Chunks",
@@ -271,7 +726,24 @@
       "Energy & Vitality",
       "Anti-Inflammatory",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Energy & Endurance Support",
+      "Gut Immune Support",
+      "Immunity Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "neutral",
+      "warm"
+    ],
+    "botanical_name": "Inonotus obliquus",
+    "plant_part": "Sclerotium (Mushroom)",
+    "origin": "Siberia (Russia) or Northern Canada",
+    "form": "Chunks"
   },
   {
     "name": "Chamomile",
@@ -281,7 +753,34 @@
       "Digestive Support",
       "Stress & Relaxation",
       "Skin & Beauty"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Celiac Support",
+      "Dandruff Support",
+      "Diarrhea Support",
+      "Digestion Support",
+      "Ibs Support",
+      "Itch Relief",
+      "Nervine Relaxant Support",
+      "Pms Relief Support",
+      "Relaxant",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Sleep Support",
+      "Smokeables",
+      "Uterine Relaxant Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Matricaria recutita",
+    "plant_part": "Flower heads",
+    "origin": "Egypt or Eastern Europe",
+    "form": "Whole Flowers"
   },
   {
     "name": "Chaparral",
@@ -292,7 +791,21 @@
       "Skin & Beauty",
       "Detox & Cleansing",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Deep Cellular Detox",
+      "High Liver Toxicity Risk"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "pungent"
+    ],
+    "botanical_name": "Larrea tridentata",
+    "plant_part": "Leaf and Twig",
+    "origin": "Southwest USA / Northern Mexico",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Chickweed",
@@ -302,7 +815,26 @@
       "Skin & Beauty",
       "Anti-Inflammatory",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Constipation Support",
+      "Demulcent",
+      "Eczema Support",
+      "Gentle Detox Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Skin Inflammation Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Stellaria media",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Chicory Root",
@@ -313,7 +845,26 @@
       "Detox & Cleansing",
       "Blood Sugar Support",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Appetite Suppressant Support",
+      "Bloating Relief Support",
+      "Blood Sugar Support",
+      "Digestion Support",
+      "Gut Stimulant Support",
+      "Liver Detox Support",
+      "Prebiotic Support",
+      "Probiotic Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Cichorium intybus",
+    "plant_part": "Root",
+    "origin": "India",
+    "form": "Granules"
   },
   {
     "name": "Cinnamon, Cut & Sifted",
@@ -326,7 +877,32 @@
       "Blood Sugar Support",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Blood Sugar Support",
+      "Carb Blocker Support",
+      "Circulation Support",
+      "Cold & Flu Support",
+      "Digestion Support",
+      "Emmenagogue Support",
+      "Glp-1 Alternative",
+      "Keto Support",
+      "Metabolism Boost Support",
+      "Pcos Support",
+      "Safe For Kids",
+      "Sugar Cravings Control Support",
+      "Women’s Libido Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Cinnamomum verum or Cinnamomum cassia",
+    "plant_part": "Bark",
+    "origin": "Indonesia or Sri Lanka (Common for Cinnamon)",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Cleavers",
@@ -336,7 +912,25 @@
       "Skin & Beauty",
       "Detox & Cleansing",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Blood Purification Support",
+      "Gentle Detox Support",
+      "Kidney Detox Support",
+      "Lymphatic Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Swelling Support",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Galium aparine",
+    "plant_part": "Aerial Parts (Leaf/Stem)",
+    "origin": "North America / Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Cloves",
@@ -348,7 +942,26 @@
       "Pain Relief",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Body Odor Support",
+      "Congestion Support",
+      "Digestion Support",
+      "Immune Support",
+      "Oral Health",
+      "Pain Relief Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Syzygium aromaticum",
+    "plant_part": "Dried Flower Buds",
+    "origin": "Sri Lanka or Madagascar",
+    "form": "Whole"
   },
   {
     "name": "Comfrey Root",
@@ -356,7 +969,24 @@
     "how_to_use": "Primarily for external use only. Infuse in oil for salves and poultices. Apply topically to unbroken skin for muscle and joint support. Internal use is not recommended.",
     "category": [
       "Skin & Beauty"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Joint & Mobility Support",
+      "Muscle Recovery Support",
+      "Scar Reduction Support",
+      "Tendon & Ligament Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "astringent",
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Symphytum officinale",
+    "plant_part": "Root",
+    "origin": "Europe & North America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Cramp Bark",
@@ -367,7 +997,26 @@
       "Men's Health",
       "Stress & Relaxation",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Endometriosis Support",
+      "Heavy Bleeding Support",
+      "Luteal Phase Support",
+      "Menstrual Cramps Support",
+      "Pms Relief Support",
+      "Relaxant",
+      "Relaxation Support",
+      "Uterine Relaxant Support"
+    ],
+    "energetics": [
+      "astringent",
+      "cool"
+    ],
+    "botanical_name": "Viburnum opulus",
+    "plant_part": "Bark",
+    "origin": "North America & Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Damiana Leaf Wildcrafted",
@@ -375,7 +1024,24 @@
     "how_to_use": "Steep 1-2 teaspoons of dried leaves in hot water for 10-15 minutes. Can be combined with other herbs. Also used in smoking blends and tinctures. Enjoy warm or iced.",
     "category": [
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Energy & Endurance Support",
+      "Men’s Libido Support",
+      "Nervous System Balance Support",
+      "Relaxation Support",
+      "Smokeables",
+      "Stress Relief Support",
+      "Women’s Libido Support"
+    ],
+    "energetics": [
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Turnera diffusa",
+    "plant_part": "Leaf",
+    "origin": "Mexico & Central America",
+    "form": "Wildcrafted Cut & Sifted"
   },
   {
     "name": "Dandelion Leaf",
@@ -386,7 +1052,26 @@
       "Detox & Cleansing",
       "Nutritive",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Blood Pressure Support",
+      "Breast Health Support",
+      "Cardiac Detox Support",
+      "Gentle Detox Support",
+      "Kidney Detox Support",
+      "Mineral & Vitamins Boost",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Taraxacum officinale",
+    "plant_part": "Leaf",
+    "origin": "Europe or Bulgaria",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Dandelion Root",
@@ -394,7 +1079,34 @@
     "how_to_use": "Generally used to brew herbal teas. Steep or simmer in hot water for best extraction.",
     "category": [
       "Digestive Support"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Blood Purification Support",
+      "Breast Health Support",
+      "Cardiac Detox Support",
+      "Digestion Support",
+      "Digestive Enzyme Support",
+      "Endometriosis Support",
+      "Fibroid Support",
+      "Gentle Detox Support",
+      "Glp-1 Support",
+      "Gut Stimulant Support",
+      "Liver Detox Support",
+      "Prebiotic Support",
+      "Probiotic Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "neutral"
+    ],
+    "botanical_name": "Taraxacum officinale",
+    "plant_part": "Root",
+    "origin": "Italy or Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Devil's Claw",
@@ -404,7 +1116,25 @@
       "Digestive Support",
       "Anti-Inflammatory",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Appetite Booster Support",
+      "Arthritis Support",
+      "Fibromyalgia Support",
+      "Inflammation Gut Support",
+      "Joint & Mobility Support",
+      "Pain Relief Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Harpagophytum procumbens",
+    "plant_part": "Root (Tuber)",
+    "origin": "South Africa or Namibia",
+    "form": "Cut and Sifted (or Slices)"
   },
   {
     "name": "Echinacea",
@@ -421,7 +1151,26 @@
     "how_to_use": "Simmer 1 teaspoon of root in water for 15-20 minutes as a decoction. Strain and drink up to 3 times daily. Has a bitter, camphor-like taste. Can be combined with honey to improve flavor.",
     "category": [
       "Respiratory Support"
-    ]
+    ],
+    "tags": [
+      "Airway Relaxation Support",
+      "Asthma Support",
+      "Cough Soother Support",
+      "Gut Wellness",
+      "Mucus Reduction Support",
+      "Parasite Support",
+      "Prebiotic Support",
+      "Respiratory Detox Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Inula helenium",
+    "plant_part": "Root",
+    "origin": "Europe or USA",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Eleuthero Root",
@@ -431,7 +1180,26 @@
       "Stress & Relaxation",
       "Energy & Vitality",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Energy & Endurance Support",
+      "Immunity Support",
+      "Mental Clarity Support",
+      "Nervine Stimulant Support",
+      "Nervous System Tonic",
+      "Stress Relief Support",
+      "Women’s Energy Support"
+    ],
+    "energetics": [
+      "neutral",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Eleutherococcus senticosus",
+    "plant_part": "Root",
+    "origin": "China or Siberia",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Eucalyptus Leaf",
@@ -439,7 +1207,25 @@
     "how_to_use": "Steep 1-2 teaspoons in hot water for 5-10 minutes for tea. Can be used in steam inhalations for respiratory support. Also popular in chest rubs and aromatherapy. Use in moderation.",
     "category": [
       "Respiratory Support"
-    ]
+    ],
+    "tags": [
+      "Airway Relaxation Support",
+      "Anti-inflammatory Support",
+      "Congestion Support",
+      "Cough Soother Support",
+      "Mucus Reduction Support",
+      "Respiratory Detox Support",
+      "Sinus Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Eucalyptus globulus",
+    "plant_part": "Leaf",
+    "origin": "Spain or Portugal",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Fennel Seed",
@@ -451,7 +1237,32 @@
       "Women's Health",
       "Pain Relief",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Appetite Suppressant Support",
+      "Bloating Relief Support",
+      "Blood Sugar Support",
+      "Breast Health Support",
+      "Curves Enhancer Support",
+      "Digestion Support",
+      "Digestive Enzyme Support",
+      "Gut Soothing",
+      "Gut Stimulant Support",
+      "Ibs Support",
+      "Metabolism Boost Support",
+      "Regularity Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "aromatic",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Foeniculum vulgare",
+    "plant_part": "Seed",
+    "origin": "Egypt or India",
+    "form": "Whole"
   },
   {
     "name": "Fenugreek Seeds",
@@ -462,7 +1273,35 @@
       "Women's Health",
       "Nutritive",
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "4c Hair Care",
+      "Appetite Suppressant Support",
+      "Blood Sugar Support",
+      "Breast Health Support",
+      "Calorie Reduction Support",
+      "Cholesterol Support",
+      "Curly Hair Care",
+      "Curves Enhancer Support",
+      "Follicular Phase Support",
+      "Glp-1 Alternative",
+      "Hair Growth",
+      "Men’s Hormone Balance Support",
+      "Metabolism Boost Support",
+      "Safe For Pets",
+      "Sugar Cravings Control Support",
+      "Testosterone Booster Support",
+      "Women's Hormone Balance"
+    ],
+    "energetics": [
+      "moist",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Trigonella foenum-graecum",
+    "plant_part": "Seed",
+    "origin": "India & Northern Africa",
+    "form": "Whole"
   },
   {
     "name": "Gentian Root",
@@ -472,7 +1311,24 @@
       "Digestive Support",
       "Detox & Cleansing",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Appetite Booster Support",
+      "Digestion Support",
+      "Enzyme Support",
+      "Extremely Bitter",
+      "Gut Stimulant Support",
+      "Liver Detox Support"
+    ],
+    "energetics": [
+      "cold",
+      "dry"
+    ],
+    "botanical_name": "Gentiana lutea",
+    "plant_part": "Root",
+    "origin": "Europe & Western Asia",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Ginger Root",
@@ -484,7 +1340,41 @@
       "Anti-Inflammatory",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Blood Flow Support",
+      "Celiac Support",
+      "Circulation Support",
+      "Cold & Flu Support",
+      "Diarrhea Support",
+      "Digestion Support",
+      "Emmenagogue Support",
+      "Endometriosis Support",
+      "Erectile Dysfunction Support",
+      "Fibroid Support",
+      "Fibromyalgia Support",
+      "Glp-1 Support",
+      "Ibs Support",
+      "Metabolism Boost Support",
+      "Nausea Relief",
+      "Probiotic Support",
+      "Regularity Support",
+      "Respiratory Detox Support",
+      "Safe For Kids",
+      "Safe For Pregnancy",
+      "Sinus Support",
+      "Women’s Energy Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Zingiber officinale",
+    "plant_part": "Rhizome (Root)",
+    "origin": "Southeast Asia (widely cultivated in India & Nigeria)",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Ginkgo Biloba Leaf",
@@ -494,7 +1384,35 @@
       "Heart & Circulation",
       "Cognitive Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Adhd Support",
+      "Antioxidant Support",
+      "Blood Flow Support",
+      "Brain Support",
+      "Cardiac Detox Support",
+      "Cardiovascular Support",
+      "Cellulite Reduction Support",
+      "Circulation Support",
+      "Erectile Dysfunction Support",
+      "Eye Health Support",
+      "Hair Growth",
+      "Memory & Cognitive Support",
+      "Mental Clarity Support",
+      "Men’s Energy Support",
+      "Productivity Support",
+      "Vein & Artery Health Support",
+      "Women’s Libido Support"
+    ],
+    "energetics": [
+      "dry",
+      "neutral",
+      "pungent"
+    ],
+    "botanical_name": "Ginkgo biloba",
+    "plant_part": "Leaf",
+    "origin": "China",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Ginseng, Panax",
@@ -513,7 +1431,16 @@
     "category": [
       "Respiratory Support",
       "Urinary & Kidney"
-    ]
+    ],
+    "energetics": [
+      "aromatic",
+      "drying",
+      "warming"
+    ],
+    "botanical_name": "Solidago virgaurea or Solidago spp..",
+    "plant_part": "Herb (Leaves, Flowers, and Stems).",
+    "origin": "North America.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Gotu Kola",
@@ -523,7 +1450,31 @@
       "Skin & Beauty",
       "Heart & Circulation",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adhd Support",
+      "Brain Support",
+      "Cellulite Reduction Support",
+      "Circulation Support",
+      "Hair Thickening",
+      "Memory & Cognitive Support",
+      "Mind Centering Support",
+      "Motivation Support",
+      "Nervine Stimulant Support",
+      "Nervous System Repair Support",
+      "Productivity Support",
+      "Stress Relief Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "moist"
+    ],
+    "botanical_name": "Centella asiatica.",
+    "plant_part": "Herb (Leaves and Stems).",
+    "origin": "Southeast Asia, India, and Australia.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Grapefruit Peel",
@@ -536,7 +1487,26 @@
       "Cognitive Support",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Appetite Suppressant Support",
+      "Cholesterol Support",
+      "Digestive Support",
+      "Liver Detox Support",
+      "Metabolism Boost Support",
+      "Safe For Kids",
+      "Safe For Pregnancy"
+    ],
+    "energetics": [
+      "cooling",
+      "drying",
+      "pungent/bitter"
+    ],
+    "botanical_name": "Citrus x paradisi.",
+    "plant_part": "Peel.",
+    "origin": "USA.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Green Tea",
@@ -548,7 +1518,35 @@
       "Heart & Circulation",
       "Cognitive Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti Androgen Support",
+      "Antioxidant Support",
+      "Calorie Reduction Support",
+      "Cellulite Reduction Support",
+      "Cholesterol Support",
+      "Dht Balance Support",
+      "Endometriosis Support",
+      "Energy & Endurance Support",
+      "Fat Burner Support",
+      "Fibroid Support",
+      "Glp-1 Alternative",
+      "Hirsutism Support",
+      "Keto Support",
+      "Mental Clarity Support",
+      "Metabolism Boost Support",
+      "Safe For Kids",
+      "Weight Loss Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cooling",
+      "drying"
+    ],
+    "botanical_name": "Camellia sinensis.",
+    "plant_part": "Leaf and Leaf Bud.",
+    "origin": "China and Southeast Asia.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Gymnema Sylvestre",
@@ -556,7 +1554,34 @@
     "how_to_use": "Steep 1-2 teaspoons of dried leaves in hot water for 10-15 minutes. Often taken before meals to reduce sugar cravings. Can be taken as capsule or tincture. Consult healthcare practitioner if diabetic.",
     "category": [
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Gut Support",
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Appetite Suppressant Support",
+      "Blood Sugar Support",
+      "Calorie Reduction Support",
+      "Carb Blocker Support",
+      "Cholesterol Support",
+      "Digestion Support",
+      "Gentle Detox Support",
+      "Glp-1 Alternative",
+      "Gut Immune Support",
+      "Liver Support",
+      "Metabolism Boost Support",
+      "Sugar Cravings Control Support",
+      "Weight Loss Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Gymnema sylvestre.",
+    "plant_part": "Leaf.",
+    "origin": "India, Southeast Asia, and Africa.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Hawthorn Berries",
@@ -565,7 +1590,29 @@
     "category": [
       "Heart & Circulation",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Heart Support",
+      "Antioxidant Support",
+      "Blood Flow Support",
+      "Blood Pressure Support",
+      "Cardiac Detox Support",
+      "Cardiovascular Support",
+      "Circulation Support",
+      "Heart Muscle Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Slightly Astringent"
+    ],
+    "energetics": [
+      "drying",
+      "slightly warming",
+      "sour/sweet"
+    ],
+    "botanical_name": "Crataegus monogyna or Crataegus laevigata.",
+    "plant_part": "Berry (Fruit).",
+    "origin": "Northern Hemisphere (Europe, Asia, North Africa, and North America).",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Hawthorn Leaf",
@@ -574,7 +1621,29 @@
     "category": [
       "Heart & Circulation",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Heart Support",
+      "Antioxidant Support",
+      "Blood Flow Support",
+      "Blood Pressure Support",
+      "Cardiac Detox Support",
+      "Cardiovascular Support",
+      "Circulation Support",
+      "Heart Muscle Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Slightly Astringent"
+    ],
+    "energetics": [
+      "astringent",
+      "drying",
+      "slightly cooling"
+    ],
+    "botanical_name": "Crataegus monogyna or Crataegus laevigata.",
+    "plant_part": "Leaf.",
+    "origin": "Northern Hemisphere (Europe, Asia, North Africa, and North America).",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Motherwort",
@@ -586,7 +1655,25 @@
       "Stress & Relaxation",
       "Heart & Circulation",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Emmenagogue Support",
+      "Heart Care",
+      "Menstrual Cramps Support",
+      "Nervous System Balance Support",
+      "Stress Relief Support",
+      "Uterine Relaxant Support",
+      "Womb Inflammation Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Leonurus cardiaca",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Mugwort",
@@ -596,7 +1683,25 @@
       "Digestive Support",
       "Women's Health",
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Digestive Support",
+      "Dream Enhancing Support",
+      "Emmenagogue Support",
+      "Gut Stimulant Support",
+      "Parasite Support",
+      "Smokeables",
+      "Uterine Stimulant Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Artemisia vulgaris",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Mullein Leaf",
@@ -605,7 +1710,30 @@
     "category": [
       "Respiratory Support",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Airway Relaxation Support",
+      "Asthma Support",
+      "Congestion Support",
+      "Cough Soother Support",
+      "Mucus Reduction Support",
+      "Respiratory Detox Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Sinus Support",
+      "Smokeables",
+      "Soothing & Calming Support",
+      "Throat Soother Support"
+    ],
+    "energetics": [
+      "moist",
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Verbascum thapsus",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Neem Leaf",
@@ -616,7 +1744,29 @@
       "Skin & Beauty",
       "Detox & Cleansing",
       "Anti-Inflammatory"
-    ]
+    ],
+    "tags": [
+      "Acne Support",
+      "Anti-inflammatory Support",
+      "Blood Purification Support",
+      "Dandruff Support",
+      "Extremely Bitter",
+      "Gut Immune Support",
+      "Itch Relief",
+      "Parasite Support",
+      "Scalp Detox",
+      "Skin Inflammation Support",
+      "Vaginal Odor Support",
+      "bv Support"
+    ],
+    "energetics": [
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Azadirachta indica",
+    "plant_part": "Leaf",
+    "origin": "India",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Nettle Leaf",
@@ -626,7 +1776,33 @@
       "Anti-Inflammatory",
       "Nutritive",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Allergy Support",
+      "Anti-inflammatory Support",
+      "Breast Health Support",
+      "Eye Health Support",
+      "Gentle Detox Support",
+      "Hair Growth",
+      "Hair Thickening",
+      "Heavy Bleeding Support",
+      "Iron Boost",
+      "Kidney Detox Support",
+      "Minerals & Vitamins Boost",
+      "Pcos Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy"
+    ],
+    "energetics": [
+      "cool",
+      "dry",
+      "salty"
+    ],
+    "botanical_name": "Urtica dioica",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Nettle Root",
@@ -636,7 +1812,27 @@
       "Men's Health",
       "Skin & Beauty",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Anti Androgen Support",
+      "Anti-inflammatory Support",
+      "Dht Balance Support",
+      "Hirsutism Support",
+      "Joint Support",
+      "Men's Hormone Balance Support",
+      "Prostate Support",
+      "Scalp Detox",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "cool",
+      "dry",
+      "salty"
+    ],
+    "botanical_name": "Urtica dioica",
+    "plant_part": "Root",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Oatstraw, Avena Sativa",
@@ -646,7 +1842,28 @@
       "Stress & Relaxation",
       "Energy & Vitality",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Minerals & Vitamins Boost",
+      "Nervous System Tonic",
+      "Prebiotic Support",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Sleep Support",
+      "Stress Relief Support"
+    ],
+    "energetics": [
+      "moist",
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Avena Sativa",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Olive Leaf",
@@ -657,7 +1874,26 @@
       "Heart & Circulation",
       "Blood Sugar Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Blood Pressure Support",
+      "Blood Sugar Support",
+      "Cold & Flu Support",
+      "Immunity Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Olea europaea",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Oolong Tea",
@@ -667,7 +1903,25 @@
       "Digestive Support",
       "Energy & Vitality",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Calorie Reduction Support",
+      "Digestion Support",
+      "Fat Burner Support",
+      "Mental Clarity Support",
+      "Metabolism Boost Support",
+      "Slightly Bitter",
+      "Weight Loss Support"
+    ],
+    "energetics": [
+      "cool",
+      "neutral"
+    ],
+    "botanical_name": "Camellia sinensis",
+    "plant_part": "Leaf",
+    "origin": "China",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Orange Peel",
@@ -679,7 +1933,26 @@
       "Nutritive",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Bloating Relief Support",
+      "Congestion Support",
+      "Digestion Support",
+      "Gut Stimulant Support",
+      "Mucus Reduction Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Citrus x sinensis",
+    "plant_part": "Peel",
+    "origin": "Asia",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Oregano",
@@ -690,7 +1963,25 @@
       "Respiratory Support",
       "Immune Support",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Cold & Flu Support",
+      "Digestive Support",
+      "Immunity Support",
+      "Parasite Support",
+      "Sinus Support",
+      "Vaginal Odor Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Origanum vulgare",
+    "plant_part": "Leaf",
+    "origin": "Greece",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Palo Azul",
@@ -699,6 +1990,15 @@
     "category": [
       "Detox & Cleansing",
       "Urinary & Kidney"
+    ],
+    "botanical_name": "Eysenhardtia polystachya",
+    "plant_part": "Bark",
+    "origin": "North America",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "dry",
+      "earthy",
+      "neutral"
     ]
   },
   {
@@ -711,7 +2011,25 @@
       "Nutritive",
       "Pain Relief",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Bloating Relief Support",
+      "Constipation Support",
+      "Digestion Support",
+      "Digestive Enzyme Support",
+      "Enzyme Support",
+      "Gut Repair Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "neutral"
+    ],
+    "botanical_name": "Carica papaya",
+    "plant_part": "Leaf",
+    "origin": "Mesoamerica",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Parsley",
@@ -722,6 +2040,15 @@
       "Respiratory Support",
       "Nutritive",
       "Urinary & Kidney"
+    ],
+    "botanical_name": "Petroselinum crispum",
+    "plant_part": "Leaf",
+    "origin": "Asia",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
     ]
   },
   {
@@ -730,7 +2057,36 @@
     "how_to_use": "Steep 1-2 teaspoons of dried herb in hot water for 10-15 minutes. Often taken before bed for sleep support. Can be combined with valerian, hops, or chamomile. Safe for occasional use in children.",
     "category": [
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Bloating Relief Support",
+      "Constipation Support",
+      "Digestion Support",
+      "Digestive Enzyme Support",
+      "Enzyme Support",
+      "Fibromyalgia Support",
+      "Gut Repair Support",
+      "Insomnia Support",
+      "Mind Calming Support",
+      "Nervine Relaxant Support",
+      "Nervous System Balance Support",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Sleep Support",
+      "Slightly Bitter",
+      "Stress Relief Support"
+    ],
+    "energetics": [
+      "cool",
+      "neutral",
+      "slightly bitter"
+    ],
+    "botanical_name": "Passiflora incarnata",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Pau D'Arco",
@@ -739,7 +2095,25 @@
     "category": [
       "Respiratory Support",
       "Immune Support"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Detox & Cleanse",
+      "Gut Immune Support",
+      "Immunity Support",
+      "Parasite Support",
+      "Vaginal Odor Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Handroanthus heptaphyllus",
+    "plant_part": "Bark",
+    "origin": "South America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Pennyroyal",
@@ -748,7 +2122,24 @@
     "category": [
       "Digestive Support",
       "Women's Health"
-    ]
+    ],
+    "tags": [
+      "Digestive Support",
+      "Emmenagogue Support",
+      "Hard Reset Support",
+      "Insect Repellent",
+      "Parasite Support",
+      "Uterine Stimulant Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Mentha pulegium",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Peppermint Leaf",
@@ -758,7 +2149,36 @@
       "Digestive Support",
       "Respiratory Support",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Asthma Support",
+      "Bloating Relief Support",
+      "Cold & Flu Support",
+      "Congestion Support",
+      "Digestion Support",
+      "Digestive Enzyme Support",
+      "Glp-1 Support",
+      "Gut Soothing",
+      "Gut Soothing Support",
+      "Hair Growth",
+      "Headache Relief",
+      "Ibs Support",
+      "Respiratory Detox Support",
+      "Safe For Kids",
+      "Scalp Detox",
+      "Sinus Support",
+      "Smokeables",
+      "Uterine Relaxant Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Mentha x piperita",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Hibiscus Flower",
@@ -768,7 +2188,29 @@
       "Heart & Circulation",
       "Nutritive",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "4c Hair Care",
+      "Antioxidant Support",
+      "Blood Pressure Support",
+      "Cardiovascular Support",
+      "Curly Hair Care",
+      "Deep Cellular Detox",
+      "Gentle Detox Support",
+      "Kidney Detox Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy"
+    ],
+    "energetics": [
+      "cooling",
+      "drying",
+      "sour"
+    ],
+    "botanical_name": "Hibiscus sabdariffa.",
+    "plant_part": "Flower (Calyx).",
+    "origin": "Egypt and North Africa.",
+    "form": "Whole or Cut & Sifted."
   },
   {
     "name": "Horehound",
@@ -777,7 +2219,24 @@
     "category": [
       "Digestive Support",
       "Respiratory Support"
-    ]
+    ],
+    "tags": [
+      "Airway Relaxation Support",
+      "Congestion Support",
+      "Cough Soother Support",
+      "Digestion Support",
+      "Gut Stimulant Support",
+      "Mucus Reduction Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Marrubium vulgare.",
+    "plant_part": "Herb (Leaves and Flowering Tops).",
+    "origin": "Europe, Northern Africa, and Southwestern to Central Asia.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Horsetail",
@@ -787,6 +2246,22 @@
       "Respiratory Support",
       "Skin & Beauty",
       "Urinary & Kidney"
+    ],
+    "tags": [
+      "Cellulite Reduction Support",
+      "Collagen Support",
+      "Elasticity Support",
+      "Hair Growth",
+      "Hair Thickening",
+      "Joints & Mobility Support",
+      "Kidney Detox Support",
+      "Minerals & Vitamins Boost",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "astringent",
+      "cool",
+      "dry"
     ]
   },
   {
@@ -797,7 +2272,23 @@
       "Men's Health",
       "Anti-Inflammatory",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Gentle Detox Support",
+      "Hard Reset Support",
+      "Kidney Detox Support",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "cooling",
+      "moistening",
+      "solvent"
+    ],
+    "botanical_name": "Hydrangea arborescens.",
+    "plant_part": "Root and Rhizome.",
+    "origin": "USA.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Juniper Berry",
@@ -807,7 +2298,24 @@
       "Digestive Support",
       "Urinary & Kidney",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Diuretic Support Support",
+      "Gentle Detox Support",
+      "Gut Stimulant Support",
+      "Heavy Metal Elimination Support",
+      "Kidney Detox Support",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Juniperus communis.",
+    "plant_part": "Berry (Fleshy seed cone).",
+    "origin": "Northern Hemisphere (North America, Europe, and Asia).",
+    "form": "Whole or Cut & Sifted."
   },
   {
     "name": "Kola Nut",
@@ -817,7 +2325,29 @@
       "Digestive Support",
       "Energy & Vitality",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Appetite Suppressant Support",
+      "Calorie Reduction Support",
+      "Energy & Endurance Support",
+      "Erectile Dysfunction Support",
+      "Fat Burner Support",
+      "Focus Support",
+      "Mental Clarity Support",
+      "Men’s Energy Support",
+      "Metabolism Boost Support",
+      "Sugar Cravings Control Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "drying",
+      "stimulating",
+      "warming"
+    ],
+    "botanical_name": "Cola acuminata or Cola nitida.",
+    "plant_part": "Seed.",
+    "origin": "West Africa.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Lavender Flower",
@@ -826,7 +2356,28 @@
     "category": [
       "Stress & Relaxation",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Digestion Support",
+      "Itch Relief",
+      "Mind Calming Support",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pregnancy",
+      "Sleep Support",
+      "Smokeables",
+      "Soothing & Calming Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "cooling",
+      "drying"
+    ],
+    "botanical_name": "Lavandula angustifolia.",
+    "plant_part": "Flower.",
+    "origin": "Mediterranean region (including France, Spain, and Italy).",
+    "form": "Whole or Cut & Sifted."
   },
   {
     "name": "Lemon Balm Leaf",
@@ -836,7 +2387,31 @@
       "Digestive Support",
       "Immune Support",
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Cold & Flu Support",
+      "Digestive Support",
+      "Glp-1 Support",
+      "Gut Soothing",
+      "Mind Calming Support",
+      "Mind Centering Support",
+      "Nervine Relaxant Support",
+      "Nervous System Balance Support",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Sleep Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "dry",
+      "sour"
+    ],
+    "botanical_name": "Melissa officinalis.",
+    "plant_part": "Leaf.",
+    "origin": "Southern Europe, Mediterranean Basin, and Central Asia.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Lemongrass",
@@ -845,7 +2420,26 @@
     "category": [
       "Digestive Support",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Bloating Relief Support",
+      "Digestion Support",
+      "Gentle Detox Support",
+      "Gut Stimulant Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "aromatic",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Cymbopogon citratus or Cymbopogon flexuosus.",
+    "plant_part": "Herb (Leaves and Stems).",
+    "origin": "Southern India, Sri Lanka, and Southeast Asia.",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Licorice Root",
@@ -854,7 +2448,33 @@
     "category": [
       "Digestive Support",
       "Respiratory Support"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Anti Androgen Support",
+      "Anti-inflammatory Support",
+      "Asthma Support",
+      "Celiac Support",
+      "Cough Soother Support",
+      "Dht Balance Support",
+      "Gut Soothing",
+      "Hirsutism Support",
+      "Ibs Support",
+      "Mucus Reduction Support",
+      "Pcos Support",
+      "Probiotic Support",
+      "Respiratory Detox Support",
+      "Throat Soother Support"
+    ],
+    "energetics": [
+      "moistening",
+      "neutral to warming",
+      "sweet"
+    ],
+    "botanical_name": "Glycyrrhiza glabra.",
+    "plant_part": "Root and Rhizome.",
+    "origin": "Southern Europe and parts of Asia (including West Asia and the Mediterranean).",
+    "form": "Cut & Sifted."
   },
   {
     "name": "Lion's Mane Mushroom Powder",
@@ -864,7 +2484,27 @@
       "Digestive Support",
       "Immune Support",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adhd Support",
+      "Brain Support",
+      "Gut Immune Support",
+      "Memory & Cognitive Support",
+      "Mental Clarity Support",
+      "Nervous System Repair Support",
+      "Nootropic",
+      "Prebiotic Support",
+      "Productivity Support"
+    ],
+    "energetics": [
+      "cooling",
+      "drying",
+      "earthy"
+    ],
+    "botanical_name": "Hericium erinaceus.",
+    "plant_part": "Fruit Body.",
+    "origin": "North America, Europe, and Asia.",
+    "form": "Powder."
   },
   {
     "name": "Maca Root Gelatinized",
@@ -875,7 +2515,38 @@
       "Women's Health",
       "Energy & Vitality",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Breast Health Support",
+      "Curves Enhancer Support",
+      "Energy & Endurance Support",
+      "Erectile Dysfunction Support",
+      "Men’s Energy Support",
+      "Men’s Fertility Support",
+      "Men’s Hormone Balance Support",
+      "Men’s Libido Support",
+      "Men’s Muscle Building Support",
+      "Motivation Support",
+      "Ovulation Support",
+      "Pcos Support",
+      "Safe For Kids",
+      "Testosterone Booster Support",
+      "Weight Gain Support",
+      "Women's Fertility Support",
+      "Women's Hormone Balance",
+      "Women’s Energy Support",
+      "Women’s Libido Support"
+    ],
+    "energetics": [
+      "earthy",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Lepidium meyenii",
+    "plant_part": "Root",
+    "origin": "Peru",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Maitake Mushroom",
@@ -886,7 +2557,24 @@
       "Heart & Circulation",
       "Blood Sugar Support",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Blood Sugar Support",
+      "Cholesterol Support",
+      "Gut Immune Support",
+      "Immunity Support",
+      "Weight Management"
+    ],
+    "energetics": [
+      "earthy",
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Grifola frondosa",
+    "plant_part": "Fruit",
+    "origin": "North America",
+    "form": "Powder"
   },
   {
     "name": "Marshmallow Root",
@@ -896,7 +2584,38 @@
       "Digestive Support",
       "Respiratory Support",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "4c Hair Care",
+      "Celiac Support",
+      "Congestion Support",
+      "Cough Soother Support",
+      "Curly Hair Care",
+      "Diarrhea Support",
+      "Glp-1 Support",
+      "Gut Soothing",
+      "Ibs Support",
+      "Itch Relief",
+      "Mucus Reduction Support",
+      "Probiotic Support",
+      "Respiratory Detox Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Hydration Support",
+      "Smokeables",
+      "Throat Soother Support",
+      "Ulcer Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "sweet"
+    ],
+    "botanical_name": "Althaea officinalis",
+    "plant_part": "Root",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Matcha Green Tea",
@@ -907,7 +2626,25 @@
       "Energy & Vitality",
       "Cognitive Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Energy & Endurance Support",
+      "Focus Support",
+      "Mental Clarity Support",
+      "Metabolism Boost Support",
+      "Safe For Kids",
+      "Weight Loss Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Camellia sinensis",
+    "plant_part": "Leaf",
+    "origin": "Asia",
+    "form": "Powder"
   },
   {
     "name": "Milk Thistle",
@@ -916,7 +2653,29 @@
     "category": [
       "Detox & Cleansing",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Blood Purification Support",
+      "Cardiac Detox Support",
+      "Deep Cellular Detox",
+      "Endometriosis Support",
+      "Fibroid Support",
+      "Gentle Detox Support",
+      "Glp-1 Support",
+      "Gut Repair Support",
+      "Liver Detox Support",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "neutral"
+    ],
+    "botanical_name": "Silybummarianum",
+    "plant_part": "Seeds",
+    "origin": "Europe",
+    "form": "Whole"
   },
   {
     "name": "Moringa Leaf",
@@ -927,7 +2686,29 @@
       "Anti-Inflammatory",
       "Nutritive",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Blood Sugar Support",
+      "Energy & Endurance Support",
+      "Eye Health Support",
+      "Glp-1 Alternative",
+      "Iron Boost",
+      "Minerals & Vitamins Boost",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Weight Management",
+      "Women’s Energy Support"
+    ],
+    "energetics": [
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Moringa oleifera",
+    "plant_part": "Leaf",
+    "origin": "India",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Sea Moss Tea, c/s",
@@ -939,7 +2720,32 @@
       "Skin & Beauty",
       "Nutritive",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Gut Immune Support",
+      "Hair Thickening",
+      "Inner Hydration Support",
+      "Minerals & Vitamins Boost",
+      "Mucus Reduction Support",
+      "Prebiotic Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Hydration Support",
+      "Thyroid Support",
+      "Vitamin a Support",
+      "Vitamin b Support",
+      "Vitamin d Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "salty"
+    ],
+    "botanical_name": "Chondrus crispus",
+    "plant_part": "Whole",
+    "origin": "South America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Shatavari Root",
@@ -951,7 +2757,32 @@
       "Men's Health",
       "Immune Support",
       "Energy & Vitality"
-    ]
+    ],
+    "tags": [
+      "Adaptogen",
+      "Gut Soothing",
+      "Gut Soothing Support",
+      "Inner Hydration Support",
+      "Menopausal Support",
+      "Ovulation Support",
+      "Pcos Support",
+      "Prostrate Support",
+      "Women's Energy Support",
+      "Women's Fertility Support",
+      "Women's Hormone Balance",
+      "Women’s Energy Support",
+      "Women’s Libido Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "moist",
+      "sweet"
+    ],
+    "botanical_name": "Asparagus racemosus",
+    "plant_part": "Root",
+    "origin": "India",
+    "form": "Powder"
   },
   {
     "name": "Shepherd's Purse",
@@ -962,7 +2793,26 @@
       "Skin & Beauty",
       "Heart & Circulation",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Blood Flow Support",
+      "Diuretic Support Support",
+      "Endometriosis Support",
+      "Heavy Bleeding Support",
+      "Hemorrhage Control",
+      "Menstrual Cramps Support",
+      "Uterine Modulator Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "astringent",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Capsella $bursa-pastoris",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Skullcap",
@@ -971,7 +2821,28 @@
     "category": [
       "Stress & Relaxation",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Fibromyalgia Support",
+      "Mind Calming Support",
+      "Nervine Relaxant Support",
+      "Nervous System Relaxant",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Sleep Support",
+      "Stress Relief Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Scutellaria lateriflora",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Slippery Elm",
@@ -981,7 +2852,34 @@
       "Digestive Support",
       "Respiratory Support",
       "Heart & Circulation"
-    ]
+    ],
+    "tags": [
+      "4c Hair Care",
+      "Cough Soother Support",
+      "Curly Hair Care",
+      "Diarrhea Support",
+      "Glp-1 Support",
+      "Gut Soothing Support",
+      "Ibs Support",
+      "Mucus Reduction Support",
+      "Probiotic Support",
+      "Respiratory Detox Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Sensitive Stomach Support",
+      "Throat Soother Support",
+      "Ulcer Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "sweet"
+    ],
+    "botanical_name": "Ulmus rubra",
+    "plant_part": "Bark",
+    "origin": "North America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Soursop Leaf",
@@ -1000,7 +2898,32 @@
     "how_to_use": "Steep 1-2 teaspoons of dried leaves in hot water for 5-10 minutes. Delicious hot or iced. Often combined with other herbs for flavor. Safe for children and during pregnancy in moderate amounts.",
     "category": [
       "Digestive Support"
-    ]
+    ],
+    "tags": [
+      "Anti Androgen Support",
+      "Bloating Relief Support",
+      "Dht Balance Support",
+      "Digestion Support",
+      "Gut Soothing",
+      "Gut Soothing Support",
+      "Hirsutism Support",
+      "Pcos Support",
+      "Relaxation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Sensitive Stomach Support",
+      "Sinus Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Mentha spicata",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Spirulina Powder",
@@ -1013,7 +2936,27 @@
       "Nutritive",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Detox & Cleanse",
+      "Energy & Endurance Support",
+      "Iron Boost",
+      "Minerals & Vitamins Boost",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Weight Management"
+    ],
+    "energetics": [
+      "cool",
+      "earthy",
+      "salty"
+    ],
+    "botanical_name": "Arthrospira platensis",
+    "plant_part": "Whole",
+    "origin": "South America",
+    "form": "Powder"
   },
   {
     "name": "St. John's Wort",
@@ -1022,7 +2965,24 @@
     "category": [
       "Skin & Beauty",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Emotional Support",
+      "Mind Uplifting Support",
+      "Nervous System Repair Support",
+      "Pain Relief Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Hypericum perforatum",
+    "plant_part": "Leaf",
+    "form": "Cut and Sifted",
+    "origin": "Europe"
   },
   {
     "name": "Stevia Leaf",
@@ -1030,7 +2990,24 @@
     "how_to_use": "Add a small amount of dried leaf or powder to tea, beverages, or recipes. A little goes a long way - start with small amounts. Can be used in baking and cooking. Safe for diabetics.",
     "category": [
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "Blood Sugar Support",
+      "Calorie Reduction Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Sugar Cravings Control Support",
+      "Taste Enhancer"
+    ],
+    "energetics": [
+      "cool",
+      "sweet"
+    ],
+    "botanical_name": "Stevia rebaudiana",
+    "plant_part": "Leaf",
+    "origin": "South America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Thyme Leaves",
@@ -1041,7 +3018,29 @@
       "Respiratory Support",
       "Immune Support",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Cold & Flu Support",
+      "Congestion Support",
+      "Cough Soother Support",
+      "Dandruff Support",
+      "Immunity Support",
+      "Parasite Support",
+      "Respiratory Detox Support",
+      "Safe For Kids",
+      "Sinus Support",
+      "Vaginal Odor Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Thymus vulgaris",
+    "plant_part": "Leaf",
+    "origin": "Morraco",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Tribulus Terrestris",
@@ -1052,7 +3051,30 @@
       "Energy & Vitality",
       "Heart & Circulation",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Erectile Dysfunction Support",
+      "Men's Energy Support",
+      "Men's Fertility Support",
+      "Men's Hormone Balance Support",
+      "Men's Libido Support",
+      "Men's Muscle Building Support",
+      "Muscle Recovery Support",
+      "Ovulation Support",
+      "Testosterone Booster Support",
+      "Women’s Libido Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Tribulus terrestris",
+    "plant_part": "Leaf",
+    "origin": "China",
+    "form": "Powder"
   },
   {
     "name": "Tulsi Holy Basil",
@@ -1065,7 +3087,33 @@
       "Energy & Vitality",
       "Blood Sugar Support",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Anti Androgen Support",
+      "Anti-inflammatory Support",
+      "Blood Sugar Support",
+      "Dht Balance Support",
+      "Fibromyalgia Support",
+      "Hirsutism Support",
+      "Immunity Support",
+      "Men’s Stress Relief Support",
+      "Mind Centering Support",
+      "Respiratory Care",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Stress Relief Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Ocimum tenuiflorum",
+    "plant_part": "Leaf",
+    "origin": "India",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Turmeric Root Tea",
@@ -1075,7 +3123,37 @@
       "Digestive Support",
       "Detox & Cleansing",
       "Anti-Inflammatory"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Asthma Support",
+      "Brain Support",
+      "Cardiovascular Support",
+      "Celiac Support",
+      "Digestive Enzyme Support",
+      "Endometriosis Support",
+      "Eye Health Support",
+      "Fibroid Support",
+      "Fibromyalgia Support",
+      "Glp-1 Alternative",
+      "Joints & Mobility Support",
+      "Liver Detox Support",
+      "Pain Relief Support",
+      "Probiotic Support",
+      "Safe For Kids",
+      "Safe For Pets"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Curcuma longa",
+    "plant_part": "Root",
+    "origin": "India",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Valerian Root",
@@ -1084,7 +3162,27 @@
     "category": [
       "Women's Health",
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Fibromyalgia Support",
+      "Mind Calming Support",
+      "Muscle Recovery Support",
+      "Nervous System Relaxant",
+      "Relaxation Support",
+      "Sleep Support",
+      "Stress Relief Support",
+      "Uterine Relaxant Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry",
+      "pungent"
+    ],
+    "botanical_name": "Valeriana officinalis",
+    "plant_part": "Root",
+    "origin": "Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Vervain",
@@ -1095,6 +3193,19 @@
       "Women's Health",
       "Stress & Relaxation",
       "Detox & Cleansing"
+    ],
+    "tags": [
+      "Emotional Support",
+      "Headache Relief",
+      "Liver Detox Support",
+      "Nervous System Balance Support",
+      "Stress Relief Support",
+      "Uterine Tonic Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
     ]
   },
   {
@@ -1103,7 +3214,27 @@
     "how_to_use": "Steep 1 teaspoon of berries in hot water for 10-15 minutes. Often taken as tincture or capsule. Best results with consistent use over 3-6 months. Take in the morning. Not for use during pregnancy.",
     "category": [
       "Women's Health"
-    ]
+    ],
+    "tags": [
+      "Breast Health Support",
+      "Fibroid Support",
+      "Follicular Phase Support",
+      "Heavy Bleeding Support",
+      "Luteal Phase Support",
+      "Ovulation Support",
+      "Pcos Support",
+      "Pms Relief Support",
+      "Women's Hormone Balance"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Agnus Castus",
+    "plant_part": "Fruit",
+    "origin": "India",
+    "form": "Berry"
   },
   {
     "name": "Plantain Leaf",
@@ -1114,7 +3245,29 @@
       "Respiratory Support",
       "Immune Support",
       "Skin & Beauty"
-    ]
+    ],
+    "tags": [
+      "Allergy Support",
+      "Anti-inflammatory Support",
+      "Cough Soother Support",
+      "Itch Relief",
+      "Mucus Reduction Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Soothing",
+      "Vaginal Odor Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "astringent",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Plantago major",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Pumpkin Seed Powder",
@@ -1127,6 +3280,22 @@
       "Urinary & Kidney",
       "Culinary",
       "Parasitic Cleanse"
+    ],
+    "tags": [
+      "Men’s Hormone Balance Support",
+      "Minerals & Vitamins Boost",
+      "Parasite Support",
+      "Prostate Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Urinary Support",
+      "Zinc"
+    ],
+    "energetics": [
+      "moist",
+      "neutral",
+      "sweet"
     ]
   },
   {
@@ -1137,7 +3306,30 @@
       "Women's Health",
       "Men's Health",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Endometriosis Support",
+      "Folate Support",
+      "Heavy Bleeding Support",
+      "Menstrual Cramps Support",
+      "Post-workout Recovery Support",
+      "Pregnancy Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Smokeables",
+      "Uterine Tonic Support",
+      "Women's Hormone Balance"
+    ],
+    "energetics": [
+      "astringent",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Rubus idaeus",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Red Clover",
@@ -1149,7 +3341,31 @@
       "Skin & Beauty",
       "Heart & Circulation",
       "Detox & Cleansing"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Blood Purification Support",
+      "Breast Health Support",
+      "Deep Cellular Detox",
+      "Fibroid Support",
+      "Lymphatic Support",
+      "Ovulation Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Skin Support",
+      "Vaginal Odor Support",
+      "Women's Hormone Balance",
+      "bv Support"
+    ],
+    "energetics": [
+      "cool",
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Trifolium pratense",
+    "plant_part": "Flower & Leaf",
+    "origin": "Europe",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Reishi Mushroom Powder",
@@ -1170,7 +3386,31 @@
       "Stress & Relaxation",
       "Energy & Vitality",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Adhd Support",
+      "Adrenal Balance Support",
+      "Energy & Endurance Support",
+      "Fibromyalgia Support",
+      "Mental Clarity Support",
+      "Men’s Energy Support",
+      "Men’s Stress Relief Support",
+      "Mind Centering Support",
+      "Motivation Support",
+      "Slightly Pungent",
+      "Stress Relief Support",
+      "Women’s Energy Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "dry",
+      "slightly pungent",
+      "warm"
+    ],
+    "botanical_name": "Rhodiola rosea",
+    "plant_part": "Root",
+    "origin": "Asia",
+    "form": "Powder"
   },
   {
     "name": "Rhubarb Root",
@@ -1178,7 +3418,24 @@
     "how_to_use": "Steep 1/2 to 1 teaspoon of root in hot water for 10-15 minutes. Small doses act as a digestive bitter; larger doses have laxative effects. Not for long-term use. Avoid during pregnancy.",
     "category": [
       "Digestive Support"
-    ]
+    ],
+    "tags": [
+      "Colon Cleanse Support",
+      "Constipation Support",
+      "Diarrhea Support",
+      "Gut Stimulant Support",
+      "Hard Reset Support",
+      "Liver Detox Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cold",
+      "dry"
+    ],
+    "botanical_name": "Rheum officinale",
+    "plant_part": "Root",
+    "origin": "Asia",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Rooibos",
@@ -1190,7 +3447,27 @@
       "Skin & Beauty",
       "Urinary & Kidney",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Gentle Detox Support",
+      "Minerals & Vitamins Boost",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Hydration Support",
+      "Stress Relief Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Aspalathus linearis",
+    "plant_part": "Leaf",
+    "origin": "South Africa",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Rose Petals",
@@ -1201,7 +3478,29 @@
       "Skin & Beauty",
       "Heart & Circulation",
       "Anti-Inflammatory"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Emotional Support",
+      "Gentle Detox Support",
+      "Mind Uplifting Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Hydration Support",
+      "Smokeables",
+      "Soothing & Calming Support",
+      "Vaginal Odor Support"
+    ],
+    "energetics": [
+      "aromatic",
+      "cool",
+      "neutral"
+    ],
+    "botanical_name": "Rosa canina",
+    "plant_part": "Petal",
+    "origin": "Eurasia",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Rosehips",
@@ -1213,7 +3512,27 @@
       "Skin & Beauty",
       "Anti-Inflammatory",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Antioxidant Support",
+      "Collagen Support",
+      "Immunity Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Brightening Support",
+      "Vitamin c Support"
+    ],
+    "energetics": [
+      "cool",
+      "neutral",
+      "sour"
+    ],
+    "botanical_name": "Rosa canina",
+    "plant_part": "Fruit",
+    "origin": "Eurasia",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Rosemary",
@@ -1226,7 +3545,29 @@
       "Cognitive Support",
       "Culinary",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Circulation Support",
+      "Dandruff Support",
+      "Hair Growth",
+      "Hair Thickening",
+      "Memory & Cognitive Support",
+      "Mental Clarity Support",
+      "Nervine Stimulant Support",
+      "Scalp Detox",
+      "Workout Enhancer Support",
+      "bv Support"
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Salvia rosmarinus",
+    "plant_part": "Leaf",
+    "origin": "Asia",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Saffron",
@@ -1236,7 +3577,26 @@
       "Women's Health",
       "Cognitive Support",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Blood Pressure Support",
+      "Circulation Support",
+      "Emotional Support",
+      "Memory & Cognitive Support",
+      "Mind Uplifting Support",
+      "Safe For Kids"
+    ],
+    "energetics": [
+      "cool",
+      "dry",
+      "pungent",
+      "sweet"
+    ],
+    "botanical_name": "Crocus sativus",
+    "plant_part": "Stigma",
+    "origin": "Middle East",
+    "form": "Whole"
   },
   {
     "name": "Sage Leaf",
@@ -1249,7 +3609,27 @@
       "Immune Support",
       "Urinary & Kidney",
       "Cognitive Support"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Body Odor Support",
+      "Congestion Support",
+      "Dandruff Support",
+      "Memory & Cognitive Support",
+      "Men's Stress Relief Support",
+      "Menopausal Support",
+      "Scalp Detox",
+      "Smokeables"
+    ],
+    "energetics": [
+      "cool",
+      "dry",
+      "pungent"
+    ],
+    "botanical_name": "Salvia officinalis",
+    "plant_part": "Leaf",
+    "origin": "Middle East",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Saw Palmetto",
@@ -1260,7 +3640,28 @@
       "Men's Health",
       "Skin & Beauty",
       "Urinary & Kidney"
-    ]
+    ],
+    "tags": [
+      "Curves Enhancer Support",
+      "Dht Balance Support",
+      "Hair Growth",
+      "Men's Fertility Support",
+      "Men's Hormone Balance Support",
+      "Men's Libido Support",
+      "Men’s Fertility Support",
+      "Pcos Support",
+      "Prostate Support",
+      "Urinary Support"
+    ],
+    "energetics": [
+      "cool",
+      "dry",
+      "sweet"
+    ],
+    "botanical_name": "Serenoa repens",
+    "plant_part": "Fruit",
+    "origin": "North America",
+    "form": "Powder"
   },
   {
     "name": "Schisandra Berry",
@@ -1272,7 +3673,26 @@
       "Skin & Beauty",
       "Detox & Cleansing",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Adrenal Balance Support",
+      "Antioxidant Support",
+      "Energy & Endurance Support",
+      "Five Flavors",
+      "Liver Detox Support",
+      "Mental Clarity Support",
+      "Stress Relief Support",
+      "Women’s Energy Support"
+    ],
+    "energetics": [
+      "dry",
+      "sour",
+      "warm"
+    ],
+    "botanical_name": "Schisandra chinensis",
+    "plant_part": "Berry",
+    "origin": "China",
+    "form": "Whole"
   },
   {
     "name": "Sea Moss Powder",
@@ -1283,7 +3703,32 @@
       "Skin & Beauty",
       "Nutritive",
       "Culinary"
-    ]
+    ],
+    "tags": [
+      "Gut Immune Support",
+      "Hair Thickening",
+      "Inner Hydration Support",
+      "Minerals & Vitamins Boost",
+      "Mucus Reduction Support",
+      "Prebiotic Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Hydration Support",
+      "Thyroid Support",
+      "Vitamin a Support",
+      "Vitamin b Support",
+      "Vitamin d Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "salty"
+    ],
+    "botanical_name": "Chondrus crispus",
+    "plant_part": "Whole",
+    "origin": "South America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Sea Moss Raw",
@@ -1294,7 +3739,32 @@
       "Immune Support",
       "Skin & Beauty",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Gut Immune Support",
+      "Hair Thickening",
+      "Inner Hydration Support",
+      "Minerals & Vitamins Boost",
+      "Mucus Reduction Support",
+      "Prebiotic Support",
+      "Safe For Kids",
+      "Safe For Pets",
+      "Safe For Pregnancy",
+      "Skin Hydration Support",
+      "Thyroid Support",
+      "Vitamin a Support",
+      "Vitamin b Support",
+      "Vitamin d Support"
+    ],
+    "energetics": [
+      "cool",
+      "moist",
+      "salty"
+    ],
+    "botanical_name": "Chondrus crispus",
+    "plant_part": "Whole",
+    "origin": "South America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "White Willow Bark",
@@ -1304,7 +3774,25 @@
       "Digestive Support",
       "Anti-Inflammatory",
       "Pain Relief"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Fever Support",
+      "Fibromyalgia Support",
+      "Headache Relief",
+      "Joint Support",
+      "Muscle Recovery Support",
+      "Pain Relief Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Salix alba",
+    "plant_part": "Bark",
+    "origin": "Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Wild Cherry Bark",
@@ -1314,7 +3802,26 @@
       "Digestive Support",
       "Respiratory Support",
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Airway Relaxation Support",
+      "Cough Soother Support",
+      "Digestion Support",
+      "Mucus Reduction Support",
+      "Safe For Kids",
+      "Soothing & Calming Support",
+      "Throat Soother Support"
+    ],
+    "energetics": [
+      "astringent",
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Prunus serotina",
+    "plant_part": "Bark",
+    "origin": "North America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Wild Yam Root",
@@ -1324,7 +3831,24 @@
       "Digestive Support",
       "Women's Health",
       "Men's Health"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Joint Support",
+      "Menstrual Cramps Support",
+      "Muscle Recovery Support",
+      "Pms Relief Support",
+      "Women's Hormone Balance"
+    ],
+    "energetics": [
+      "moist",
+      "neutral",
+      "sweet"
+    ],
+    "botanical_name": "Dioscorea villosa",
+    "plant_part": "Root",
+    "origin": "North America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Wormwood",
@@ -1334,6 +3858,19 @@
       "Digestive Support",
       "Urinary & Kidney",
       "Parasitic Cleanse"
+    ],
+    "tags": [
+      "Appetite Booster Support",
+      "Colon Cleanse Support",
+      "Extremely Bitter",
+      "Gut Stimulant Support",
+      "Hard Reset Support",
+      "Liver Detox Support",
+      "Parasite Support"
+    ],
+    "energetics": [
+      "cold",
+      "dry"
     ]
   },
   {
@@ -1347,7 +3884,29 @@
       "Skin & Beauty",
       "Heart & Circulation",
       "Anti-Inflammatory"
-    ]
+    ],
+    "tags": [
+      "Anti-inflammatory Support",
+      "Blood Flow Support",
+      "Circulation Support",
+      "Cold & Flu Support",
+      "Emmenagogue Support",
+      "Fever Support",
+      "Heavy Bleeding Support",
+      "Sinus Support",
+      "Vaginal Odor Support",
+      "Wound Healing Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "pungent",
+      "warm"
+    ],
+    "botanical_name": "Achillea millefolium",
+    "plant_part": "Leaf",
+    "origin": "Europe",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Yellow Dock Root",
@@ -1358,7 +3917,25 @@
       "Skin & Beauty",
       "Detox & Cleansing",
       "Nutritive"
-    ]
+    ],
+    "tags": [
+      "Blood Purification Support",
+      "Constipation Support",
+      "Deep Cellular Detox",
+      "Iron Boost",
+      "Liver Detox Support",
+      "Skin Support"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry",
+      "sour"
+    ],
+    "botanical_name": "Rumex crispus",
+    "plant_part": "Root",
+    "origin": "India",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Yerba Mate",
@@ -1369,7 +3946,26 @@
       "Nutritive",
       "Cognitive Support",
       "Antioxidant"
-    ]
+    ],
+    "tags": [
+      "Antioxidant Support",
+      "Appetite Suppressant Support",
+      "Energy & Endurance Support",
+      "Mental Clarity Support",
+      "Metabolism Boost Support",
+      "Productivity Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "earthy",
+      "warm"
+    ],
+    "botanical_name": "Ilex paraguariensis",
+    "plant_part": "Leaf",
+    "origin": "South America",
+    "form": "Cut and Sifted"
   },
   {
     "name": "Yohimbe Bark",
@@ -1379,7 +3975,29 @@
       "Men's Health",
       "Energy & Vitality",
       "Heart & Circulation"
-    ]
+    ],
+    "tags": [
+      "Circulation Support",
+      "Energy & Endurance",
+      "Energy & Endurance Support",
+      "Erectile Dysfunction Support",
+      "Fat Burner Support",
+      "Men's Energy Support",
+      "Men's Libido Support",
+      "Men’s Muscle Building Support",
+      "Metabolism Boost Support",
+      "Nervine Stimulant Support",
+      "Workout Enhancer Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Pausinystalia yohimbe",
+    "plant_part": "Bark",
+    "origin": "Africa",
+    "form": "Powder"
   },
   {
     "name": "Activated Charcoal Powder",
@@ -1387,6 +4005,15 @@
     "how_to_use": "Mix 1/2 teaspoon into 8 oz of water or juice and drink immediately. Best used periodically as part of a targeted cleanse, not daily. Important: Keep separated from medications and supplements by at least 2 hours as activated charcoal may interfere with absorption. Storage: Store in a cool, dry, dark place in a sealed container. Safety: We recommend that you consult with a qualified healthcare practitioner before using, particularly if you are pregnant, nursing, or on any medications.",
     "category": [
       "Detox & Cleansing"
+    ],
+    "botanical_name": "Carbon Activatus",
+    "plant_part": "Ash",
+    "origin": "Earth",
+    "form": "Powder",
+    "energetics": [
+      "cold",
+      "dry",
+      "earthy"
     ]
   },
   {
@@ -1396,7 +4023,18 @@
     "category": [
       "Cognitive Support",
       "Stress & Relaxation"
-    ]
+    ],
+    "energetics": [
+      "astrigent",
+      "bitter",
+      "cool",
+      "dry",
+      "sweet"
+    ],
+    "botanical_name": "Bacopa monnieri",
+    "plant_part": "Leaf",
+    "origin": "Asia",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Bitter Melon Powder",
@@ -1406,7 +4044,20 @@
       "Blood Sugar Support",
       "Digestive Support",
       "Immune Support"
-    ]
+    ],
+    "tags": [
+      "Correct"
+    ],
+    "energetics": [
+      "cold",
+      "dry",
+      "bitter",
+      "pungent"
+    ],
+    "botanical_name": "Momordica charantia",
+    "plant_part": "Herb (Leaves, Flowers, and Stems)",
+    "origin": "Africa & Asia",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Blessed Thistle",
@@ -1416,7 +4067,16 @@
       "Digestive Support",
       "Women's Health",
       "Immune Support"
-    ]
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Cnicus benedictus",
+    "plant_part": "Herb  (Leaves, Flowers, and Stems)",
+    "origin": "North Africa/Mediterranean",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Blue Vervain",
@@ -1426,6 +4086,16 @@
       "Stress & Relaxation",
       "Digestive Support",
       "Women's Health"
+    ],
+    "tags": [
+      "Correct"
+    ],
+    "botanical_name": "Verbena hastata",
+    "origin": "North America",
+    "energetics": [
+      "cool",
+      "dry",
+      "bitter"
     ]
   },
   {
@@ -1435,6 +4105,16 @@
     "category": [
       "Heart & Circulation",
       "Urinary & Kidney"
+    ],
+    "botanical_name": "Ruscus aculeatus",
+    "plant_part": "Root",
+    "origin": "Europe",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry",
+      "sweet"
     ]
   },
   {
@@ -1445,6 +4125,16 @@
       "Immune Support",
       "Anti-Inflammatory",
       "Digestive Support"
+    ],
+    "botanical_name": "Uncaria tomentosa",
+    "plant_part": "Stem & Bark",
+    "origin": "South America",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "astringent",
+      "bitter",
+      "cool",
+      "dry"
     ]
   },
   {
@@ -1454,6 +4144,16 @@
     "category": [
       "Immune Support",
       "Anti-Inflammatory"
+    ],
+    "botanical_name": "Echinacea angustifolia or Echinacea purpurea",
+    "plant_part": "Root",
+    "origin": "North America",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "acrid",
+      "cool",
+      "dry",
+      "pungent"
     ]
   },
   {
@@ -1465,6 +4165,14 @@
       "Digestive Support",
       "Skin & Beauty",
       "Immune Support"
+    ],
+    "botanical_name": "Psidium guajava",
+    "plant_part": "Leaf",
+    "origin": "Central America",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "cool",
+      "dry astringent"
     ]
   },
   {
@@ -1476,7 +4184,17 @@
       "Women's Health",
       "Energy & Vitality",
       "Anti-Inflammatory"
-    ]
+    ],
+    "energetics": [
+      "dry",
+      "pungent",
+      "sweet",
+      "warm"
+    ],
+    "botanical_name": "Epimedium grandiflorum",
+    "plant_part": "Leaf",
+    "origin": "Asia",
+    "form": "Powder"
   },
   {
     "name": "Jamaican Dog Blood Bush (whole w/ stem)",
@@ -1486,7 +4204,22 @@
       "Detox & Cleansing",
       "Immune Support",
       "Blood Sugar Support"
-    ]
+    ],
+    "tags": [
+      "Menstrual Cramps Support",
+      "Women's Fertility Support",
+      "Women's Hormone Balance",
+      "Women's Wellness"
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
+    ],
+    "botanical_name": "Rivina humilis",
+    "plant_part": "Leaf",
+    "origin": "Caribbean",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Kava Kava 10:1 Extract Powder",
@@ -1494,7 +4227,17 @@
     "how_to_use": "As a 10:1 extract, use approximately 1/4 teaspoon mixed into cool water or a non-dairy milk alternative. Kavalactones are fat-soluble — shaking vigorously or blending with a small amount of healthy fat improves absorption. Best taken in the evening or during periods of acute stress. Storage: Store in a cool, dry, dark place in a sealed container. Safety: Do not combine with alcohol, benzodiazepines, or liver-taxing medications. Not recommended for daily long-term use or for those with liver conditions. Not for use during pregnancy or nursing. We recommend consulting a healthcare provider before use.",
     "category": [
       "Stress & Relaxation"
-    ]
+    ],
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry",
+      "pungent"
+    ],
+    "botanical_name": "Piper methysticum",
+    "plant_part": "Root",
+    "origin": "Pacific Islands",
+    "form": "Powder"
   },
   {
     "name": "Muira Puama",
@@ -1505,7 +4248,17 @@
       "Energy & Vitality",
       "Stress & Relaxation",
       "Cognitive Support"
-    ]
+    ],
+    "energetics": [
+      "warm",
+      "dry",
+      "astringent",
+      "slightly pungent"
+    ],
+    "botanical_name": "Ptychopetalum olacoides",
+    "plant_part": "Bark & Root",
+    "origin": "South America",
+    "form": "Cut & Sifted"
   },
   {
     "name": "Quassia Chips",
@@ -1515,6 +4268,18 @@
       "Digestive Support",
       "Detox & Cleansing",
       "Parasitic Cleanse"
+    ],
+    "tags": [
+      "Correct"
+    ],
+    "botanical_name": "Quassia amara",
+    "plant_part": "Bark",
+    "origin": "South America",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "bitter",
+      "cool",
+      "dry"
     ]
   },
   {
@@ -1536,6 +4301,16 @@
       "Immune Support",
       "Stress & Relaxation",
       "Blood Sugar Support"
+    ],
+    "botanical_name": "Annona muricata",
+    "plant_part": "Leaves",
+    "origin": "Caribbean",
+    "form": "Whole",
+    "energetics": [
+      "cold",
+      "dry",
+      "bitter",
+      "astringent"
     ]
   },
   {
@@ -1546,6 +4321,16 @@
       "Immune Support",
       "Stress & Relaxation",
       "Blood Sugar Support"
+    ],
+    "botanical_name": "Annona muricata",
+    "plant_part": "Leaves",
+    "origin": "Caribbean",
+    "form": "Whole",
+    "energetics": [
+      "cold",
+      "dry",
+      "bitter",
+      "astringent"
     ]
   },
   {
@@ -1556,7 +4341,27 @@
       "Men's Health",
       "Energy & Vitality",
       "Stress & Relaxation"
-    ]
+    ],
+    "tags": [
+      "Men's Energy Support",
+      "Men's Fertility Support",
+      "Men's Hormone Balance Support",
+      "Men's Libido Support",
+      "Men's Muscle Building Support",
+      "Men’s Energy Support",
+      "Men’s Fertility Support",
+      "Men’s Hormone Balance Support",
+      "Men’s Muscle Building Support"
+    ],
+    "energetics": [
+      "bitter",
+      "dry",
+      "warm"
+    ],
+    "botanical_name": "Eurycoma longifolia",
+    "plant_part": "Root",
+    "origin": "Asia",
+    "form": "Powder"
   },
   {
     "name": "Turkey Tail Mushroom, 10:1 Extract Powder",
@@ -1567,6 +4372,9 @@
       "Digestive Support",
       "Antioxidant",
       "Energy & Vitality"
+    ],
+    "tags": [
+      "Thrive"
     ]
   },
   {
@@ -1577,6 +4385,16 @@
       "Urinary & Kidney",
       "Detox & Cleansing",
       "Anti-Inflammatory"
+    ],
+    "botanical_name": "Arctostaphylos uva-ursi",
+    "plant_part": "Leaf",
+    "origin": "North America",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "astringent",
+      "bitter",
+      "cold",
+      "dry"
     ]
   },
   {
@@ -1587,6 +4405,16 @@
       "Stress & Relaxation",
       "Pain Relief",
       "Respiratory Support"
+    ],
+    "botanical_name": "Leonotis leonurus",
+    "plant_part": "Leaf",
+    "origin": "Africa",
+    "form": "Cut & Sifted",
+    "energetics": [
+      "astringent",
+      "bitter",
+      "cool",
+      "dry"
     ]
   },
   {
@@ -1597,6 +4425,18 @@
       "Stress & Relaxation",
       "Pain Relief",
       "Respiratory Support"
+    ],
+    "tags": [
+      "Smokeables"
+    ],
+    "botanical_name": "Leonotis leonurus",
+    "plant_part": "Flower",
+    "origin": "Africa",
+    "form": "Whole",
+    "energetics": [
+      "bitter",
+      "cool",
+      "relaxing"
     ]
   }
 ]
