@@ -71,15 +71,75 @@ Only `name + description` are embedded. `how_to_use` (brewing instructions) and 
 
 ## Client
 
-React SPA built with Vite. Calls the Edge Function via `@supabase/supabase-js` (no direct REST calls). Plain CSS co-located with components.
+React SPA built with Vite. Two pages: `/` (herb search) and `/nutritionist` (chat). Plain CSS co-located with components.
 
 ### Key components
 
 | Component | Role |
 |-----------|------|
-| App.jsx | Layout, owns search state via useSearch hook |
+| App.jsx | Router, layout |
+| NavBar | Links to Search and Nutritionist pages |
 | SearchBar | Text input + submit |
-| HerbCardList | Maps results to HerbCard components |
+| HerbCardList | Maps search results to HerbCard components |
 | HerbCard | Displays name, description, how_to_use, category tags, similarity |
+| Chat | Scrollable message list with auto-scroll |
+| ChatMessage | User bubble or nutritionist markdown bubble with inline HerbCards |
+| ChatInput | Auto-grow textarea, Enter to send, rate-limit countdown |
 | LoadingSpinner | Shown during search |
 | EmptyState | Welcome message or "no results" |
+
+---
+
+## Conversational Nutritionist
+
+An agentic chat feature that answers herbal wellness questions using the 134-herb catalog as the primary signal, enriched with live web search.
+
+### Agent loop
+
+```
+React client (/nutritionist)
+    │  POST { messages } — full conversation history each turn
+    │  SSE stream (fetch + ReadableStream reader)
+    ▼
+supabase/functions/nutritionist/index.ts
+    │  1. Validate request + check per-IP rate limit
+    │  2. Run agentic tool-use loop (max 6 iterations):
+    │     a. Stream anthropic.messages.stream(...)
+    │     b. Forward text_delta → SSE event: text_delta
+    │     c. On tool_use stop: dispatch tools in parallel
+    │        • herb_search → embed query → match_herbs RPC → SSE: herb_results
+    │        • web_search  → Anthropic-hosted, no client execution needed
+    │     d. Append tool results to message history, continue loop
+    │  3. On end_turn: SSE event: done
+    ▼
+React client
+    │  Accumulates text_delta into streaming message bubble
+    │  Attaches herb_results as inline HerbCard row
+```
+
+### SSE event protocol
+
+| Event | Data | Description |
+|-------|------|-------------|
+| `text_delta` | `{ delta: string }` | Incremental text from the model |
+| `herb_results` | `{ herbs: Herb[] }` | Herbs returned by herb_search tool |
+| `tool_use` | `{ name, input }` | Tool call being dispatched |
+| `done` | `{}` | Stream complete |
+| `error` | `{ message: string }` | Agent or auth error |
+
+### Rate limiting
+
+Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres table and a `check_nutritionist_rate_limit` atomic RPC. Checked before any Anthropic API call. Returns HTTP 429 with `Retry-After` header when exceeded.
+
+- 5 requests per minute (burst protection)
+- 30 requests per day (cost cap)
+- Bypassed when `APOTHECARY_ENV=development`
+
+### New shared modules
+
+| File | Purpose |
+|------|---------|
+| `_shared/anthropic.ts` | Initialises Anthropic SDK client |
+| `_shared/tools.ts` | Tool schemas + `executeHerbSearch` |
+| `_shared/sse.ts` | SSE stream helpers |
+| `_shared/rate-limit.ts` | IP extraction + rate-limit RPC wrapper |

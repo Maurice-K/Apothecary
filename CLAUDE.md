@@ -4,21 +4,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Apothecary is a semantic herb search web app. Users type plain English queries (e.g., "what helps with sleep?") and get matching herbs displayed as cards. The search uses OpenAI embeddings stored in Supabase pgvector for cosine similarity matching.
+Apothecary is a herbal wellness app with two experiences:
+- **Herb Search (`/`)** — semantic search over 134 herbs using OpenAI embeddings + pgvector cosine similarity.
+- **Nutritionist (`/nutritionist`)** — conversational AI nutritionist powered by Anthropic's API (tool-use + SSE streaming).
 
 ## Architecture
 
-Two-part app: a Supabase Edge Function (`supabase/functions/search/`) and a React SPA (`client/`).
+Three Edge Functions + a React SPA (`client/`).
 
-**Search flow:** User query → Supabase Edge Function → OpenAI embedding → Supabase `match_herbs` RPC (pgvector cosine similarity) → ranked herb results → React card UI.
+**Search flow:** User query → `search` Edge Function → OpenAI embedding → `match_herbs` RPC (pgvector) → herb cards.
+
+**Nutritionist flow:** User message → `nutritionist` Edge Function → agentic loop (Anthropic `claude-sonnet-4-6`) → `herb_search` tool (pgvector) + `web_search` tool (Anthropic-hosted) → SSE stream → chat UI with inline herb cards.
 
 **Data pipeline:** `chioma_products.json` (134 herbs) → `scripts/ingest.js` embeds `"<name>: <description>"` via OpenAI `text-embedding-3-small` → stores in Supabase `herbs` table with VECTOR(1536) column. Only `name + description` are embedded; `how_to_use` and `category` are stored but not embedded (brewing instructions and metadata dilute semantic signal).
 
 ## Development Commands
 
 ```bash
-# Edge Function (local dev on port 54321)
-supabase functions serve          # start local edge function runtime
+# Edge Functions (local dev on port 54321)
+supabase functions serve --env-file .env --no-verify-jwt   # all functions; --no-verify-jwt needed locally
 
 # Ingestion (one-time)
 node scripts/ingest.js            # embed herbs + upload to Supabase
@@ -30,22 +34,33 @@ cd client && npm run build        # production build to client/dist/
 
 ## API
 
-The search is invoked via the Supabase client SDK:
-
+**Search** (Supabase SDK):
 ```js
 supabase.functions.invoke('search', { body: { query: "string", limit: 8 } })
+// Returns: { results: [{ id, name, description, how_to_use, category, similarity }] }
 ```
 
-Returns: `{ "results": [{ id, name, description, how_to_use, category, similarity }] }`
+**Nutritionist** (raw fetch + SSE):
+```js
+fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${ANON_KEY}`, apikey: ANON_KEY },
+  body: JSON.stringify({ messages: [{ role: 'user', content: '...' }] })
+})
+// SSE events: text_delta | herb_results | tool_use | done | error
+```
 
 ## Key Files
 
-- `chioma_products.json` — source herb data (name, description, how_to_use, category)
-- `scripts/ingest.js` — data ingestion (reads JSON, generates embeddings, upserts to Supabase). Safe to re-run.
-- `supabase/functions/search/index.ts` — Edge Function: embed query → pgvector similarity search → results
-- `client/src/hooks/useSearch.js` — React state management for search (results, loading, error)
-- `client/src/api/search.js` — calls `supabase.functions.invoke('search', ...)`
-- `project_spec.md` — full implementation spec with SQL, test queries, and design decisions
+- `chioma_products.json` — source herb data (134 herbs)
+- `scripts/ingest.js` — embeds herbs and upserts to Supabase. Safe to re-run.
+- `supabase/functions/search/index.ts` — search Edge Function
+- `supabase/functions/nutritionist/index.ts` — nutritionist Edge Function (agentic loop + SSE)
+- `supabase/functions/_shared/` — CORS, embedding, types, validation, anthropic, tools, sse, rate-limit
+- `client/src/api/nutritionist.js` — fetch + SSE parser for the nutritionist
+- `client/src/hooks/useNutritionist.js` — chat state (messages, streaming, error, send, reset)
+- `client/src/hooks/useSearch.js` — search state
+- `docs/architecture.md` — full system design including agent loop and SSE protocol
 
 ## Supabase
 
@@ -68,9 +83,15 @@ Project docs live in `docs/`. Update these after major milestones and significan
 
 - When completing a feature branch or milestone, update `docs/changelog.md` with a summary of what changed. Update `docs/architecture.md` when the system design, data model, or component structure changes.
 
+## Environment Variables
+
+Root `.env`: `OPENAI_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `ANTHROPIC_API_KEY`, `APOTHECARY_ENV=development`
+
+`client/.env.local`: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+
 ## Conventions
 
 - Plain CSS co-located with components (no Tailwind, no CSS-in-JS)
-- Environment variables loaded from root `.env` via dotenv (ingestion script only)
 - Edge Functions use Deno/TypeScript; client uses plain JavaScript with JSX
-- Client uses `@supabase/supabase-js` to invoke Edge Functions (no REST fetch calls)
+- Search uses `supabase.functions.invoke`; nutritionist uses raw `fetch` (SSE requires it)
+- `APOTHECARY_ENV=development` bypasses rate limiting locally

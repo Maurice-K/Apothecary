@@ -1,6 +1,11 @@
 # Apothecary
 
-A semantic herb search web app. Type plain English queries like "what helps with sleep?" and get matching herbs displayed as cards. Built with React, Supabase Edge Functions, OpenAI embeddings, and pgvector.
+A herbal wellness app with two experiences:
+
+- **Herb Search** — type plain English queries like "what helps with sleep?" and get matching herbs as cards, ranked by semantic similarity.
+- **Nutritionist** — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 134-herb catalog, and enriches advice with live web search.
+
+Built with React, Supabase Edge Functions, OpenAI embeddings, pgvector, and the Anthropic API.
 
 ## Prerequisites
 
@@ -8,6 +13,7 @@ A semantic herb search web app. Type plain English queries like "what helps with
 - [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (required by Supabase CLI for local development)
 - An [OpenAI API key](https://platform.openai.com/api-keys)
+- An [Anthropic API key](https://console.anthropic.com/) (for the Nutritionist)
 
 ## Local Development Setup
 
@@ -39,6 +45,8 @@ SUPABASE_URL=http://127.0.0.1:54321
 SUPABASE_ANON_KEY=<anon key from supabase start>
 SUPABASE_SERVICE_ROLE_KEY=<service_role key from supabase start>
 OPENAI_API_KEY=<your OpenAI API key>
+ANTHROPIC_API_KEY=<your Anthropic API key>
+APOTHECARY_ENV=development
 ```
 
 Create a `.env.local` file in the `client/` directory:
@@ -67,8 +75,8 @@ npm run dev
 This starts both the Supabase Edge Functions and the Vite dev server. Or run them separately:
 
 ```bash
-# Terminal 1 - Edge Functions
-npx supabase functions serve
+# Terminal 1 - Edge Functions (--no-verify-jwt skips JWT check locally)
+npx supabase functions serve --env-file .env --no-verify-jwt
 
 # Terminal 2 - React client
 cd client && npm run dev
@@ -76,7 +84,8 @@ cd client && npm run dev
 
 ### 6. Open the app
 
-- **App:** http://localhost:5173
+- **Herb Search:** http://localhost:5173
+- **Nutritionist:** http://localhost:5173/nutritionist
 - **Supabase Studio:** http://localhost:54323 (database admin UI)
 
 ## Project Structure
@@ -105,5 +114,6 @@ Apothecary/
 - **Backend:** Supabase Edge Functions (Deno/TypeScript)
 - **Database:** PostgreSQL with pgvector (cosine similarity search)
 - **Embeddings:** OpenAI `text-embedding-3-small`
+- **AI:** Anthropic API (`claude-sonnet-4-6`) with tool use and SSE streaming
 - **Auth:** Supabase Auth
 - **Storage:** Supabase Storage (recipe photos)
