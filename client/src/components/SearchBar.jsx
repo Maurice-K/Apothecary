@@ -31,12 +31,12 @@ export default function SearchBar({ onSearch, loading }) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder='Search for herbs... e.g. "what helps with sleep?"'
+          placeholder="Describe your symptoms or search for a botanical..."
           disabled={loading}
         />
       </div>
       <button type="submit" disabled={loading || !query.trim()}>
-        {loading ? "Searching..." : "Search"}
+        {loading ? "Searching…" : "Consult the Archive"}
       </button>
     </form>
   );

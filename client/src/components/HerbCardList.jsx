@@ -8,8 +8,8 @@ export default function HerbCardList({ results }) {
         {results.length} herb{results.length !== 1 ? "s" : ""} found
       </p>
       <div className="herb-card-list-items">
-        {results.map((herb) => (
-          <HerbCard key={herb.id} herb={herb} />
+        {results.map((herb, index) => (
+          <HerbCard key={herb.id} herb={herb} index={index} />
         ))}
       </div>
     </section>

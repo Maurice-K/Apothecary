@@ -60,3 +60,14 @@ export interface UpdateRecipeRequest {
 export interface ErrorResponse {
   error: string;
 }
+
+/** Single message in a nutritionist chat conversation (client view). */
+export interface NutritionistMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+/** Request body for the nutritionist Edge Function. */
+export interface NutritionistRequest {
+  messages: NutritionistMessage[];
+}
