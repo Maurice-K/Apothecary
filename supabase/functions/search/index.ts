@@ -19,7 +19,9 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const { query, limit = 8 } = validateSearchRequest(body);
 
-    const queryEmbedding = await generateEmbedding(query);
+    // "Herb for " stem pulls bare keywords ("energy", "sleep") closer to the
+    // herb document embeddings, which are themselves about herbs.
+    const queryEmbedding = await generateEmbedding(`Herb for ${query}`);
 
     const { data: results, error } = await supabase.rpc("match_herbs", {
       query_embedding: queryEmbedding,

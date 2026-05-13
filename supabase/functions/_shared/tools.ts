@@ -49,7 +49,7 @@ export async function executeHerbSearch(
   limit?: number,
 ): Promise<Herb[]> {
   const clampedLimit = Math.min(Math.max(1, limit ?? 5), 10);
-  const embedding = await generateEmbedding(query);
+  const embedding = await generateEmbedding(`Herb for ${query}`);
   const { data, error } = await supabase.rpc("match_herbs", {
     query_embedding: embedding,
     match_threshold: 0.3,
