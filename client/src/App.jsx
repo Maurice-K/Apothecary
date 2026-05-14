@@ -24,7 +24,7 @@ export default function App() {
             <h1 className="app-title">The Herbary</h1>
             <div className="app-header-divider" aria-hidden="true"></div>
             <p className="app-subtitle">Discover herbs for what ails you</p>
-            <p className="app-tagline">Est. 1892 · Botanical Wellness · AI Guided</p>
+            <p className="app-tagline">Est. 2026 · Botanical Wellness · AI Guided</p>
           </div>
         </header>
 
