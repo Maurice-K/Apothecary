@@ -1,0 +1,55 @@
+.chat-thinking {
+  display: inline-block;
+  padding: 0.25rem 0;
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.6;
+  transition: opacity var(--thinking-fade, 0.22s) ease;
+  background-image: linear-gradient(
+    90deg,
+    var(--brown-500) 0%,
+    var(--green-700) 30%,
+    var(--brown-500) 60%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: chat-thinking-shimmer 2.4s ease-in-out infinite;
+}
+
+.chat-thinking.is-visible { opacity: 1; }
+.chat-thinking.is-fading { opacity: 0; }
+
+.chat-thinking-dot {
+  display: inline-block;
+  animation: chat-thinking-dot 1.2s ease-in-out infinite;
+}
+
+.chat-thinking-dot:nth-child(2) { animation-delay: 0.15s; }
+.chat-thinking-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes chat-thinking-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes chat-thinking-dot {
+  0%, 60%, 100% { opacity: 0.35; }
+  30%           { opacity: 1; }
+}
+
+/* Fallback for browsers without background-clip: text support */
+@supports not (background-clip: text) {
+  .chat-thinking {
+    color: var(--brown-500);
+    -webkit-text-fill-color: var(--brown-500);
+    background: none;
+    animation: chat-thinking-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes chat-thinking-pulse {
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 1; }
+  }
+}

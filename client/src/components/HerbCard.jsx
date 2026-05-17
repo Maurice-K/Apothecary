@@ -11,17 +11,13 @@ function extractLatinName(name, description) {
   return null;
 }
 
-export default function HerbCard({ herb, index }) {
+export default function HerbCard({ herb }) {
   const [expanded, setExpanded] = useState(false);
   const matchPercent = Math.round(herb.similarity * 100);
-  const cardNumber = String(index + 1).padStart(2, "0");
   const latinName = extractLatinName(herb.name, herb.description);
 
   return (
     <article className="herb-card">
-      {/* Faint watermark number in top-right */}
-      <span className="herb-card-number" aria-hidden="true">{cardNumber}</span>
-
       <div className="herb-card-header">
         <h3 className="herb-name">{herb.name}</h3>
         <span className="similarity-badge" title={`${matchPercent}% semantic match`}>

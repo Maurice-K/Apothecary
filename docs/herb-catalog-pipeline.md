@@ -24,7 +24,7 @@ flowchart TD
     end
 
     subgraph App["Live App"]
-        nutritionist["Nutritionist Edge Function\nclaude-sonnet-4-6"]
+        nutritionist["Nutritionist Edge Function\ngpt-5-mini (Responses API)"]
         herb_search["herb_search tool\n(pgvector cosine similarity)"]
     end
 

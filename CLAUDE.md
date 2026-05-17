@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Apothecary is a herbal wellness app with two experiences:
 - **Herb Search (`/`)** — semantic search over 156 herbs using OpenAI embeddings + pgvector cosine similarity.
-- **Nutritionist (`/nutritionist`)** — conversational AI nutritionist powered by Anthropic's API (tool-use + SSE streaming).
+- **Nutritionist (`/nutritionist`)** — conversational AI nutritionist powered by the OpenAI Responses API (function tools + hosted web search + SSE streaming).
 
 ## Architecture
 
@@ -14,7 +14,7 @@ Three Edge Functions + a React SPA (`client/`).
 
 **Search flow:** User query → `search` Edge Function → OpenAI embedding → `match_herbs` RPC (pgvector) → herb cards.
 
-**Nutritionist flow:** User message → `nutritionist` Edge Function → agentic loop (Anthropic `claude-sonnet-4-6`) → `herb_search` tool (pgvector) + `web_search` tool (Anthropic-hosted) → SSE stream → chat UI with inline herb cards.
+**Nutritionist flow:** User message → `nutritionist` Edge Function → agentic loop (OpenAI Responses API, `gpt-5-mini`) → `herb_search` function tool (pgvector) + hosted `web_search` tool → SSE stream → chat UI with inline herb cards.
 
 **Data pipeline:** Chioma's Shopify storefront → `scripts/enrich_herbs.js` (pulls tags, energetics, scientific name, plant part, origin, form) → `chioma_products.json` (156 herbs) → `scripts/ingest.js` embeds a multi-line labeled input (name → tags → category → energetics → plant_part → description) via OpenAI `text-embedding-3-small` → stores in Supabase `herbs` table with VECTOR(1536) column. High-signal labels go first so they aren't drowned by the long prose description; `how_to_use` is stored but not embedded (brewing instructions dilute signal). Search queries are prefixed with `"Herb for "` in `search/index.ts` and `_shared/tools.ts` to pull bare keywords closer to the document embeddings.
 
@@ -77,7 +77,7 @@ fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
 - `scripts/verify_search.js` — runs canned failure queries against `match_herbs` for before/after checks.
 - `supabase/functions/search/index.ts` — search Edge Function (prepends "Herb for " stem)
 - `supabase/functions/nutritionist/index.ts` — nutritionist Edge Function (agentic loop + SSE)
-- `supabase/functions/_shared/` — CORS, embedding, types, validation, anthropic, tools, sse, rate-limit
+- `supabase/functions/_shared/` — CORS, embedding, types, validation, openai, tools, sse, rate-limit
 - `client/src/api/nutritionist.js` — fetch + SSE parser for the nutritionist
 - `client/src/hooks/useNutritionist.js` — chat state (messages, streaming, error, send, reset)
 - `client/src/hooks/useSearch.js` — search state
@@ -108,7 +108,7 @@ Project docs live in `docs/`. Update these after major milestones and significan
 
 ## Environment Variables
 
-- Root `.env` — production credentials: `OPENAI_API_KEY`, `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `ANTHROPIC_API_KEY`, `APOTHECARY_ENV=development`.
+- Root `.env` — production credentials: `OPENAI_API_KEY`, `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `APOTHECARY_ENV=development`. Optionally `OPENAI_MODEL` to override the default `gpt-5-mini`.
 - Root `.env.local` — local-Supabase overrides: `SUPABASE_URL=http://127.0.0.1:54321`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`. Node scripts (`ingest`, `verify_search`) load this first by default so they target the local stack; `.env` fills in keys `.env.local` doesn't define (like `OPENAI_API_KEY`).
 - `client/.env.local` — Vite: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`. Independent of the root `.env.local`.
 

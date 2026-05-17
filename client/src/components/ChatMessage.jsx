@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import HerbCard from "./HerbCard";
+import ThinkingIndicator from "./ThinkingIndicator";
 import "./ChatMessage.css";
 
 const CHUNK_SIZE = 4;  // chars per tick
@@ -43,9 +44,7 @@ export default function ChatMessage({ message }) {
         <div className="chat-message-body">
           <div className="chat-message-markdown">
             {message.streaming && !message.content ? (
-              <span className="chat-ellipsis" aria-label="Thinking">
-                <span /><span /><span />
-              </span>
+              <ThinkingIndicator phase={message.phase} />
             ) : (
               <ReactMarkdown>{displayed || message.content}</ReactMarkdown>
             )}
