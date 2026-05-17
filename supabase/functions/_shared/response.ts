@@ -1,12 +1,18 @@
 import { CORS_HEADERS, getAllowedOrigin } from "./cors.ts";
 
-export function jsonResponse<T>(req: Request, data: T, status = 200): Response {
+export function jsonResponse<T>(
+  req: Request,
+  data: T,
+  status = 200,
+  extraHeaders: HeadersInit = {},
+): Response {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": getAllowedOrigin(req),
       ...CORS_HEADERS,
+      ...extraHeaders,
     },
   });
 }

@@ -5,15 +5,14 @@ A herbal wellness app with two experiences:
 - **Herb Search** — type plain English queries like "what helps with sleep?" and get matching herbs as cards, ranked by semantic similarity.
 - **Nutritionist** — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 134-herb catalog, and enriches advice with live web search.
 
-Built with React, Supabase Edge Functions, OpenAI embeddings, pgvector, and the Anthropic API.
+Built with React, Supabase Edge Functions, OpenAI embeddings + the OpenAI Responses API, and pgvector.
 
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) 18+
 - [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (required by Supabase CLI for local development)
-- An [OpenAI API key](https://platform.openai.com/api-keys)
-- An [Anthropic API key](https://console.anthropic.com/) (for the Nutritionist)
+- An [OpenAI API key](https://platform.openai.com/api-keys) (used for embeddings and the Nutritionist)
 
 ## Local Development Setup
 
@@ -45,7 +44,6 @@ SUPABASE_URL=http://127.0.0.1:54321
 SUPABASE_ANON_KEY=<anon key from supabase start>
 SUPABASE_SERVICE_ROLE_KEY=<service_role key from supabase start>
 OPENAI_API_KEY=<your OpenAI API key>
-ANTHROPIC_API_KEY=<your Anthropic API key>
 APOTHECARY_ENV=development
 ```
 
@@ -114,6 +112,6 @@ Apothecary/
 - **Backend:** Supabase Edge Functions (Deno/TypeScript)
 - **Database:** PostgreSQL with pgvector (cosine similarity search)
 - **Embeddings:** OpenAI `text-embedding-3-small`
-- **AI:** Anthropic API (`claude-sonnet-4-6`) with tool use and SSE streaming
+- **AI:** OpenAI Responses API (`gpt-5-mini`) with function tools, hosted web search, and SSE streaming
 - **Auth:** Supabase Auth
 - **Storage:** Supabase Storage (recipe photos)

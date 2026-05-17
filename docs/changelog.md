@@ -6,13 +6,23 @@ All notable changes to the Apothecary project are documented here. Updated after
 
 ## [Unreleased]
 
+## 2026-05-17 — Nutritionist migrated to OpenAI Responses API
+
+Consolidated the project on a single LLM provider. The nutritionist now uses OpenAI's Responses API (`gpt-5-mini`) instead of Anthropic.
+
+- Replaced `_shared/anthropic.ts` with `_shared/openai.ts`
+- Reshaped `HERB_SEARCH_TOOL` to the Responses function-tool format and swapped Anthropic-hosted `web_search_20250305` for OpenAI's hosted `web_search`
+- Rewrote the nutritionist agent loop to stream `response.output_text.delta`, replay `function_call` items, and feed results back as `function_call_output` items
+- SSE protocol unchanged (`text_delta`, `herb_results`, `tool_use`, `done`, `error`) — no client changes required
+- Dropped `ANTHROPIC_API_KEY` from `.env` and the README
+
 ## 2026-05-12 — Conversational Herb Agent (Nutritionist)
 
-Added an AI nutritionist accessible at `/nutritionist`. Users can have multi-turn herbal wellness conversations; the agent searches the 134-herb catalog via pgvector (`herb_search` tool), enriches results with live web search (Anthropic-hosted `web_search`), and streams responses as SSE.
+Added an AI nutritionist accessible at `/nutritionist`. Users can have multi-turn herbal wellness conversations; the agent searches the 134-herb catalog via pgvector (`herb_search` tool), enriches results with live web search (hosted `web_search`), and streams responses as SSE.
 
 **Backend**
 - New Edge Function `supabase/functions/nutritionist/` — agentic tool-use loop, SSE streaming, capped at 6 iterations
-- New shared modules: `anthropic.ts`, `tools.ts`, `sse.ts`, `rate-limit.ts`
+- New shared modules: `openai.ts`, `tools.ts`, `sse.ts`, `rate-limit.ts`
 - Per-IP rate limiting (5 req/min, 30 req/day) via `nutritionist_rate_limits` table and atomic `check_nutritionist_rate_limit` RPC
 - Zod validation for `herb_search` tool input
 - Extended `_shared/types.ts` and `_shared/validation.ts` with nutritionist message types

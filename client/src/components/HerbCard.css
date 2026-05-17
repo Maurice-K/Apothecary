@@ -13,21 +13,6 @@
   transform: translateY(-4px);
 }
 
-/* Faint watermark number in top-right corner */
-.herb-card-number {
-  position: absolute;
-  top: 1rem;
-  right: 1.25rem;
-  font-size: 4rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--cream-400);
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
 .herb-card-header {
   position: relative;
   z-index: 1;
@@ -183,9 +168,5 @@
 
   .herb-description {
     font-size: 0.85rem;
-  }
-
-  .herb-card-number {
-    font-size: 3rem;
   }
 }

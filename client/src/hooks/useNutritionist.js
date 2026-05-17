@@ -9,6 +9,9 @@ export function useNutritionist() {
   // Buffers accumulated during a stream — flushed all at once on done
   const contentBuf = useRef("");
   const herbsBuf = useRef(null);
+  // Tracks whether we've already flipped the streaming message into the
+  // "composing" phase so we don't setState on every text delta.
+  const composedRef = useRef(false);
 
   const send = useCallback(
     async (text) => {
@@ -17,6 +20,7 @@ export function useNutritionist() {
       abortRef.current = false;
       contentBuf.current = "";
       herbsBuf.current = null;
+      composedRef.current = false;
 
       const apiMessages = [
         ...messages
@@ -28,20 +32,44 @@ export function useNutritionist() {
       setMessages((prev) => [
         ...prev,
         { role: "user", content: text },
-        { role: "assistant", content: "", herbs: null, streaming: true },
+        {
+          role: "assistant",
+          content: "",
+          herbs: null,
+          streaming: true,
+          phase: "thinking",
+        },
       ]);
       setStreaming(true);
+
+      const setPhase = (phase) =>
+        setMessages((prev) => {
+          const next = [...prev];
+          const last = next[next.length - 1];
+          if (last?.role === "assistant" && last.streaming && last.phase !== phase) {
+            next[next.length - 1] = { ...last, phase };
+          }
+          return next;
+        });
 
       await streamNutritionist(apiMessages, {
         onTextDelta: (delta) => {
           if (abortRef.current) return;
           contentBuf.current += delta;
+          if (!composedRef.current) {
+            composedRef.current = true;
+            setPhase("composing");
+          }
         },
         onHerbResults: (herbs) => {
           if (abortRef.current) return;
           herbsBuf.current = herbs;
         },
-        onToolUse: () => {},
+        onToolUse: (event) => {
+          if (abortRef.current) return;
+          if (event?.name === "herb_search") setPhase("searching");
+          else if (event?.name === "web_search") setPhase("researching");
+        },
         onDone: () => {
           if (abortRef.current) return;
           setMessages((prev) => {

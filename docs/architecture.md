@@ -104,13 +104,13 @@ React client (/nutritionist)
 supabase/functions/nutritionist/index.ts
     │  1. Validate request + check per-IP rate limit
     │  2. Run agentic tool-use loop (max 6 iterations):
-    │     a. Stream anthropic.messages.stream(...)
-    │     b. Forward text_delta → SSE event: text_delta
-    │     c. On tool_use stop: dispatch tools in parallel
+    │     a. Stream openai.responses.create({ stream: true, tools, ... })
+    │     b. Forward response.output_text.delta → SSE event: text_delta
+    │     c. On response.completed: dispatch any function_call items
     │        • herb_search → embed query → match_herbs RPC → SSE: herb_results
-    │        • web_search  → Anthropic-hosted, no client execution needed
-    │     d. Append tool results to message history, continue loop
-    │  3. On end_turn: SSE event: done
+    │        • web_search  → OpenAI-hosted, no client execution needed
+    │     d. Append function_call_output items to input, continue loop
+    │  3. When no function_calls remain: SSE event: done
     ▼
 React client
     │  Accumulates text_delta into streaming message bubble
@@ -129,7 +129,7 @@ React client
 
 ### Rate limiting
 
-Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres table and a `check_nutritionist_rate_limit` atomic RPC. Checked before any Anthropic API call. Returns HTTP 429 with `Retry-After` header when exceeded.
+Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres table and a `check_nutritionist_rate_limit` atomic RPC. Checked before any OpenAI API call. Returns HTTP 429 with `Retry-After` header when exceeded.
 
 - 5 requests per minute (burst protection)
 - 30 requests per day (cost cap)
@@ -139,7 +139,9 @@ Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres ta
 
 | File | Purpose |
 |------|---------|
-| `_shared/anthropic.ts` | Initialises Anthropic SDK client |
-| `_shared/tools.ts` | Tool schemas + `executeHerbSearch` |
+| `_shared/openai.ts` | Initialises the OpenAI SDK client and exports `MODEL`, `MAX_ITERATIONS`, `MAX_OUTPUT_TOKENS` |
+| `_shared/supabase.ts` | Service-role Supabase client (one instance, shared by `tools.ts`, `rate-limit.ts`, `herb-search.ts`) |
+| `_shared/herb-search.ts` | `searchHerbs(query, limit)` — embeds with the `"Herb for "` stem and calls the `match_herbs` RPC (used by both the search and nutritionist functions) |
+| `_shared/tools.ts` | Tool definitions (`HERB_SEARCH_TOOL`, `WEB_SEARCH_TOOL`) + `HerbSearchInputSchema` Zod schema |
 | `_shared/sse.ts` | SSE stream helpers |
 | `_shared/rate-limit.ts` | IP extraction + rate-limit RPC wrapper |
