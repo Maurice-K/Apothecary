@@ -3,7 +3,7 @@
 A herbal wellness app with two experiences:
 
 - **Herb Search** — type plain English queries like "what helps with sleep?" and get matching herbs as cards, ranked by semantic similarity.
-- **Nutritionist** — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 134-herb catalog, and enriches advice with live web search.
+- **Nutritionist** — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 156-herb catalog, and enriches advice with live web search.
 
 Built with React, Supabase Edge Functions, OpenAI embeddings + the OpenAI Responses API, and pgvector.
 
@@ -56,7 +56,7 @@ VITE_SUPABASE_ANON_KEY=<anon key from supabase start>
 
 ### 4. Ingest herb data
 
-This embeds all 134 herbs from `chioma_products.json` and uploads them to your local Supabase database. Safe to re-run.
+This embeds all 156 herbs from `chioma_products.json` and uploads them to your local Supabase database. Safe to re-run.
 
 ```bash
 npm run ingest
@@ -102,7 +102,7 @@ Apothecary/
 │   └── migrations/          # SQL migrations (herbs table, pgvector)
 ├── scripts/
 │   └── ingest.js            # Herb data ingestion script
-├── chioma_products.json     # Source herb data (134 herbs)
+├── chioma_products.json     # Source herb data (156 herbs)
 └── docs/                    # Architecture and changelog
 ```
 

@@ -1,7 +1,7 @@
 # Apothecary - Semantic Herb Search Web App
 
 ## Overview
-A web app that lets users search ~134 bulk herbs using plain English queries (e.g., "what helps with sleep?"). Uses semantic search via OpenAI embeddings + Supabase pgvector to return relevant herbs as cards with descriptions and usage info.
+A web app that lets users search ~156 bulk herbs using plain English queries (e.g., "what helps with sleep?"). Uses semantic search via OpenAI embeddings + Supabase pgvector to return relevant herbs as cards with descriptions and usage info.
 
 ---
 
@@ -12,7 +12,7 @@ A web app that lets users search ~134 bulk herbs using plain English queries (e.
 | Backend | Supabase Edge Functions (Deno) |
 | Database | Supabase (PostgreSQL + pgvector) |
 | Embeddings | OpenAI `text-embedding-3-small` (1536 dimensions) |
-| Data Source | `chioma_products.json` — 134 herbs with `name`, `description`, `how_to_use`, `category` |
+| Data Source | `chioma_products.json` — 156 herbs with `name`, `description`, `how_to_use`, `category` |
 
 ---
 
@@ -178,7 +178,7 @@ $$;
 
 ### Step 3: Data Ingestion Script
 
-**Goal:** Embed all 134 herbs and store them in Supabase.
+**Goal:** Embed all 156 herbs and store them in Supabase.
 
 **File:** `scripts/ingest.js`
 
@@ -187,7 +187,7 @@ $$;
 2. For each herb, creates the embedding input text: `"<name>: <description>"`
    - Only `name + description` are embedded — `how_to_use` and `category` are not embedded
    - `how_to_use` is stored for display; `category` is stored for display/filtering
-3. Calls OpenAI embeddings API in a single batch (134 items, ~10K tokens)
+3. Calls OpenAI embeddings API in a single batch (156 items, ~12K tokens)
 4. Upserts all rows (name, description, how_to_use, category, embedding) into Supabase
    - Uses `name` as the conflict key (UNIQUE constraint)
    - On conflict: updates `description`, `how_to_use`, `category`, and `embedding`
@@ -197,7 +197,7 @@ $$;
 
 **Cost:** ~$0.0002 per run (effectively free)
 
-**Verify:** Check Supabase Table Editor — should have 134 rows, each with a non-null embedding and a populated `category` array. Running again should not create duplicates.
+**Verify:** Check Supabase Table Editor — should have 156 rows, each with a non-null embedding and a populated `category` array. Running again should not create duplicates.
 
 ---
 

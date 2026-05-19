@@ -46,7 +46,7 @@ ivfflat index with `lists = 10`, appropriate for <1000 rows.
 ## Ingestion Pipeline
 
 ```
-chioma_products.json (134 herbs)
+chioma_products.json (156 herbs)
     │  node scripts/ingest.js
     ▼
 OpenAI text-embedding-3-small
@@ -92,7 +92,7 @@ React SPA built with Vite. Two pages: `/` (herb search) and `/nutritionist` (cha
 
 ## Conversational Nutritionist
 
-An agentic chat feature that answers herbal wellness questions using the 134-herb catalog as the primary signal, enriched with live web search.
+An agentic chat feature that answers herbal wellness questions using the 156-herb catalog as the primary signal, enriched with live web search.
 
 ### Agent loop
 
