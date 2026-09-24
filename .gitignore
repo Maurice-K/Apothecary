@@ -73,6 +73,10 @@ desktop.ini
 .claude/memory/
 .superdesign/
 
+# --- TestSprite agent skills (installed locally by `testsprite setup`) ---
+.claude/skills/testsprite-*/
+.agents/skills/testsprite-*/
+
 # --- Misc ---
 *.pid
 *.seed

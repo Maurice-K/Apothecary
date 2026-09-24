@@ -5,12 +5,13 @@ import { fetchMyRecipes, deleteRecipe } from "../api/recipes";
 import "./MyRecipesPage.css";
 
 export default function MyRecipesPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       navigate("/login");
       return;
@@ -19,7 +20,7 @@ export default function MyRecipesPage() {
       .then(setRecipes)
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [user, navigate]);
+  }, [user, authLoading, navigate]);
 
   async function handleDelete(id, name) {
     if (!confirm(`Delete "${name}"?`)) return;

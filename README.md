@@ -1,9 +1,11 @@
 # Apothecary
 
-A herbal wellness app with two experiences:
+A herbal wellness app ("The Herbary", live at [herbary.app](https://herbary.app)) with two experiences:
 
-- **Herb Search** — type plain English queries like "what helps with sleep?" and get matching herbs as cards, ranked by semantic similarity.
-- **Nutritionist** — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 156-herb catalog, and enriches advice with live web search.
+- **Nutritionist** (`/`, the landing page) — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 156-herb catalog, and enriches advice with live web search.
+- **Herb Search** (`/herb-search`) — type plain English queries like "what helps with sleep?" and get matching herbs as cards, ranked by semantic similarity.
+
+> **Not live yet:** community recipes and user accounts (login/signup) exist in the code but aren't set up for real users, and the Expo app in `mobile/` is parked. The web client is the only live surface.
 
 Built with React, Supabase Edge Functions, OpenAI embeddings + the OpenAI Responses API, and pgvector.
 
@@ -82,9 +84,36 @@ cd client && npm run dev
 
 ### 6. Open the app
 
-- **Herb Search:** http://localhost:5173
-- **Nutritionist:** http://localhost:5173/nutritionist
+- **Nutritionist:** http://localhost:5173
+- **Herb Search:** http://localhost:5173/herb-search
 - **Supabase Studio:** http://localhost:54323 (database admin UI)
+
+## Testing
+
+End-to-end tests run on [TestSprite](https://www.testsprite.com), an AI browser agent that clicks through the app like a user and checks what it sees. It runs against your **local** app through a secure tunnel, so you can test changes before deploying.
+
+**One-time setup**
+
+```bash
+npm install -g @testsprite/testsprite-cli   # installs the `testsprite` command
+testsprite setup                            # paste your TestSprite API key; installs agent skills
+testsprite auth status                      # confirm you're signed in
+```
+
+**Run tests** (with `npx supabase start` and `npm run dev` already running):
+
+```bash
+testsprite test list --project 84f4b903-69fa-4200-b9e6-e574d24e6edb   # see tests + ids
+testsprite test run <testId> --local 5173 --local-host ::1           # run one test (~2–5 min)
+testsprite test steps <testId>                                       # step-by-step result of the last run
+testsprite test open <testId>                                        # open it in the dashboard (video, history)
+```
+
+- Test plans live in [`testsprite/plans/`](testsprite/plans/); see [`testsprite/README.md`](testsprite/README.md). To add a test, write a plan JSON and run `testsprite test create --plan-from <file> --project <id>`.
+- The active suite is plans 01–07 (nutritionist + herb search). Tests tagged `[AUTH — not live]` are parked until accounts launch.
+- Each run costs 0.5 TestSprite credits (Free plan: 150/month), so run the tests that cover your change rather than the whole suite.
+
+Search-ranking changes are checked separately with `node scripts/verify_search.js`.
 
 ## Project Structure
 
@@ -94,16 +123,17 @@ Apothecary/
 │   └── src/
 │       ├── api/             # Supabase client and search calls
 │       ├── components/      # UI components (NavBar, HerbCard, etc.)
-│       ├── hooks/           # Custom React hooks (useSearch, useAuth)
-│       └── pages/           # Page components (Home, Recipes, etc.)
+│       ├── hooks/           # Custom React hooks (useSearch, useNutritionist, useAuth)
+│       └── pages/           # Page components (Nutritionist, HomePage/search, recipes, auth)
 ├── supabase/
-│   ├── functions/           # Deno Edge Functions (search, recipes)
+│   ├── functions/           # Deno Edge Functions (search, recipes-search, recipes, nutritionist)
 │   │   └── _shared/        # Shared utilities (CORS, embedding, types)
 │   └── migrations/          # SQL migrations (herbs table, pgvector)
-├── scripts/
-│   └── ingest.js            # Herb data ingestion script
+├── mobile/                  # Expo / React Native app (parked)
+├── scripts/                 # Herb enrichment, ingestion, and search verification
+├── testsprite/plans/        # TestSprite end-to-end test plans
 ├── chioma_products.json     # Source herb data (156 herbs)
-└── docs/                    # Architecture and changelog
+└── docs/                    # Architecture, changelog, plans
 ```
 
 ## Tech Stack
@@ -113,5 +143,6 @@ Apothecary/
 - **Database:** PostgreSQL with pgvector (cosine similarity search)
 - **Embeddings:** OpenAI `text-embedding-3-small`
 - **AI:** OpenAI Responses API (`gpt-5-mini`) with function tools, hosted web search, and SSE streaming
-- **Auth:** Supabase Auth
+- **Auth:** Supabase Auth (not live yet)
 - **Storage:** Supabase Storage (recipe photos)
+- **E2E testing:** TestSprite

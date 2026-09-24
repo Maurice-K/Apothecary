@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Nutritionist \u2014 New chat resets the conversation",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /"
+    },
+    {
+      "type": "action",
+      "description": "Type 'What helps with low iron?' into the message textarea and press Enter"
+    },
+    {
+      "type": "action",
+      "description": "Wait up to 90 seconds for the assistant reply to appear"
+    },
+    {
+      "type": "action",
+      "description": "Click the 'New chat' button"
+    },
+    {
+      "type": "assertion",
+      "description": "No chat messages are shown and the 5 starter prompt buttons are visible again"
+    },
+    {
+      "type": "assertion",
+      "description": "The 'New chat' button is no longer visible"
+    }
+  ]
+}

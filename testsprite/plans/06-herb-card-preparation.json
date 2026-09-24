@@ -1,0 +1,35 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Herb Search \u2014 Traditional Preparation toggle expands and collapses",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /herb-search"
+    },
+    {
+      "type": "action",
+      "description": "Type 'chamomile' into the search input and click 'Consult the Archive'"
+    },
+    {
+      "type": "action",
+      "description": "Wait for results to load"
+    },
+    {
+      "type": "action",
+      "description": "On the first herb card that has a 'Traditional Preparation' button, click it"
+    },
+    {
+      "type": "assertion",
+      "description": "That card now shows an expanded preparation text block and the button text changed to 'Hide preparation'"
+    },
+    {
+      "type": "action",
+      "description": "Click 'Hide preparation'"
+    },
+    {
+      "type": "assertion",
+      "description": "The preparation text block is hidden and the button text is 'Traditional Preparation' again"
+    }
+  ]
+}

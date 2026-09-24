@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Herb Search \u2014 free-text query returns herb cards",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /herb-search"
+    },
+    {
+      "type": "assertion",
+      "description": "A heading 'Welcome to the Herbary' is visible and the 'Consult the Archive' button is disabled"
+    },
+    {
+      "type": "action",
+      "description": "Type 'trouble sleeping' into the search input and click 'Consult the Archive'"
+    },
+    {
+      "type": "action",
+      "description": "Wait for the loading indicator to disappear"
+    },
+    {
+      "type": "assertion",
+      "description": "A tab button with text matching 'Herbs (N)' where N is greater than 0 is visible and active"
+    },
+    {
+      "type": "assertion",
+      "description": "At least one herb card is shown, each with a herb name heading, a '% match' badge and a description paragraph"
+    }
+  ]
+}
