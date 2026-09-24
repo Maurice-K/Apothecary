@@ -83,3 +83,5 @@ desktop.ini
 *.pid.lock
 .tmp/
 tmp/
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json

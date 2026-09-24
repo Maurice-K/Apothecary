@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "test_semantic_herb_search_with_valid_query_and_limit",
+    "description": "Verify that POST /search with a valid non-empty query string and a numeric limit between 1 and 50 returns a 200 response with ranked herb results sorted by similarity descending, each similarity >= 0.3, and the number of results does not exceed the limit."
+  },
+  {
+    "id": "TC002",
+    "title": "test_semantic_herb_search_with_missing_or_empty_query",
+    "description": "Verify that POST /search with a missing or empty query string returns a 400 response with an error message indicating that the query is required and must be a string."
+  },
+  {
+    "id": "TC003",
+    "title": "test_semantic_herb_search_with_invalid_limit",
+    "description": "Verify that POST /search with a limit provided as a string or a number outside the range 1 to 50 returns a 400 response with an error message indicating that the limit must be a number between 1 and 50."
+  },
+  {
+    "id": "TC004",
+    "title": "test_cors_preflight_on_search_endpoint",
+    "description": "Verify that OPTIONS /search from an allowed Origin returns a 200 response with Access-Control-Allow-Origin echoing the Origin and Access-Control-Allow-Methods including POST."
+  },
+  {
+    "id": "TC005",
+    "title": "test_combined_herb_and_recipe_search_with_valid_query_and_limit",
+    "description": "Verify that POST /recipes-search with a valid query string and optional limit returns a 200 response containing both herbs and recipes arrays, where recipes array may be empty but herbs array is present."
+  },
+  {
+    "id": "TC006",
+    "title": "test_combined_herb_and_recipe_search_with_query_yielding_no_recipes",
+    "description": "Verify that POST /recipes-search with a query that yields no recipe matches returns a 200 response with an empty recipes array and a non-empty herbs array if herb matches exist."
+  },
+  {
+    "id": "TC007",
+    "title": "test_combined_herb_and_recipe_search_with_missing_or_invalid_query_or_limit",
+    "description": "Verify that POST /recipes-search with a missing query or invalid limit returns a 400 response with a validation error message."
+  },
+  {
+    "id": "TC008",
+    "title": "test_nutritionist_post_with_valid_messages_streaming_response",
+    "description": "Verify that POST /nutritionist with a valid JSON body containing a messages array (1-50 items, last message role user) returns a 200 response with Content-Type text/event-stream and events including tool_use, herb_results, text_delta, and done."
+  },
+  {
+    "id": "TC009",
+    "title": "test_nutritionist_post_with_invalid_json_body",
+    "description": "Verify that POST /nutritionist with an invalid JSON body returns a 400 response with {\"error\":\"Invalid JSON body\"}."
+  },
+  {
+    "id": "TC010",
+    "title": "test_nutritionist_post_with_invalid_messages_array",
+    "description": "Verify that POST /nutritionist with messages array exceeding 50 entries or last message not from user returns a 400 response with a validation error message."
+  }
+]
