@@ -1,0 +1,35 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Nutritionist \u2014 starter prompt gets an answer with herb cards",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /"
+    },
+    {
+      "type": "action",
+      "description": "Click the starter prompt button 'How do I get better sleep?'"
+    },
+    {
+      "type": "assertion",
+      "description": "A user message bubble containing 'How do I get better sleep?' appears and the starter prompt buttons are no longer shown"
+    },
+    {
+      "type": "action",
+      "description": "Wait up to 90 seconds for the assistant reply to finish typing"
+    },
+    {
+      "type": "assertion",
+      "description": "An assistant message with at least one sentence of text is shown below the user message"
+    },
+    {
+      "type": "assertion",
+      "description": "At least one herb card is shown with a herb name heading and a '% match' badge"
+    },
+    {
+      "type": "assertion",
+      "description": "A 'New chat' button is visible in the page header"
+    }
+  ]
+}

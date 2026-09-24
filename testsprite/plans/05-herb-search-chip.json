@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Herb Search \u2014 suggestion chip runs a search",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /herb-search"
+    },
+    {
+      "type": "action",
+      "description": "Click the suggestion chip 'herbs for digestion'"
+    },
+    {
+      "type": "action",
+      "description": "Wait for results to load"
+    },
+    {
+      "type": "assertion",
+      "description": "The 'Welcome to the Herbary' heading is no longer visible"
+    },
+    {
+      "type": "assertion",
+      "description": "A 'Herbs (N)' tab with N greater than 0 and a 'Recipes (M)' tab are visible"
+    },
+    {
+      "type": "assertion",
+      "description": "At least one herb card with a '% match' badge is shown"
+    }
+  ]
+}

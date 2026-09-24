@@ -1,0 +1,51 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Recipes \u2014 create a recipe and view its detail page",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /login"
+    },
+    {
+      "type": "action",
+      "description": "Enter 'testsprite@herbary.test' in the Email field and 'Testsprite123!' in the Password field, then click the 'Log In' button"
+    },
+    {
+      "type": "action",
+      "description": "Wait until the nav bar shows 'My Recipes', then click 'My Recipes'"
+    },
+    {
+      "type": "action",
+      "description": "Click '+ Add Recipe'"
+    },
+    {
+      "type": "action",
+      "description": "Enter a unique name like 'TS Calm Tea <random digits>' in the Name field"
+    },
+    {
+      "type": "action",
+      "description": "Type 'chamomile' into 'Ingredient 1', click '+ Add Ingredient', and type 'lemon balm' into 'Ingredient 2'"
+    },
+    {
+      "type": "action",
+      "description": "Type 'Steep both herbs in hot water for ten minutes.' into Instructions and '10' into Prep Time"
+    },
+    {
+      "type": "action",
+      "description": "Click 'Create Recipe'"
+    },
+    {
+      "type": "assertion",
+      "description": "The browser navigates to /my-recipes and the list contains the recipe name that was entered with '2 ingredients \u00b7 10 min'"
+    },
+    {
+      "type": "action",
+      "description": "Click that recipe's name"
+    },
+    {
+      "type": "assertion",
+      "description": "The recipe detail page shows the recipe name as a heading, '10 minutes', and an Ingredients list containing 'chamomile' and 'lemon balm'"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.jsx";
 import { createRecipe, uploadRecipePhoto } from "../api/recipes";
 import { supabase } from "../api/supabaseClient";
 import "./AddRecipePage.css";
 
 export default function AddRecipePage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([""]);
@@ -16,10 +16,8 @@ export default function AddRecipePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  if (!user) {
-    navigate("/login");
-    return null;
-  }
+  if (authLoading) return null;
+  if (!user) return <Navigate to="/login" replace />;
 
   function addIngredient() {
     setIngredients([...ingredients, ""]);

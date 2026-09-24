@@ -1,0 +1,27 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Auth \u2014 wrong password shows an error",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /login"
+    },
+    {
+      "type": "action",
+      "description": "If a 'Log Out' button is visible in the nav bar, click it and wait until it disappears, then navigate to /login again"
+    },
+    {
+      "type": "action",
+      "description": "Enter 'testsprite@herbary.test' in Email and 'wrong-password-123' in Password, then click 'Log In'"
+    },
+    {
+      "type": "assertion",
+      "description": "An error message containing 'Invalid' is shown above the form"
+    },
+    {
+      "type": "assertion",
+      "description": "The URL is still /login and no 'Log Out' button is visible in the nav bar"
+    }
+  ]
+}

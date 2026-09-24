@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Auth \u2014 valid login shows account nav links",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /login"
+    },
+    {
+      "type": "action",
+      "description": "Enter 'testsprite@herbary.test' in the Email field and 'Testsprite123!' in the Password field, then click the 'Log In' button"
+    },
+    {
+      "type": "assertion",
+      "description": "The browser navigates to / and the heading 'Ask the Nutritionist' is visible"
+    },
+    {
+      "type": "assertion",
+      "description": "The nav bar shows a 'My Recipes' link and a 'Log Out' button"
+    },
+    {
+      "type": "action",
+      "description": "Click 'Log Out'"
+    },
+    {
+      "type": "assertion",
+      "description": "The 'My Recipes' link and 'Log Out' button are no longer visible in the nav bar"
+    }
+  ]
+}

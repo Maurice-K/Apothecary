@@ -1,0 +1,27 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Nutritionist \u2014 landing page shows starter prompts",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /"
+    },
+    {
+      "type": "assertion",
+      "description": "A heading with text 'Ask the Nutritionist' is visible"
+    },
+    {
+      "type": "assertion",
+      "description": "Exactly 5 starter prompt buttons are visible, including 'How do I get better sleep?' and 'Boost immunity for winter'"
+    },
+    {
+      "type": "assertion",
+      "description": "The 'The Nutritionist' nav tab is styled as active and a textarea with placeholder 'Ask about herbs and wellness\u2026' is visible"
+    },
+    {
+      "type": "assertion",
+      "description": "The 'Send message' button is disabled while the textarea is empty"
+    }
+  ]
+}

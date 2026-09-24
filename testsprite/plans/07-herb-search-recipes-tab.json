@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Herb Search \u2014 Recipes tab switches result list",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /herb-search"
+    },
+    {
+      "type": "action",
+      "description": "Type 'tea for relaxation' into the search input and click 'Consult the Archive'"
+    },
+    {
+      "type": "action",
+      "description": "Wait for results to load"
+    },
+    {
+      "type": "action",
+      "description": "Click the tab button whose text starts with 'Recipes ('"
+    },
+    {
+      "type": "assertion",
+      "description": "The Recipes tab is active and the page shows either one or more recipe cards (each with a title and an 'ingredients' count) or the text 'No recipes found.'"
+    },
+    {
+      "type": "assertion",
+      "description": "No herb cards with a '% match' badge are shown while the Recipes tab is active"
+    }
+  ]
+}

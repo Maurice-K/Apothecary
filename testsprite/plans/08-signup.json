@@ -1,0 +1,27 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Auth \u2014 sign up shows confirmation screen",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /signup"
+    },
+    {
+      "type": "assertion",
+      "description": "A heading 'Sign Up' is visible with Email and Password fields"
+    },
+    {
+      "type": "action",
+      "description": "Enter a unique email like 'ts-<random digits>@herbary.test' and the password 'Testsprite123!', then click 'Sign Up'"
+    },
+    {
+      "type": "assertion",
+      "description": "A heading 'Check Your Email' is visible and the page shows the email address that was entered"
+    },
+    {
+      "type": "assertion",
+      "description": "A 'Go to login' link is visible"
+    }
+  ]
+}

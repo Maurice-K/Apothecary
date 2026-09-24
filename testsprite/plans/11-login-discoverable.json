@@ -1,0 +1,23 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Auth \u2014 logged-out user can reach login from the nav",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /"
+    },
+    {
+      "type": "assertion",
+      "description": "The navigation bar shows a visible 'Log In' link"
+    },
+    {
+      "type": "action",
+      "description": "Click the 'Log In' link in the navigation bar"
+    },
+    {
+      "type": "assertion",
+      "description": "The URL is /login and a heading 'Log In' is visible"
+    }
+  ]
+}

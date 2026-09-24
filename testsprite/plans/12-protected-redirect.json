@@ -1,0 +1,23 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Auth \u2014 My Recipes requires login",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /my-recipes while logged out"
+    },
+    {
+      "type": "assertion",
+      "description": "The browser is redirected to /login and a 'Log In' heading is visible"
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /add-recipe while logged out"
+    },
+    {
+      "type": "assertion",
+      "description": "The browser is redirected to /login and a 'Log In' heading is visible"
+    }
+  ]
+}

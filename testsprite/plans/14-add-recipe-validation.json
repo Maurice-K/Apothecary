@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Recipes \u2014 Add Recipe validates required fields",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /login"
+    },
+    {
+      "type": "action",
+      "description": "Enter 'testsprite@herbary.test' in the Email field and 'Testsprite123!' in the Password field, then click the 'Log In' button"
+    },
+    {
+      "type": "action",
+      "description": "Wait until the nav bar shows 'My Recipes', then navigate to /add-recipe"
+    },
+    {
+      "type": "action",
+      "description": "Type 'Short' into the Name field, leave ingredients empty, type 'too short' into Instructions, and click 'Create Recipe'"
+    },
+    {
+      "type": "assertion",
+      "description": "An error message 'Please fill in name, at least one ingredient, and instructions (10+ characters).' is visible"
+    },
+    {
+      "type": "assertion",
+      "description": "The URL is still /add-recipe"
+    }
+  ]
+}

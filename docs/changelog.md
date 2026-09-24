@@ -6,6 +6,17 @@ All notable changes to the Apothecary project are documented here. Updated after
 
 ## [Unreleased]
 
+## 2026-09-24 — TestSprite E2E suite + auth navigation fixes
+
+Seeded a TestSprite frontend suite (15 plans in `testsprite/plans/`, run against the local Vite app with a local test user `testsprite@herbary.test`) covering the nutritionist, herb search, auth, and recipe flows.
+
+**Note:** login and accounts are not set up for real users yet, so the auth/recipe tests are parked (tagged `[AUTH — not live]`, p3) and `/login`/`/signup` intentionally stay unlinked from the nav. Revisit when accounts launch. The Expo app in `mobile/` is also parked and wasn't tested.
+
+Small fixes made along the way:
+
+- `MyRecipesPage` waits for the auth session to load before redirecting, so a signed-in user reloading `/my-recipes` is no longer bounced to `/login`
+- `AddRecipePage` redirects with `<Navigate>` after auth loads instead of calling `navigate()` during render (which react-router ignores)
+
 ## 2026-05-17 — Nutritionist migrated to OpenAI Responses API
 
 Consolidated the project on a single LLM provider. The nutritionist now uses OpenAI's Responses API (`gpt-5-mini`) instead of Anthropic.

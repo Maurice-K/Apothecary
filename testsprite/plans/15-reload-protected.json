@@ -1,0 +1,31 @@
+{
+  "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
+  "type": "frontend",
+  "name": "Auth \u2014 signed-in user can reload My Recipes directly",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /login"
+    },
+    {
+      "type": "action",
+      "description": "Enter 'testsprite@herbary.test' in Email and 'Testsprite123!' in Password, then click 'Log In'"
+    },
+    {
+      "type": "action",
+      "description": "Wait until the nav bar shows 'My Recipes'"
+    },
+    {
+      "type": "action",
+      "description": "Load the URL /my-recipes directly in the address bar (full page load, not by clicking a link)"
+    },
+    {
+      "type": "assertion",
+      "description": "After 3 seconds the URL is still /my-recipes and a heading 'My Recipes' is visible"
+    },
+    {
+      "type": "assertion",
+      "description": "The nav bar shows a 'Log Out' button"
+    }
+  ]
+}
