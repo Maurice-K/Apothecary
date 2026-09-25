@@ -73,18 +73,20 @@ npx supabase functions deploy recipes recipes-search --project-ref donareoeoobqm
 
 ## Testing (TestSprite)
 
-There is no unit-test suite and no CI. The web client's end-to-end tests run on **TestSprite**, a cloud AI browser agent that drives the local Vite app through a tunnel. Search-ranking changes are still verified with `verify_search.js`.
+There is no unit-test suite and no CI. Tests run on **TestSprite** against the local stack through a tunnel, in two suites (details in `testsprite/README.md`). Search-ranking changes are still verified with `verify_search.js`.
 
-- **Project:** "Apothecary", id `84f4b903-69fa-4200-b9e6-e574d24e6edb`. Plans live in `testsprite/plans/` (see `testsprite/README.md`).
-- **Active suite:** plans 01–07 (nutritionist + herb search). Tests tagged `[AUTH — not live]` are parked. Don't run them or treat their failures as bugs until accounts launch.
-- **Prereqs:** `supabase start`, `npm run dev` (Vite listens on `[::1]:5173`), `testsprite` CLI authenticated (`testsprite auth status`).
+- **Frontend E2E (CLI):** project "Apothecary", id `84f4b903-69fa-4200-b9e6-e574d24e6edb`. Plans live in `testsprite/plans/`. A cloud AI browser agent drives the local Vite app.
+  - **Active suite:** plans 01–07 (nutritionist + herb search). Tests tagged `[AUTH — not live]` are parked. Don't run them or treat their failures as bugs until accounts launch.
+- **Backend API (MCP):** `testsprite_tests/TC001`–`TC010` are Python `requests` tests against the local Edge Functions (`localhost:54321/functions/v1`). They cover `search`, `recipes-search` and `nutritionist` validation, response shapes, CORS and the SSE stream. `/recipes` is out of scope. Run them with the TestSprite MCP tool `testsprite_generate_code_and_execute` (pass `testIds` to run a subset). Never re-run `testsprite_bootstrap` while `testsprite_tests/tmp/config.json` exists. Each run regenerates the `TC*.py` files, so change tests via the plan or `additionalInstruction`, not by hand. "No assertions found in test code" is a codegen artifact (the generated code used `raise AssertionError`), not an app bug. TC008 makes a real OpenAI call.
+- **Prereqs:** `supabase start`, `npm run dev` (functions on :54321, Vite on `[::1]:5173`), `testsprite` CLI authenticated (`testsprite auth status`).
 
 **Programming loop:** after any change to `client/` or `supabase/functions/` (not docs/config), before reporting the work done:
-1. Use the `testsprite-verify` skill. Pick the tests covering the change (`testsprite test list --project 84f4b903-69fa-4200-b9e6-e574d24e6edb`) and run them one per call, up to 5 in parallel:
+1. For `supabase/functions/` changes, run the backend tests covering the touched function via the MCP (see above).
+2. Use the `testsprite-verify` skill for frontend flows. Pick the tests covering the change (`testsprite test list --project 84f4b903-69fa-4200-b9e6-e574d24e6edb`) and run them one per call, up to 5 in parallel:
    `testsprite test run <testId> --local 5173 --local-host ::1`
-2. On failure, inspect `testsprite test steps <testId>` and the `error` field, fix the code, and re-run. Distinguish app bugs from test-setup artifacts (e.g. the agent auto-logs-in with the project's saved credentials; tunnel `ERR_INVALID_HTTP_RESPONSE` is infra, not the app).
-3. For a new flow, add a plan JSON to `testsprite/plans/` and `testsprite test create --plan-from <file> --project <id>`. Steps can't be edited via CLI, so change a test by editing its plan and recreating it.
-4. Credits: Free plan, 150/month; each frontend run costs 0.5. Run only the tests covering the change, not the whole suite, unless asked.
+3. On failure, inspect `testsprite test steps <testId>` and the `error` field, fix the code, and re-run. Distinguish app bugs from test-setup artifacts (e.g. the agent auto-logs-in with the project's saved credentials; tunnel `ERR_INVALID_HTTP_RESPONSE` is infra, not the app).
+4. For a new flow, add a plan JSON to `testsprite/plans/` and `testsprite test create --plan-from <file> --project <id>`. Steps can't be edited via CLI, so change a test by editing its plan and recreating it.
+5. Credits: Free plan, 150/month; each frontend run costs 0.5. Run only the tests covering the change, not the whole suite, unless asked.
 
 Don't edit client code while TestSprite runs are in flight (Vite HMR disturbs them). `testsprite test open <testId>` opens a test in the dashboard.
 
