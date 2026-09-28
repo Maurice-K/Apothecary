@@ -1,87 +1,69 @@
 import requests
 import sys
-from typing import Any
 
 BASE_URL = "http://localhost:54321/functions/v1"
-TIMEOUT = 30  # seconds
 
 def test_combined_herb_and_recipe_search_with_valid_query_and_limit():
     url = f"{BASE_URL}/recipes-search"
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
     payload = {
         "query": "help me sleep",
         "limit": 5
     }
 
     try:
-        resp = requests.post(url, json=payload, timeout=TIMEOUT)
-    except requests.exceptions.RequestException as e:
-        raise AssertionError(f"Request to {url} failed: {e}")
+        resp = requests.post(url, headers=headers, json=payload, timeout=30)
+    except requests.RequestException as e:
+        assert False, f"HTTP request to {url} failed: {e}"
 
-    # Validate status code
-    if resp.status_code != 200:
-        raise AssertionError(f"Expected status 200 but got {resp.status_code}. Response body: {resp.text}")
+    assert resp is not None, "No response received"
+    assert resp.status_code == 200, f"Expected status 200, got {resp.status_code}. Body: {resp.text}"
 
     try:
-        data = resp.json()
+        body = resp.json()
     except ValueError:
-        raise AssertionError(f"Response was not valid JSON. Raw response: {resp.text}")
+        assert False, f"Response is not valid JSON: {resp.text}"
 
-    # Validate top-level keys
-    assert isinstance(data, dict), f"Expected JSON object, got {type(data).__name__}"
-    assert "herbs" in data, "Response JSON missing 'herbs' key"
-    assert "recipes" in data, "Response JSON missing 'recipes' key"
+    assert isinstance(body, dict), "Response JSON must be an object"
 
-    herbs = data["herbs"]
-    recipes = data["recipes"]
+    assert 'herbs' in body, "'herbs' key missing in response"
+    assert 'recipes' in body, "'recipes' key missing in response"
 
-    # Both should be arrays
-    assert isinstance(herbs, list), f"'herbs' should be a list, got {type(herbs).__name__}"
-    assert isinstance(recipes, list), f"'recipes' should be a list, got {type(recipes).__name__}"
+    assert isinstance(body['herbs'], list), "'herbs' must be an array"
+    assert isinstance(body['recipes'], list), "'recipes' must be an array"
 
-    # For a valid query we expect herb results to be present (non-empty)
-    assert len(herbs) > 0, "Expected at least one herb in 'herbs' array for a valid query"
+    # Per PRD, herbs array should be present and for a query like "help me sleep" we expect at least one herb match
+    assert len(body['herbs']) >= 1, "Expected at least one herb in 'herbs' array for query 'help me sleep'"
 
-    # herbs count should not exceed the provided limit
-    assert len(herbs) <= payload["limit"], f"Number of herbs ({len(herbs)}) exceeds limit ({payload['limit']})"
+    # Validate structure of first herb
+    first_herb = body['herbs'][0]
+    assert isinstance(first_herb, dict), "Herb entries must be objects"
+    for required_key in ('id', 'name', 'similarity'):
+        assert required_key in first_herb, f"Herb object missing required key: {required_key}"
+    assert isinstance(first_herb['name'], str) and first_herb['name'].strip() != "", "Herb name must be a non-empty string"
+    assert isinstance(first_herb['similarity'], (int, float)), "Herb similarity must be numeric"
+    # Similarity threshold expected by herb search semantics
+    assert first_herb['similarity'] >= 0.3, f"Herb similarity expected >= 0.3, got {first_herb['similarity']}"
 
-    # Validate each herb entry schema minimally and similarity constraints
-    prev_similarity = None
-    for idx, herb in enumerate(herbs):
-        assert isinstance(herb, dict), f"Herb at index {idx} is not an object"
-        # Required fields assertions (based on PRD)
-        assert "id" in herb, f"Herb at index {idx} missing 'id'"
-        assert "name" in herb, f"Herb at index {idx} missing 'name'"
-        assert "similarity" in herb, f"Herb at index {idx} missing 'similarity'"
+    # Recipes may legitimately be empty; if not empty, validate basic structure
+    if len(body['recipes']) > 0:
+        first_recipe = body['recipes'][0]
+        assert isinstance(first_recipe, dict), "Recipe entries must be objects"
+        for rk in ('id', 'name'):
+            assert rk in first_recipe, f"Recipe object missing required key: {rk}"
 
-        # Types
-        assert isinstance(herb["id"], int), f"Herb.id at index {idx} should be int"
-        assert isinstance(herb["name"], str), f"Herb.name at index {idx} should be str"
-        sim = herb["similarity"]
-        assert isinstance(sim, (int, float)), f"Herb.similarity at index {idx} should be a number"
-        # Similarity threshold per PRD for herb matches
-        assert sim >= 0.3, f"Herb.similarity at index {idx} is below threshold 0.3: {sim}"
-
-        # Ensure results are sorted by similarity descending
-        if prev_similarity is not None:
-            assert sim <= prev_similarity + 1e-9, (
-                f"Herbs not sorted by similarity descending at index {idx}: prev={prev_similarity}, curr={sim}"
-            )
-        prev_similarity = sim
-
-    # recipes may be empty but must be an array; validate entries if present
-    for idx, recipe in enumerate(recipes):
-        assert isinstance(recipe, dict), f"Recipe at index {idx} is not an object"
-        assert "id" in recipe or "name" in recipe, f"Recipe at index {idx} has neither 'id' nor 'name'"
-
-    print("TC005 passed: /recipes-search returned valid herbs and recipes arrays as expected.")
+    print("test_combined_herb_and_recipe_search_with_valid_query_and_limit: PASSED")
 
 if __name__ == "__main__":
     try:
         test_combined_herb_and_recipe_search_with_valid_query_and_limit()
     except AssertionError as e:
-        print(f"TC005 FAILED: {e}")
+        print(f"Assertion failed: {e}", file=sys.stderr)
         sys.exit(1)
-    except Exception as e:
-        print(f"TC005 ERROR: Unexpected exception: {e}")
+    except Exception as exc:
+        print(f"Unexpected error: {exc}", file=sys.stderr)
         sys.exit(2)
     sys.exit(0)

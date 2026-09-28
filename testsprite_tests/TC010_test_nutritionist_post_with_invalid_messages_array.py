@@ -1,67 +1,62 @@
 import requests
-import sys
+import json
+from requests.exceptions import RequestException
 
 BASE_URL = "http://localhost:54321/functions/v1"
-TIMEOUT = 30  # seconds
+HEADERS = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
 
 def test_nutritionist_post_with_invalid_messages_array():
-    url = f"{BASE_URL}/nutritionist"
-    headers = {"Content-Type": "application/json"}
-
     # Case 1: messages array exceeding 50 entries
-    payload_exceed = {
-        "messages": [{"role": "user", "content": f"msg {i}"} for i in range(51)]
-    }
+    url = f"{BASE_URL}/nutritionist"
+    messages_exceed = [{"role": "user", "content": f"msg {i}"} for i in range(51)]  # 51 entries
+    payload_exceed = {"messages": messages_exceed}
 
     try:
-        resp1 = requests.post(url, json=payload_exceed, headers=headers, timeout=TIMEOUT)
-    except requests.exceptions.RequestException as e:
-        assert False, f"Request failed for exceeding-50 test: {e}"
+        resp = requests.post(url, headers=HEADERS, json=payload_exceed, timeout=30)
+    except RequestException as e:
+        assert False, f"Request failed for exceed-case: {e}"
 
-    assert resp1.status_code == 400, f"Expected 400 for messages exceeding 50 entries, got {resp1.status_code}. Response text: {resp1.text}"
-
+    assert resp.status_code == 400, f"Expected 400 for messages exceeding 50, got {resp.status_code}: {resp.text}"
     try:
-        body1 = resp1.json()
+        body = resp.json()
     except ValueError:
-        assert False, f"Response for exceeding-50 test is not valid JSON: {resp1.text}"
+        assert False, f"Expected JSON body for 400 response, got: {resp.text}"
 
-    assert isinstance(body1, dict) and "error" in body1, f"Expected JSON body with 'error' field for exceeding-50 test, got: {body1}"
-    err1 = str(body1.get("error", "")).lower()
-    assert ("exceed" in err1) or ("50" in err1) or ("messages" in err1), f"Unexpected error message for exceeding-50 test: {body1.get('error')}"
+    assert "error" in body, f"Expected 'error' key in response body, got: {body}"
+    err_msg = str(body.get("error", "")).lower()
+    assert err_msg, "Error message should be a non-empty string"
+    # Expect message to indicate exceeding limit
+    assert ("exceed" in err_msg) or ("50" in err_msg) or ("cannot exceed" in err_msg) or ("cannot be more" in err_msg), \
+        f"Unexpected error message for exceed-case: {body.get('error')}"
 
-    # Case 2: last message not from user
-    payload_last_not_user = {
-        "messages": [
-            {"role": "assistant", "content": "I respond first"}
-        ]
-    }
+    # Case 2: last message not from user (last role is 'assistant')
+    messages_last_not_user = [
+        {"role": "user", "content": "Hello"},
+        {"role": "assistant", "content": "Assistant turn"},  # last message is assistant -> invalid
+    ]
+    payload_last_not_user = {"messages": messages_last_not_user}
 
     try:
-        resp2 = requests.post(url, json=payload_last_not_user, headers=headers, timeout=TIMEOUT)
-    except requests.exceptions.RequestException as e:
-        assert False, f"Request failed for last-not-user test: {e}"
+        resp2 = requests.post(url, headers=HEADERS, json=payload_last_not_user, timeout=30)
+    except RequestException as e:
+        assert False, f"Request failed for last-not-user case: {e}"
 
-    assert resp2.status_code == 400, f"Expected 400 for last-message-not-user test, got {resp2.status_code}. Response text: {resp2.text}"
-
+    assert resp2.status_code == 400, f"Expected 400 when last message is not user, got {resp2.status_code}: {resp2.text}"
     try:
         body2 = resp2.json()
     except ValueError:
-        assert False, f"Response for last-not-user test is not valid JSON: {resp2.text}"
+        assert False, f"Expected JSON body for 400 response, got: {resp2.text}"
 
-    assert isinstance(body2, dict) and "error" in body2, f"Expected JSON body with 'error' field for last-not-user test, got: {body2}"
-    err2 = str(body2.get("error", "")).lower()
-    assert ("last" in err2 and "user" in err2) or ("last message" in err2) or ("must have role" in err2) or ("last message must have role" in err2), f"Unexpected error message for last-not-user test: {body2.get('error')}"
-
-    print("test_nutritionist_post_with_invalid_messages_array: PASSED")
-
+    assert "error" in body2, f"Expected 'error' key in response body, got: {body2}"
+    err_msg2 = str(body2.get("error", "")).lower()
+    assert err_msg2, "Error message should be a non-empty string"
+    # Expect message to indicate the last message must be from user
+    assert ("last" in err_msg2 and "user" in err_msg2) or ("last message must" in err_msg2) or ("must have role 'user'" in err_msg2) or ("must have role \"user\"" in err_msg2), \
+        f"Unexpected error message for last-not-user case: {body2.get('error')}"
 
 if __name__ == "__main__":
-    try:
-        test_nutritionist_post_with_invalid_messages_array()
-    except AssertionError as e:
-        print(f"test_nutritionist_post_with_invalid_messages_array: FAILED - {e}")
-        sys.exit(1)
-    except Exception as e:
-        print(f"test_nutritionist_post_with_invalid_messages_array: ERROR - {e}")
-        sys.exit(2)
-    sys.exit(0)
+    test_nutritionist_post_with_invalid_messages_array()
+    print("TC010 passed.")

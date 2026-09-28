@@ -1,63 +1,69 @@
 import requests
-import json
 import sys
+from requests.exceptions import RequestException
 
 BASE_URL = "http://localhost:54321/functions/v1"
-ENDPOINT = f"{BASE_URL}/recipes-search"
+ENDPOINT = "/recipes-search"
+URL = BASE_URL + ENDPOINT
 HEADERS = {"Content-Type": "application/json"}
-TIMEOUT = 30  # seconds
+TIMEOUT = 30
+
 
 def test_combined_herb_and_recipe_search_with_missing_or_invalid_query_or_limit():
-    cases = [
-        # missing query
-        ( {}, 400, ["query", "required", "string"] ),
-        # empty query
-        ( {"query": ""}, 400, ["query", "required", "string"] ),
-        # limit provided as a string
-        ( {"query": "help me sleep", "limit": "5"}, 400, ["limit", "number", "between"] ),
-        # limit out of range (too low)
-        ( {"query": "help me sleep", "limit": 0}, 400, ["limit", "number", "between"] ),
-        # limit out of range (too high)
-        ( {"query": "help me sleep", "limit": 100}, 400, ["limit", "number", "between"] ),
+    test_cases = [
+        {
+            "name": "missing_query",
+            "payload": {},  # missing query
+            "expected_error_substr": "query is required and must be a string",
+        },
+        {
+            "name": "empty_query",
+            "payload": {"query": ""},  # empty query
+            "expected_error_substr": "query is required and must be a string",
+        },
+        {
+            "name": "limit_as_string",
+            "payload": {"query": "help me sleep", "limit": "5"},  # limit provided as string
+            "expected_error_substr": "limit must be a number between 1 and 50",
+        },
+        {
+            "name": "limit_zero",
+            "payload": {"query": "help me sleep", "limit": 0},  # out of range (too low)
+            "expected_error_substr": "limit must be a number between 1 and 50",
+        },
+        {
+            "name": "limit_too_high",
+            "payload": {"query": "help me sleep", "limit": 51},  # out of range (too high)
+            "expected_error_substr": "limit must be a number between 1 and 50",
+        },
     ]
 
-    for payload, expected_status, expected_substrings in cases:
+    for case in test_cases:
         try:
-            resp = requests.post(ENDPOINT, headers=HEADERS, json=payload, timeout=TIMEOUT)
-        except requests.RequestException as e:
-            raise AssertionError(f"Request failed for payload {payload!r}: {e}")
+            resp = requests.post(URL, json=case["payload"], headers=HEADERS, timeout=TIMEOUT)
+        except RequestException as e:
+            assert False, f"HTTP request failed for case '{case['name']}': {e}"
 
-        if resp.status_code != expected_status:
-            # include body for debug
-            body = None
-            try:
-                body = resp.json()
-            except Exception:
-                body = resp.text
-            raise AssertionError(f"Expected status {expected_status} for payload {payload!r}, got {resp.status_code}. Body: {body!r}")
+        assert resp is not None, f"No response received for case '{case['name']}'"
+        assert resp.status_code == 400, (
+            f"Expected status 400 for case '{case['name']}', got {resp.status_code}. Response text: {resp.text}"
+        )
 
-        # try to parse JSON error body
         try:
-            body_json = resp.json()
+            body = resp.json()
         except ValueError:
-            raise AssertionError(f"Response for payload {payload!r} is not valid JSON: {resp.text!r}")
+            assert False, f"Response for case '{case['name']}' is not valid JSON. Raw text: {resp.text}"
 
-        # Expect an error key with a validation message
-        assert isinstance(body_json, dict), f"Expected JSON object in response for payload {payload!r}, got: {body_json!r}"
-        assert "error" in body_json, f"Expected 'error' key in response JSON for payload {payload!r}, got: {body_json!r}"
-        error_msg = str(body_json.get("error", "")).lower()
-        for substr in expected_substrings:
-            assert substr in error_msg, f"Expected '{substr}' in error message for payload {payload!r}. Got: {error_msg!r}"
+        assert isinstance(body, dict), f"Response JSON for case '{case['name']}' is not an object: {body}"
+        assert "error" in body, f"Response JSON for case '{case['name']}' missing 'error' key: {body}"
 
-    print("All cases in test_combined_herb_and_recipe_search_with_missing_or_invalid_query_or_limit passed.")
+        error_text = str(body.get("error", ""))
+        assert case["expected_error_substr"] in error_text, (
+            f"Expected error containing '{case['expected_error_substr']}' for case '{case['name']}', got '{error_text}'"
+        )
+
+    print("All subcases passed for test_combined_herb_and_recipe_search_with_missing_or_invalid_query_or_limit")
+
 
 if __name__ == "__main__":
-    try:
-        test_combined_herb_and_recipe_search_with_missing_or_invalid_query_or_limit()
-    except AssertionError as e:
-        print("TEST FAILED:", e)
-        sys.exit(1)
-    except Exception as e:
-        print("UNEXPECTED ERROR:", e)
-        sys.exit(2)
-    print("TESTS PASSED")
+    test_combined_herb_and_recipe_search_with_missing_or_invalid_query_or_limit()
