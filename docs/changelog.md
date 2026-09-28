@@ -6,6 +6,12 @@ All notable changes to the Apothecary project are documented here. Updated after
 
 ## [Unreleased]
 
+## 2026-09-28 — Nutritionist stream cancellation + dropped-connection handling
+
+- "New chat" and leaving the page now abort the in-flight nutritionist request. The server passes the SSE stream's disconnect signal to OpenAI, so the agent loop stops instead of running (and billing) to completion for nobody.
+- If the stream closes without a `done` or `error` event, the client now shows an error instead of leaving the chat stuck on the thinking indicator.
+- Stream buffers are now scoped to each request, so a cancelled stream can't write into the next conversation.
+
 ## 2026-09-28 — Removed community recipes, accounts and the mobile app
 
 Recipes and user accounts never launched, so they're gone rather than parked. The web client is now just the nutritionist and herb search.

@@ -1,6 +1,7 @@
 const NUTRITIONIST_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/nutritionist`;
 
-export async function streamNutritionist(messages, callbacks) {
+// Aborting `signal` cancels the request; no callback fires after that.
+export async function streamNutritionist(messages, callbacks, { signal } = {}) {
   const { onTextDelta, onHerbResults, onToolUse, onDone, onError } = callbacks;
 
   let response;
@@ -13,8 +14,10 @@ export async function streamNutritionist(messages, callbacks) {
         apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
       },
       body: JSON.stringify({ messages }),
+      signal,
     });
   } catch (err) {
+    if (signal?.aborted) return;
     onError?.({ type: "network", message: err.message ?? "Network error" });
     return;
   }
@@ -23,7 +26,10 @@ export async function streamNutritionist(messages, callbacks) {
     let data = {};
     try {
       data = await response.json();
-    } catch {}
+    } catch {
+      // Non-JSON error body — fall back to the status-based message below.
+    }
+    if (signal?.aborted) return;
     if (response.status === 429) {
       const retryAfter =
         data.retry_after_seconds ??
@@ -41,11 +47,15 @@ export async function streamNutritionist(messages, callbacks) {
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
+  // Set once the server sends done or error. If the body ends without either,
+  // the connection dropped mid-answer.
+  let finished = false;
 
   try {
     while (true) {
       const { done, value } = await reader.read();
-      if (done) break;
+      // A read can resolve just before abort() runs — drop that chunk.
+      if (done || signal?.aborted) break;
 
       buffer += decoder.decode(value, { stream: true });
 
@@ -71,14 +81,27 @@ export async function streamNutritionist(messages, callbacks) {
         if (eventName === "text_delta") onTextDelta?.(parsed.delta);
         else if (eventName === "herb_results") onHerbResults?.(parsed.herbs);
         else if (eventName === "tool_use") onToolUse?.(parsed);
-        else if (eventName === "done") onDone?.();
-        else if (eventName === "error")
+        else if (eventName === "done") {
+          finished = true;
+          onDone?.();
+        } else if (eventName === "error") {
+          finished = true;
           onError?.({ type: "agent", message: parsed.message });
+        }
       }
     }
   } catch (err) {
+    if (signal?.aborted || finished) return;
     onError?.({ type: "stream", message: err.message ?? "Stream read error" });
+    return;
   } finally {
     reader.releaseLock();
+  }
+
+  if (!finished && !signal?.aborted) {
+    onError?.({
+      type: "stream",
+      message: "The connection closed before the answer finished. Please try again.",
+    });
   }
 }

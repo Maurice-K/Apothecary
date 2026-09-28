@@ -19,6 +19,8 @@ testsprite test run <testId> --local 5173 --local-host ::1
 
 The suite is plans 01–06: nutritionist (01–03) and herb search (04–06).
 
+**Known gap: anything that happens mid-answer.** TestSprite's agent waits for in-flight requests to settle before acting, so it can't click while the nutritionist SSE stream is open. A "click New chat mid-answer" plan always clicks after the answer finishes and passes without testing cancellation. Check mid-stream behavior with `agent-browser` against `http://localhost:5173` instead, and look for `[nutritionist] client disconnected — agent loop stopped` in the functions log.
+
 ## Backend API (MCP)
 
 Seven Python tests (`testsprite_tests/TC001`–`TC004`, `TC008`–`TC010`) call `search` and `nutritionist` over HTTP. They check response shapes, similarity ranking, CORS preflight, 400 validation errors and the nutritionist SSE stream. Local functions run with `--no-verify-jwt` and `APOTHECARY_ENV=development`, so no auth header is sent and rate limiting is off. TC005–TC007 covered the removed `recipes-search` function; the remaining IDs weren't renumbered.

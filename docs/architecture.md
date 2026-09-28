@@ -127,6 +127,10 @@ React client
 | `done` | `{}` | Stream complete |
 | `error` | `{ message: string }` | Agent or auth error |
 
+Every stream ends with exactly one `done` or `error`. If the body closes without either, the client treats it as a dropped connection and reports an error rather than waiting forever.
+
+**Cancellation:** `useNutritionist` gives each request its own `AbortController` and aborts it on "New chat" and on unmount. When the client disconnects, the edge runtime cancels the SSE `ReadableStream`. That aborts `sse.signal`, which is passed to `openai.responses.stream()`, so the in-flight OpenAI call and the rest of the agent loop stop. The runtime only notices the disconnect on its next write, so the loop can run until the next SSE event (usually a few seconds) before stopping.
+
 ### Rate limiting
 
 Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres table and a `check_nutritionist_rate_limit` atomic RPC. Checked before any OpenAI API call. Returns HTTP 429 with `Retry-After` header when exceeded.
