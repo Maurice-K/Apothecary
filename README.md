@@ -5,8 +5,6 @@ A herbal wellness app ("The Herbary", live at [herbary.app](https://herbary.app)
 - **Nutritionist** (`/`, the landing page) — a conversational AI nutritionist that answers multi-turn wellness questions, grounds recommendations in the 156-herb catalog, and enriches advice with live web search.
 - **Herb Search** (`/herb-search`) — type plain English queries like "what helps with sleep?" and get matching herbs as cards, ranked by semantic similarity.
 
-> **Not live yet:** community recipes and user accounts (login/signup) exist in the code but aren't set up for real users, and the Expo app in `mobile/` is parked. The web client is the only live surface.
-
 Built with React, Supabase Edge Functions, OpenAI embeddings + the OpenAI Responses API, and pgvector.
 
 ## Prerequisites
@@ -110,7 +108,7 @@ testsprite test open <testId>                                        # open it i
 ```
 
 - Test plans live in [`testsprite/plans/`](testsprite/plans/); see [`testsprite/README.md`](testsprite/README.md). To add a test, write a plan JSON and run `testsprite test create --plan-from <file> --project <id>`.
-- The active suite is plans 01–07 (nutritionist + herb search). Tests tagged `[AUTH — not live]` are parked until accounts launch.
+- The suite is plans 01–06 (nutritionist + herb search).
 - Each run costs 0.5 TestSprite credits (Free plan: 150/month), so run the tests that cover your change rather than the whole suite.
 
 Search-ranking changes are checked separately with `node scripts/verify_search.js`.
@@ -123,13 +121,12 @@ Apothecary/
 │   └── src/
 │       ├── api/             # Supabase client and search calls
 │       ├── components/      # UI components (NavBar, HerbCard, etc.)
-│       ├── hooks/           # Custom React hooks (useSearch, useNutritionist, useAuth)
-│       └── pages/           # Page components (Nutritionist, HomePage/search, recipes, auth)
+│       ├── hooks/           # Custom React hooks (useSearch, useNutritionist)
+│       └── pages/           # Page components (Nutritionist, HomePage/search)
 ├── supabase/
-│   ├── functions/           # Deno Edge Functions (search, recipes-search, recipes, nutritionist)
+│   ├── functions/           # Deno Edge Functions (search, nutritionist)
 │   │   └── _shared/        # Shared utilities (CORS, embedding, types)
 │   └── migrations/          # SQL migrations (herbs table, pgvector)
-├── mobile/                  # Expo / React Native app (parked)
 ├── scripts/                 # Herb enrichment, ingestion, and search verification
 ├── testsprite/plans/        # TestSprite end-to-end test plans
 ├── chioma_products.json     # Source herb data (156 herbs)
@@ -143,6 +140,4 @@ Apothecary/
 - **Database:** PostgreSQL with pgvector (cosine similarity search)
 - **Embeddings:** OpenAI `text-embedding-3-small`
 - **AI:** OpenAI Responses API (`gpt-5-mini`) with function tools, hosted web search, and SSE streaming
-- **Auth:** Supabase Auth (not live yet)
-- **Storage:** Supabase Storage (recipe photos)
 - **E2E testing:** TestSprite
