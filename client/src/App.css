@@ -99,40 +99,6 @@
   font-size: 0.9rem;
 }
 
-
-.search-tabs {
-  display: flex;
-  gap: 0;
-  background: var(--cream-200);
-  border-radius: var(--radius-sm);
-  padding: 3px;
-  margin-bottom: 1rem;
-}
-
-.search-tab {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: calc(var(--radius-sm) - 2px);
-  background: transparent;
-  color: var(--brown-600);
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-
-.search-tab-active {
-  background: var(--green-700);
-  color: white;
-}
-
-.no-results {
-  text-align: center;
-  color: var(--brown-500);
-  margin: 2rem 0;
-}
-
 @media (max-width: 600px) {
   .app-header-frame {
     padding: 1.5rem 1.25rem;

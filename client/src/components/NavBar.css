@@ -46,49 +46,7 @@
   display: none;
 }
 
-/* Auxiliary links (My Recipes, Log Out) — shown only when logged in */
-.navbar-aux {
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.nav-aux-link {
-  color: var(--brown-500);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: color var(--transition-fast);
-}
-
-.nav-aux-link:hover {
-  color: var(--brown-800);
-}
-
-.nav-aux-button {
-  background: none;
-  border: none;
-  color: var(--brown-500);
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 0;
-  transition: color var(--transition-fast);
-}
-
-.nav-aux-button:hover {
-  color: var(--brown-800);
-}
-
 @media (max-width: 480px) {
-  .navbar-aux {
-    position: static;
-    margin-top: 0.75rem;
-  }
-
   .navbar {
     flex-direction: column;
     gap: 0.5rem;
