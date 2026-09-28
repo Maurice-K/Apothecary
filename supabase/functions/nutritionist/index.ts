@@ -142,6 +142,10 @@ Deno.serve(async (req) => {
 
   const sse = createSseStream();
   runAgentLoop(userMessages, sse).catch((err) => {
+    if (sse.signal.aborted) {
+      console.log("[nutritionist] client disconnected — agent loop stopped");
+      return;
+    }
     console.error("[nutritionist] agent loop failed:", err);
     sse.send("error", {
       message: err instanceof Error ? err.message : "agent loop failed",
@@ -219,6 +223,8 @@ async function runOneTurn(opts: {
   iter: number;
   sse: SseStream;
 }) {
+  // Passing the SSE signal cancels the OpenAI request (and the rest of the
+  // loop, via the thrown abort error) when the client goes away.
   const stream = openai.responses.stream({
     model: MODEL,
     max_output_tokens: MAX_OUTPUT_TOKENS,
@@ -230,7 +236,7 @@ async function runOneTurn(opts: {
     ...(opts.previousResponseId
       ? { previous_response_id: opts.previousResponseId }
       : {}),
-  });
+  }, { signal: opts.sse.signal });
 
   // deno-lint-ignore no-explicit-any
   for await (const event of stream as AsyncIterable<any>) {

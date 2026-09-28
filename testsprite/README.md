@@ -21,6 +21,8 @@ testsprite test run <testId> --local 5173 --local-host ::1
 
 The suite covers the web client only. The Expo app in `mobile/` is parked and has no tests.
 
+**Known gap: anything that happens mid-answer.** TestSprite's agent waits for in-flight requests to settle before acting, so it can't click while the nutritionist SSE stream is open. A "click New chat mid-answer" plan always clicks after the answer finishes and passes without testing cancellation. Check mid-stream behavior with `agent-browser` against `http://localhost:5173` instead, and look for `[nutritionist] client disconnected — agent loop stopped` in the functions log.
+
 The auth plans use a local-only Supabase user (`testsprite@herbary.test`), not a production account.
 
 ## Backend API (MCP)

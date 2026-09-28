@@ -2,6 +2,8 @@ import { CORS_HEADERS, getAllowedOrigin } from "./cors.ts";
 
 export interface SseStream {
   readable: ReadableStream<Uint8Array>;
+  // Aborts when the client disconnects, so upstream work can stop early.
+  signal: AbortSignal;
   send(event: string, data: unknown): void;
   close(): void;
 }
@@ -19,6 +21,7 @@ export function sseHeaders(req: Request): HeadersInit {
 
 export function createSseStream(): SseStream {
   const encoder = new TextEncoder();
+  const disconnect = new AbortController();
   let controller: ReadableStreamDefaultController<Uint8Array> | null = null;
 
   const readable = new ReadableStream<Uint8Array>({
@@ -27,11 +30,13 @@ export function createSseStream(): SseStream {
     },
     cancel() {
       controller = null;
+      disconnect.abort();
     },
   });
 
   return {
     readable,
+    signal: disconnect.signal,
     send(event, data) {
       if (!controller) return;
       const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
