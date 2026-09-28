@@ -21,7 +21,7 @@
     },
     {
       "type": "assertion",
-      "description": "A tab button with text matching 'Herbs (N)' where N is greater than 0 is visible and active"
+      "description": "The text 'N herbs found' is visible, where N is greater than 0"
     },
     {
       "type": "assertion",

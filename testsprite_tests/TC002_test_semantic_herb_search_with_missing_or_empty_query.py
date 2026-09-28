@@ -1,39 +1,64 @@
 import requests
+import sys
 
-BASE_ENDPOINT = "http://localhost:54321/functions/v1"
+BASE_URL = "http://localhost:54321/functions/v1"
+SEARCH_PATH = "/search"
+TIMEOUT = 30
+
 
 def test_semantic_herb_search_with_missing_or_empty_query():
-    url = f"{BASE_ENDPOINT}/search"
+    """
+    Verify that POST /search with a missing or empty query string returns a 400
+    response with an error message indicating that the query is required and must be a string.
+    """
+    url = BASE_URL.rstrip("/") + SEARCH_PATH
     headers = {"Content-Type": "application/json"}
+    test_cases = [
+        (None, "missing_query"),      # no body / missing query
+        ({"query": ""}, "empty_query")  # query present but empty string
+    ]
 
-    # Case A: missing query (empty JSON body)
-    try:
-        resp = requests.post(url, headers=headers, json={}, timeout=30)
-    except requests.exceptions.RequestException as e:
-        assert False, f"HTTP request failed for missing query case: {e}"
+    expected_status = 400
+    expected_error = "query is required and must be a string"
 
-    assert resp.status_code == 400, f"Expected 400 for missing query, got {resp.status_code}, body: {resp.text}"
-    try:
-        payload = resp.json()
-    except ValueError:
-        assert False, f"Response for missing query is not valid JSON: {resp.text}"
-    assert "error" in payload, f"Expected 'error' key in response for missing query, got: {payload}"
-    assert payload["error"] == "query is required and must be a string", f"Unexpected error message for missing query: {payload['error']}"
+    for payload, name in test_cases:
+        try:
+            if payload is None:
+                # Send empty JSON object to represent missing query key
+                resp = requests.post(url, headers=headers, json={}, timeout=TIMEOUT)
+            else:
+                resp = requests.post(url, headers=headers, json=payload, timeout=TIMEOUT)
+        except requests.RequestException as e:
+            raise AssertionError(f"HTTP request failed for case '{name}': {e}")
 
-    # Case B: empty query string
-    try:
-        resp2 = requests.post(url, headers=headers, json={"query": ""}, timeout=30)
-    except requests.exceptions.RequestException as e:
-        assert False, f"HTTP request failed for empty query case: {e}"
+        # Verify status code
+        assert resp.status_code == expected_status, (
+            f"Case '{name}': expected status {expected_status}, got {resp.status_code}. "
+            f"Response text: {resp.text}"
+        )
 
-    assert resp2.status_code == 400, f"Expected 400 for empty query, got {resp2.status_code}, body: {resp2.text}"
-    try:
-        payload2 = resp2.json()
-    except ValueError:
-        assert False, f"Response for empty query is not valid JSON: {resp2.text}"
-    assert "error" in payload2, f"Expected 'error' key in response for empty query, got: {payload2}"
-    assert payload2["error"] == "query is required and must be a string", f"Unexpected error message for empty query: {payload2['error']}"
+        # Verify response is JSON and has expected error message
+        try:
+            body = resp.json()
+        except ValueError:
+            raise AssertionError(f"Case '{name}': response is not valid JSON. Text: {resp.text}")
+
+        assert isinstance(body, dict), f"Case '{name}': expected JSON object, got {type(body)}"
+        actual_error = body.get("error")
+        assert actual_error == expected_error, (
+            f"Case '{name}': expected error message '{expected_error}', got '{actual_error}'. Full body: {body}"
+        )
+
+    print("test_semantic_herb_search_with_missing_or_empty_query: PASSED")
+
 
 if __name__ == "__main__":
-    test_semantic_herb_search_with_missing_or_empty_query()
-    print("test_semantic_herb_search_with_missing_or_empty_query: PASSED")
+    try:
+        test_semantic_herb_search_with_missing_or_empty_query()
+    except AssertionError as e:
+        print(f"test_semantic_herb_search_with_missing_or_empty_query: FAILED - {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"test_semantic_herb_search_with_missing_or_empty_query: ERROR - {e}")
+        sys.exit(2)
+    sys.exit(0)

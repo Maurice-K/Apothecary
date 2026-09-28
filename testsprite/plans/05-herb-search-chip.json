@@ -21,7 +21,7 @@
     },
     {
       "type": "assertion",
-      "description": "A 'Herbs (N)' tab with N greater than 0 and a 'Recipes (M)' tab are visible"
+      "description": "The text 'N herbs found' is visible, where N is greater than 0"
     },
     {
       "type": "assertion",

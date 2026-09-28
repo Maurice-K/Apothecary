@@ -1,62 +1,49 @@
 import requests
-import json
 import sys
 
 BASE_URL = "http://localhost:54321/functions/v1"
-SEARCH_PATH = "/search"
-HEADERS = {"Content-Type": "application/json", "Accept": "application/json"}
-TIMEOUT = 30
+SEARCH_URL = f"{BASE_URL}/search"
+HEADERS = {"Content-Type": "application/json"}
+
 
 def test_semantic_herb_search_with_invalid_limit():
-    """
-    Test POST /search with invalid limit values:
-    - limit as a string (e.g., "5")
-    - limit outside the allowed range (e.g., 0 and 51)
-    Expect a 400 response with an error message indicating the limit must be a number between 1 and 50.
-    """
-
-    url = BASE_URL + SEARCH_PATH
-
-    invalid_payloads = [
-        {"query": "valerian root", "limit": "5"},   # limit as string
-        {"query": "valerian root", "limit": 0},     # below range
-        {"query": "valerian root", "limit": 51},    # above range
+    cases = [
+        {"payload": {"query": "help me sleep", "limit": "5"}, "desc": "limit as string"},
+        {"payload": {"query": "help me sleep", "limit": 0}, "desc": "limit below allowed range (0)"},
+        {"payload": {"query": "help me sleep", "limit": 51}, "desc": "limit above allowed range (51)"},
     ]
 
-    for payload in invalid_payloads:
+    for case in cases:
+        desc = case["desc"]
         try:
-            resp = requests.post(url, headers=HEADERS, data=json.dumps(payload), timeout=TIMEOUT)
+            resp = requests.post(SEARCH_URL, headers=HEADERS, json=case["payload"], timeout=30)
         except requests.RequestException as e:
-            # Network-level failure should fail the test
-            assert False, f"Request failed for payload {payload}: {e}"
+            assert False, f"HTTP request failed for '{desc}': {e}"
 
-        # Expect validation error
-        assert resp.status_code == 400, f"Expected 400 for payload {payload}, got {resp.status_code}. Body: {resp.text}"
+        assert resp.status_code == 400, f"Expected 400 for '{desc}', got {resp.status_code}. Body: {resp.text}"
 
-        # Try to parse JSON body
+        content_type = resp.headers.get("Content-Type", "")
+        assert "json" in content_type.lower() or "application/json" in content_type.lower(), (
+            f"Expected JSON Content-Type for '{desc}', got '{content_type}'. Body: {resp.text}"
+        )
+
         try:
             body = resp.json()
         except ValueError:
-            assert False, f"Response is not valid JSON for payload {payload}. Body: {resp.text}"
+            assert False, f"Response body is not valid JSON for '{desc}': {resp.text}"
 
-        # Ensure error message key exists and contains expected text
-        assert isinstance(body, dict), f"Expected JSON object in response for payload {payload}, got: {body}"
-        assert "error" in body, f"Expected 'error' key in response for payload {payload}, got: {body}"
-        error_msg = str(body["error"])
-        assert "limit must be a number between 1 and 50" in error_msg, (
-            f"Expected error message to mention 'limit must be a number between 1 and 50' for payload {payload}, "
-            f"got: {error_msg}"
+        assert isinstance(body, dict), f"Expected JSON object in response for '{desc}', got: {body}"
+        assert "error" in body, f"Response JSON must contain 'error' key for '{desc}', got: {body}"
+
+        error_msg = body.get("error") or ""
+        expected_fragment = "limit must be a number between 1 and 50"
+        assert expected_fragment in error_msg, (
+            f"Error message should indicate limit range for '{desc}'. Expected fragment '{expected_fragment}' in '{error_msg}'"
         )
 
+    # If all cases pass
+    print("test_semantic_herb_search_with_invalid_limit: PASSED")
+
+
 if __name__ == "__main__":
-    try:
-        test_semantic_herb_search_with_invalid_limit()
-        print("TEST PASSED: test_semantic_herb_search_with_invalid_limit")
-    except AssertionError as ae:
-        print("TEST FAILED: test_semantic_herb_search_with_invalid_limit")
-        print(ae)
-        sys.exit(1)
-    except Exception as e:
-        print("TEST ERROR: test_semantic_herb_search_with_invalid_limit")
-        print(e)
-        sys.exit(2)
+    test_semantic_herb_search_with_invalid_limit()
