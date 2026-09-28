@@ -1,95 +1,117 @@
 import requests
 import json
-import time
+import sys
 
-BASE_URL = "http://localhost:54321/functions/v1"
-ENDPOINT = f"{BASE_URL}/nutritionist"
+BASE_ENDPOINT = "http://localhost:54321/functions/v1"
 
 def test_nutritionist_post_with_valid_messages_streaming_response():
-    # Prepare a valid messages array (1 item, last role 'user')
-    payload = {
-        "messages": [
-            {"role": "user", "content": "Can you suggest herbs to help with mild sleep troubles?"}
-        ]
-    }
-
+    url = BASE_ENDPOINT.rstrip("/") + "/nutritionist"
     headers = {
         "Content-Type": "application/json"
     }
+    payload = {
+        "messages": [
+            {
+                "role": "user",
+                "content": "I have trouble sleeping. Can you recommend some herbs and how to use them?"
+            }
+        ]
+    }
 
     try:
-        resp = requests.post(ENDPOINT, headers=headers, json=payload, stream=True, timeout=120)
-    except requests.RequestException as e:
-        raise AssertionError(f"Request to {ENDPOINT} failed: {e}")
+        try:
+            resp = requests.post(url, headers=headers, data=json.dumps(payload), stream=True, timeout=120)
+        except requests.RequestException as e:
+            raise AssertionError(f"HTTP request failed: {e}")
 
-    try:
-        # Expect 200 OK
-        assert resp.status_code == 200, f"Expected status 200, got {resp.status_code}, body: {resp.text[:500]}"
-
-        # Expect Content-Type text/event-stream
+        # Basic response validations
+        assert resp.status_code == 200, f"Expected status 200, got {resp.status_code}. Body start: {resp.text[:500]}"
         content_type = resp.headers.get("Content-Type", "")
-        assert "text/event-stream" in content_type, f"Expected 'text/event-stream' in Content-Type, got '{content_type}'"
+        assert "text/event-stream" in content_type, f"Expected Content-Type to include 'text/event-stream', got '{content_type}'"
 
-        # Parse SSE stream: look for events tool_use, herb_results, text_delta, done
-        seen_events = set()
-        required_events = {"tool_use", "herb_results", "text_delta", "done"}
+        # Parse SSE stream
+        found_tool_use = False
+        found_herb_results = False
+        found_text_delta = False
+        found_done = False
+        events = []  # list of (event_name, parsed_data)
 
-        current_event = None
-        current_data_lines = []
+        buffer = []
+        try:
+            for raw_line in resp.iter_lines(decode_unicode=True):
+                # iter_lines yields '' between events; skip if None
+                if raw_line is None:
+                    continue
+                line = raw_line.rstrip("\r\n")
+                # SSE blank line denotes dispatch
+                if line == "":
+                    if not buffer:
+                        continue
+                    event_name = None
+                    data_lines = []
+                    for l in buffer:
+                        if l.startswith("event:"):
+                            event_name = l[len("event:"):].strip()
+                        elif l.startswith("data:"):
+                            data_lines.append(l[len("data:"):].strip())
+                    data_text = "\n".join(data_lines).strip()
+                    parsed = None
+                    if data_text:
+                        try:
+                            parsed = json.loads(data_text)
+                        except Exception:
+                            parsed = data_text
+                    events.append((event_name, parsed))
 
-        # Iterate lines from the stream. Stop after 'done' event is encountered.
-        start_time = time.time()
-        for raw_line in resp.iter_lines(decode_unicode=True):
-            # safety: break if overall read exceeds 120s
-            if time.time() - start_time > 120:
+                    if event_name == "tool_use":
+                        found_tool_use = True
+                        # basic shape: { name, input }
+                        if isinstance(parsed, dict):
+                            assert "name" in parsed and "input" in parsed, f"tool_use event missing fields: {parsed}"
+                    elif event_name == "herb_results":
+                        found_herb_results = True
+                        # expect herbs array
+                        if isinstance(parsed, dict):
+                            herbs = parsed.get("herbs") or parsed.get("results")
+                            assert isinstance(herbs, list), f"herb_results event does not contain a herbs list: {parsed}"
+                    elif event_name == "text_delta":
+                        found_text_delta = True
+                        # data may be partial text or object; ensure non-empty
+                        assert parsed is not None and (isinstance(parsed, str) and parsed.strip() != "" or isinstance(parsed, dict)), f"text_delta event has no content: {parsed}"
+                    elif event_name == "done":
+                        found_done = True
+                        # done event typically ends the stream; stop reading further
+                        break
+
+                    buffer = []
+                else:
+                    buffer.append(line)
+        finally:
+            resp.close()
+
+        assert found_tool_use, f"Did not receive tool_use event. Events seen: {[e[0] for e in events]}"
+        assert found_herb_results, f"Did not receive herb_results event. Events seen: {[e[0] for e in events]}"
+        assert found_text_delta, f"Did not receive text_delta event. Events seen: {[e[0] for e in events]}"
+        assert found_done, f"Did not receive done event. Events seen: {[e[0] for e in events]}"
+
+        # Additional validation: herb_results contains at least one herb with expected fields
+        for ev_name, ev_data in events:
+            if ev_name == "herb_results" and isinstance(ev_data, dict):
+                herbs = ev_data.get("herbs") or ev_data.get("results")
+                assert isinstance(herbs, list) and len(herbs) > 0, f"herb_results should include at least one herb, got: {herbs}"
+                herb = herbs[0]
+                # check for common herb fields
+                assert isinstance(herb, dict), f"herb entry is not an object: {herb}"
+                required_fields = ["id", "name", "description"]
+                for f in required_fields:
+                    assert f in herb, f"herb entry missing '{f}': {herb}"
                 break
 
-            if raw_line is None:
-                continue
-            line = raw_line.strip()
+        print("test_nutritionist_post_with_valid_messages_streaming_response: PASSED")
 
-            # blank line indicates end of an event message
-            if line == "":
-                if current_event is not None:
-                    # finalize this event
-                    data_str = "\n".join(current_data_lines).strip()
-                    # try to parse data as json for basic validation, but ignore parse failures
-                    if data_str:
-                        try:
-                            json.loads(data_str)
-                        except Exception:
-                            # it's acceptable for data to be non-JSON in some implementations; ignore parse errors
-                            pass
-                    seen_events.add(current_event)
-                    if current_event == "done":
-                        break
-                    current_event = None
-                    current_data_lines = []
-                continue
-
-            if line.startswith("event:"):
-                current_event = line[len("event:"):].strip()
-            elif line.startswith("data:"):
-                current_data_lines.append(line[len("data:"):].strip())
-            else:
-                # other SSE fields (id:, retry:) are ignored for this test
-                continue
-
-        # In case stream ended without a trailing blank line, finalize the last event
-        if current_event is not None:
-            seen_events.add(current_event)
-            if current_event == "done":
-                pass
-
-        missing = required_events - seen_events
-        assert not missing, f"Missing required SSE events: {missing}. Seen events: {seen_events}"
-
-    finally:
-        try:
-            resp.close()
-        except Exception:
-            pass
+    except AssertionError as ae:
+        print(f"test_nutritionist_post_with_valid_messages_streaming_response: FAILED - {ae}", file=sys.stderr)
+        raise
 
 if __name__ == "__main__":
     test_nutritionist_post_with_valid_messages_streaming_response()
-    print("TC008 passed.")

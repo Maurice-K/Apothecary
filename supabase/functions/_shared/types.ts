@@ -14,52 +14,10 @@ export interface Herb {
   similarity: number;
 }
 
-/** Recipe record from the recipes table */
-export interface Recipe {
-  id: number;
-  user_id: string;
-  name: string;
-  ingredients: string[];
-  instructions: string;
-  prep_time: number | null;
-  photo_path: string | null;
-  embedding_status: string;
-  created_at: string;
-  updated_at: string;
-}
-
-/** Recipe as returned from match_recipes RPC (no embedding, includes similarity) */
-export interface RecipeSearchResult {
-  id: number;
-  user_id: string;
-  name: string;
-  ingredients: string[];
-  instructions: string;
-  prep_time: number | null;
-  photo_path: string | null;
-  similarity: number;
-}
-
-/** Request body for search endpoints */
+/** Request body for the search endpoint */
 export interface SearchRequest {
   query: string;
   limit?: number;
-}
-
-/** Request body for creating a recipe */
-export interface CreateRecipeRequest {
-  name: string;
-  ingredients: string[];
-  instructions: string;
-  prep_time?: number | null;
-}
-
-/** Request body for updating a recipe */
-export interface UpdateRecipeRequest {
-  name?: string;
-  ingredients?: string[];
-  instructions?: string;
-  prep_time?: number | null;
 }
 
 /** Standard error response */
