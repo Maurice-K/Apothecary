@@ -13,14 +13,16 @@ function extractLatinName(name, description) {
 
 export default function HerbCard({ herb }) {
   const [expanded, setExpanded] = useState(false);
-  const matchPercent = Math.round(herb.similarity * 100);
+  // Rerank relevance when the reranker ran, else cosine similarity.
+  const isReranked = herb.relevance != null;
+  const matchPercent = Math.round((isReranked ? herb.relevance : herb.similarity) * 100);
   const latinName = extractLatinName(herb.name, herb.description);
 
   return (
     <article className="herb-card">
       <div className="herb-card-header">
         <h3 className="herb-name">{herb.name}</h3>
-        <span className="similarity-badge" title={`${matchPercent}% semantic match`}>
+        <span className="similarity-badge" title={`${matchPercent}% ${isReranked ? "relevance" : "semantic match"}`}>
           {matchPercent}% match
         </span>
       </div>

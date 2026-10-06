@@ -151,7 +151,7 @@
       "file_type": "code",
       "norm_label": "errorresponse",
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L24"
+      "source_location": "L26"
     },
     {
       "id": "supabase_functions_shared_types_herb",
@@ -177,7 +177,7 @@
       "file_type": "code",
       "norm_label": "nutritionistmessage",
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L29"
+      "source_location": "L31"
     },
     {
       "id": "supabase_functions_shared_types_nutritionistrequest",
@@ -190,7 +190,7 @@
       "file_type": "code",
       "norm_label": "nutritionistrequest",
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L35"
+      "source_location": "L37"
     },
     {
       "id": "supabase_functions_shared_types_searchrequest",
@@ -203,7 +203,7 @@
       "file_type": "code",
       "norm_label": "searchrequest",
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L18"
+      "source_location": "L20"
     },
     {
       "id": "supabase_functions_shared_validation_validationerror",
@@ -228,7 +228,7 @@
       "file_type": "code",
       "norm_label": "executetoolcall()",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L289"
+      "source_location": "L295"
     },
     {
       "id": "supabase_functions_nutritionist_index_handletoolcall",
@@ -240,7 +240,7 @@
       "file_type": "code",
       "norm_label": "handletoolcall()",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L276"
+      "source_location": "L282"
     },
     {
       "id": "supabase_functions_nutritionist_index_herbformodel",
@@ -252,7 +252,7 @@
       "file_type": "code",
       "norm_label": "herbformodel()",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L307"
+      "source_location": "L313"
     },
     {
       "id": "supabase_functions_nutritionist_index_runagentloop",
@@ -264,7 +264,7 @@
       "file_type": "code",
       "norm_label": "runagentloop()",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L155"
+      "source_location": "L159"
     },
     {
       "id": "supabase_functions_nutritionist_index_runoneturn",
@@ -276,7 +276,7 @@
       "file_type": "code",
       "norm_label": "runoneturn()",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L215"
+      "source_location": "L219"
     },
     {
       "id": "supabase_functions_shared_cors_getallowedorigin",
@@ -324,7 +324,7 @@
       "file_type": "code",
       "norm_label": "searchherbs()",
       "source_file": "supabase/functions/_shared/herb-search.ts",
-      "source_location": "L9"
+      "source_location": "L16"
     },
     {
       "id": "supabase_functions_shared_rate_limit_checkratelimit",
@@ -363,6 +363,30 @@
       "source_location": "L32"
     },
     {
+      "id": "supabase_functions_shared_rerank_herbdocument",
+      "label": "herbDocument()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "nutritionist/index.ts",
+      "file_type": "code",
+      "norm_label": "herbdocument()",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "supabase_functions_shared_rerank_rerankherbs",
+      "label": "rerankHerbs()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "nutritionist/index.ts",
+      "file_type": "code",
+      "norm_label": "rerankherbs()",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L28"
+    },
+    {
       "id": "supabase_functions_shared_response_errorresponse",
       "label": "errorResponse()",
       "_callable": true,
@@ -396,7 +420,7 @@
       "file_type": "code",
       "norm_label": "createssestream()",
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L20"
+      "source_location": "L22"
     },
     {
       "id": "supabase_functions_shared_sse_sseheaders",
@@ -408,7 +432,7 @@
       "file_type": "code",
       "norm_label": "sseheaders()",
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L9"
+      "source_location": "L11"
     },
     {
       "id": "supabase_functions_shared_sse_ssestream_close",
@@ -420,7 +444,7 @@
       "file_type": "code",
       "norm_label": ".close()",
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L6"
+      "source_location": "L8"
     },
     {
       "id": "supabase_functions_shared_sse_ssestream_send",
@@ -432,7 +456,7 @@
       "file_type": "code",
       "norm_label": ".send()",
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L5"
+      "source_location": "L7"
     },
     {
       "id": "supabase_functions_shared_validation_validatenutritionistrequest",
@@ -600,7 +624,7 @@
       "file_type": "code",
       "norm_label": "streamnutritionist()",
       "source_file": "client/src/api/nutritionist.js",
-      "source_location": "L3"
+      "source_location": "L4"
     },
     {
       "id": "client_src_api_search_searchherbs",
@@ -924,7 +948,43 @@
       "file_type": "code",
       "norm_label": "embed()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L35"
+      "source_location": "L54"
+    },
+    {
+      "id": "scripts_verify_search_herbdocument",
+      "label": "herbDocument()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "herbdocument()",
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L44"
+    },
+    {
+      "id": "scripts_verify_search_pad",
+      "label": "pad()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "pad()",
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L106"
+    },
+    {
+      "id": "scripts_verify_search_rerank",
+      "label": "rerank()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "rerank()",
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L84"
     },
     {
       "id": "scripts_verify_search_search",
@@ -936,7 +996,7 @@
       "file_type": "code",
       "norm_label": "search()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L43"
+      "source_location": "L62"
     },
     {
       "id": "scripts_compare_herbs_fetchherbnames",
@@ -1173,6 +1233,28 @@
       "norm_label": "rate-limit.ts",
       "source_file": "supabase/functions/_shared/rate-limit.ts",
       "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_rerank",
+      "label": "rerank.ts",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "nutritionist/index.ts",
+      "file_type": "code",
+      "norm_label": "rerank.ts",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_rerank_apikey",
+      "label": "apiKey",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "nutritionist/index.ts",
+      "file_type": "code",
+      "norm_label": "apikey",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L3"
     },
     {
       "id": "supabase_functions_shared_response",
@@ -7673,7 +7755,7 @@
       "node_kind": "heading",
       "norm_label": "backend api (mcp)",
       "source_file": "testsprite/README.md",
-      "source_location": "L22"
+      "source_location": "L24"
     },
     {
       "id": "testsprite_readme_frontend_e2e_cli",
@@ -15164,7 +15246,7 @@
       "file_type": "code",
       "norm_label": "openai",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L20"
+      "source_location": "L25"
     },
     {
       "id": "scripts_verify_search_queries",
@@ -15175,7 +15257,7 @@
       "file_type": "code",
       "norm_label": "queries",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L24"
+      "source_location": "L33"
     },
     {
       "id": "package_json_ref_supabase_supabase_js",
@@ -20401,6 +20483,18 @@
       "type": "external"
     },
     {
+      "id": "traceback",
+      "label": "traceback",
+      "_origin": "semantic",
+      "community": 36,
+      "community_name": "requests",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "traceback",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "ref_fs",
       "label": "ref_fs",
       "_origin": "semantic",
@@ -20459,17 +20553,6 @@
       "norm_label": "client_src_pages_authpage",
       "source_file": "",
       "type": "external"
-    },
-    {
-      "id": "traceback",
-      "label": "traceback",
-      "community": 36,
-      "community_name": "requests",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "traceback",
-      "source_file": "",
-      "type": "external"
     }
   ],
   "links": [
@@ -20482,7 +20565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/HerbCard.jsx",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -20494,7 +20577,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/hooks/useNutritionist.js",
-      "source_location": "L55",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -20710,7 +20793,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L44",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -21142,7 +21225,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L296",
+      "source_location": "L302",
       "weight": 1.0
     },
     {
@@ -21154,7 +21237,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L279",
+      "source_location": "L285",
       "weight": 1.0
     },
     {
@@ -21166,7 +21249,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L176",
+      "source_location": "L180",
       "weight": 1.0
     },
     {
@@ -21178,7 +21261,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L195",
+      "source_location": "L199",
       "weight": 1.0
     },
     {
@@ -21190,7 +21273,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L264",
+      "source_location": "L270",
       "weight": 1.0
     },
     {
@@ -21214,7 +21297,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/_shared/herb-search.ts",
-      "source_location": "L10",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_herb_search_searchherbs",
+      "target": "supabase_functions_shared_rerank_rerankherbs",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "supabase/functions/_shared/herb-search.ts",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -21250,7 +21345,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L15",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -21286,7 +21381,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L155",
+      "source_location": "L159",
       "weight": 1.0
     },
     {
@@ -22095,7 +22190,7 @@
     },
     {
       "source": "supabase_functions_shared_herb_search",
-      "target": "supabase_functions_shared_supabase_supabaseadmin",
+      "target": "supabase_functions_shared_rerank_rerankherbs",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22107,7 +22202,7 @@
     },
     {
       "source": "supabase_functions_shared_herb_search",
-      "target": "supabase_functions_shared_types_herb",
+      "target": "supabase_functions_shared_supabase_supabaseadmin",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22115,6 +22210,18 @@
       "context": "import",
       "source_file": "supabase/functions/_shared/herb-search.ts",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_herb_search",
+      "target": "supabase_functions_shared_types_herb",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/herb-search.ts",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -22126,6 +22233,18 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/_shared/rate-limit.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_rerank",
+      "target": "supabase_functions_shared_types_herb",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/rerank.ts",
       "source_location": "L1",
       "weight": 1.0
     },
@@ -23062,7 +23181,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L6",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -23074,7 +23193,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L7",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -23297,7 +23416,7 @@
     },
     {
       "source": "supabase_functions_shared_herb_search",
-      "target": "supabase_functions_shared_supabase",
+      "target": "supabase_functions_shared_rerank",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -23309,7 +23428,7 @@
     },
     {
       "source": "supabase_functions_shared_herb_search",
-      "target": "supabase_functions_shared_types",
+      "target": "supabase_functions_shared_supabase",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -23317,6 +23436,18 @@
       "context": "import",
       "source_file": "supabase/functions/_shared/herb-search.ts",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_herb_search",
+      "target": "supabase_functions_shared_types",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/herb-search.ts",
+      "source_location": "L4",
       "type_only": true,
       "weight": 1.0
     },
@@ -23342,6 +23473,19 @@
       "context": "import",
       "source_file": "supabase/functions/_shared/rate-limit.ts",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_rerank",
+      "target": "supabase_functions_shared_types",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L1",
+      "type_only": true,
       "weight": 1.0
     },
     {
@@ -33996,7 +34140,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/api/nutritionist.js",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -34804,13 +34948,24 @@
     },
     {
       "source": "scripts_verify_search",
+      "target": "scripts_verify_search_pad",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_verify_search",
       "target": "scripts_verify_search_openai",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L20",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -34821,7 +34976,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L24",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_verify_search",
+      "target": "scripts_verify_search_herbdocument",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -34832,7 +34998,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L35",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -34843,7 +35009,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L43",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_verify_search",
+      "target": "scripts_verify_search_rerank",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -35723,7 +35900,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L215",
+      "source_location": "L219",
       "weight": 1.0
     },
     {
@@ -35734,18 +35911,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L276",
-      "weight": 1.0
-    },
-    {
-      "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_nutritionist_index_executetoolcall",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L289",
+      "source_location": "L282",
       "weight": 1.0
     },
     {
@@ -35761,13 +35927,13 @@
     },
     {
       "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_nutritionist_index_herbformodel",
+      "target": "supabase_functions_nutritionist_index_executetoolcall",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L307",
+      "source_location": "L295",
       "weight": 1.0
     },
     {
@@ -35779,6 +35945,17 @@
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
       "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_nutritionist_index_herbformodel",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L313",
       "weight": 1.0
     },
     {
@@ -35932,7 +36109,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/herb-search.ts",
-      "source_location": "L9",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -36035,6 +36212,39 @@
       "weight": 1.0
     },
     {
+      "source": "supabase_functions_shared_rerank",
+      "target": "supabase_functions_shared_rerank_herbdocument",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_rerank",
+      "target": "supabase_functions_shared_rerank_rerankherbs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_rerank",
+      "target": "supabase_functions_shared_rerank_apikey",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "supabase_functions_shared_response",
       "target": "supabase_functions_shared_response_errorresponse",
       "relation": "contains",
@@ -36058,13 +36268,24 @@
     },
     {
       "source": "supabase_functions_shared_sse",
+      "target": "supabase_functions_shared_sse_sseheaders",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/sse.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_sse",
       "target": "supabase_functions_shared_sse_createssestream",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -36076,17 +36297,6 @@
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/sse.ts",
       "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "supabase_functions_shared_sse",
-      "target": "supabase_functions_shared_sse_sseheaders",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -36146,17 +36356,6 @@
     },
     {
       "source": "supabase_functions_shared_types",
-      "target": "supabase_functions_shared_types_searchrequest",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L18",
-      "weight": 1.0
-    },
-    {
-      "source": "supabase_functions_shared_types",
       "target": "supabase_functions_shared_types_herb",
       "relation": "contains",
       "_origin": "ast",
@@ -36168,13 +36367,24 @@
     },
     {
       "source": "supabase_functions_shared_types",
+      "target": "supabase_functions_shared_types_searchrequest",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_types",
       "target": "supabase_functions_shared_types_errorresponse",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L24",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -36185,7 +36395,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L29",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -36196,7 +36406,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -36350,7 +36560,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite/README.md",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -36845,7 +37055,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -36856,7 +37066,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -37015,7 +37225,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L295",
+      "source_location": "L301",
       "weight": 1.0
     },
     {
@@ -37027,7 +37237,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L190",
+      "source_location": "L194",
       "weight": 1.0
     },
     {
@@ -37039,7 +37249,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L191",
+      "source_location": "L195",
       "weight": 1.0
     },
     {
@@ -37055,6 +37265,18 @@
       "weight": 1.0
     },
     {
+      "source": "scripts_verify_search_rerank",
+      "target": "scripts_verify_search_herbdocument",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "scripts/verify_search.js",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
       "source": "supabase_functions_nutritionist_index_executetoolcall",
       "target": "supabase_functions_nutritionist_index_herbformodel",
       "relation": "indirect_call",
@@ -37063,7 +37285,19 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L298",
+      "source_location": "L304",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_rerank_rerankherbs",
+      "target": "supabase_functions_shared_rerank_herbdocument",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -38202,5 +38436,5 @@
       "source_file": "docs/architecture.md"
     }
   ],
-  "built_at_commit": "c25a2729ad12bfc91634ece1c9ff84cc724b8a35"
+  "built_at_commit": "5a5d6ed2d8d3cfa9238a60c062ba8d23a3007a3b"
 }

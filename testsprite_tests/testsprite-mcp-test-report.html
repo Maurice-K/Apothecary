@@ -1213,7 +1213,7 @@ body {
         </div>
         <div class="metadata-row">
           <div class="metadata-label text-body-medium">Date</div>
-          <div class="metadata-value text-body">9/28/2026</div>
+          <div class="metadata-value text-body">10/6/2026</div>
         </div>
         <div class="metadata-row">
           <div class="metadata-label text-body-medium">Prepared by</div>
@@ -1234,14 +1234,15 @@ body {
         
         <div class="coverage-summary">
           <ul class="coverage-list text-body">
-            <li><span class="coverage-highlight">7/7</span> of tests passed</li>
+            <li><span class="coverage-highlight">4/5</span> of tests passed</li>
             <li><span class="coverage-highlight">Key gaps / risks:</span>
             
               <ul>
+<li><strong>No backend test covers the reranker fallback.</strong> A missing key, a Cohere error or a timeout should return cosine order without <code>relevance</code>. This was checked by hand with an invalid key, but can't be automated against the shared local stack.</li>
+<li><strong>Local CORS preflight no longer reaches the function</strong> (TC004), so the CORS allowlist isn't currently tested locally.</li>
 <li><strong>Untested validation paths on <code>/nutritionist</code>:</strong> a non-POST request (405), an invalid <code>role</code>, user content that is empty or over 4000 characters, and a non-string <code>content</code>.</li>
-<li><strong>Rate limiting (429) is not covered.</strong> It is disabled locally (<code>APOTHECARY_ENV=development</code>), so it can only be tested against production.</li>
-<li><strong><code>/search</code> query length limit (&gt; 500 chars) is not explicitly asserted.</strong></li>
-<li><strong>Tests run against the local stack only.</strong> They need <code>supabase start</code> + <code>npm run functions</code> and don't verify that production has the same deployed version.</li>
+<li><strong>Rate limiting (429) is not covered.</strong> It is disabled locally (<code>APOTHECARY_ENV=development</code>).</li>
+<li><strong>Tests run against the local stack only.</strong> Production needs <code>COHERE_API_KEY</code> set as a Supabase secret and the functions redeployed.</li>
 </ul>
 
             </li>
@@ -1269,15 +1270,15 @@ body {
             <div class="table-row">
               <div class="table-cell"><span class="text-body">Requirement: Herb Semantic Search (`POST /search`)</span></div>
               <div class="table-cell"><span class="text-body">4</span></div>
-              <div class="table-cell"><span class="text-body">4</span></div>
-              <div class="table-cell"><span class="text-body">0</span></div>
+              <div class="table-cell"><span class="text-body">3</span></div>
+              <div class="table-cell"><span class="text-body">1</span></div>
             </div>
         
 
             <div class="table-row">
               <div class="table-cell"><span class="text-body">Requirement: AI Nutritionist Chat (`POST /nutritionist`, SSE)</span></div>
-              <div class="table-cell"><span class="text-body">3</span></div>
-              <div class="table-cell"><span class="text-body">3</span></div>
+              <div class="table-cell"><span class="text-body">1</span></div>
+              <div class="table-cell"><span class="text-body">1</span></div>
               <div class="table-cell"><span class="text-body">0</span></div>
             </div>
         
@@ -1302,12 +1303,12 @@ body {
             <div class="requirement-content">
                                           <div class="requirement-title-row">
               <h3 class="title-requirement">Requirement: Herb Semantic Search (`POST /search`)</h3>
-                <div class="requirement-status-tag status-success">
+                <div class="requirement-status-tag status-error">
               <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="7.99961" cy="7.99998" r="6.4" fill="#10A363" fill-opacity="0.2"/>
-                <path d="M5.59961 8.00002L7.19961 9.60002L10.3996 6.40002" stroke="#19C379" stroke-width="1.28" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="7.99961" cy="7.99998" r="6.4" fill="#C23539" fill-opacity="0.2"/>
+                <path d="M8 5.59998V7.99698" stroke="#EF4146" stroke-width="1.38478" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10.394V10.3995" stroke="#EF4146" stroke-width="1.38478" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>4/4</span>
+              <span>3/4</span>
             </div>
               </div>
               <p class="text-body-medium requirement-description">Proper error handling for API calls and invalid data scenarios.</p>
@@ -1362,7 +1363,7 @@ body {
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Analysis / Findings</div>
-                    <div class="test-field-value text-body">Returns 200. Results are sorted by similarity (descending), every similarity is ≥ 0.3, the count is ≤ limit, and each herb has the documented fields. Confirms `searchHerbs` still works after its optional `client` parameter was removed.</div>
+                    <div class="test-field-value text-body">Returns 200. Every result has a numeric `relevance` in [0, 1], and results are sorted by `relevance` (descending). Every similarity is ≥ 0.3, and the count is ≤ limit. This confirms the reranker ran and its order is what the endpoint returns.</div>
                   </div>
                 </div>
               </div>
@@ -1452,7 +1453,7 @@ body {
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Analysis / Findings</div>
-                    <div class="test-field-value text-body">`limit` values of `"5"` (string), `0`, `51` and `-1` each return 400 with `limit must be a number between 1 and 50`. The first run failed with "No assertions found in test code" because the generated code used `raise AssertionError`. This was a test-generation artifact, not an app bug. The code was regenerated with `assert` statements and passed.</div>
+                    <div class="test-field-value text-body">Invalid `limit` values return 400 with `limit must be a number between 1 and 50`.</div>
                   </div>
                 </div>
               </div>
@@ -1469,7 +1470,7 @@ body {
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Test Error</div>
-                    <div class="test-field-value text-body">- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/54741985-2aaa-4a39-b6f8-2c90bf5bae7a</div>
+                    <div class="test-field-value text-body">`AssertionError: Expected Access-Control-Allow-Origin to echo 'https://herbary.app', got '*'`</div>
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Test Visualization and Result</div>
@@ -1480,24 +1481,27 @@ body {
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Status</div>
                     <div class="test-field-value">
-                      <div class="status-wrapper">
+                      
+            <div class="status-wrapper">
                 <div class="status-icon">
                     <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="7.99961" cy="7.99998" r="6.4" fill="#10A363" fill-opacity="0.2"/>
-                        <path d="M5.59961 8.00002L7.19961 9.60002L10.3996 6.40002" stroke="#19C379" stroke-width="1.28" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+<circle cx="7.99961" cy="7.99998" r="6.4" fill="#C23539" fill-opacity="0.2"/>
+<path d="M8 5.59998V7.99698" stroke="#EF4146" stroke-width="1.38478" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8 10.394V10.3995" stroke="#EF4146" stroke-width="1.38478" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
                 </div>
-                <span class="text-body status-pass">Pass</span>
+                <span class="text-body status-fail">Failed</span>
             </div>
+            
                     </div>
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Severity</div>
-                    <div class="test-field-value text-body">LOW</div>
+                    <div class="test-field-value text-body">LOW (environment)</div>
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Analysis / Findings</div>
-                    <div class="test-field-value text-body">OPTIONS returns 200, echoes the allowed Origin, and the allowed methods include POST.</div>
+                    <div class="test-field-value text-body">This is not caused by the rerank change, which doesn't touch `_shared/cors.ts`. The local stack's API gateway (`Server: kong/2.8.1`) now answers the OPTIONS preflight itself with `Access-Control-Allow-Origin: *` and `Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,TRACE,CONNECT`, so the function's `handleCors` is never reached. The local Supabase Docker images were refreshed on this run, which is the likely cause. Recheck against production, or after pinning the local CLI version, before treating it as an app bug.</div>
                   </div>
                 </div>
               </div>
@@ -1515,7 +1519,7 @@ body {
                 <circle cx="7.99961" cy="7.99998" r="6.4" fill="#10A363" fill-opacity="0.2"/>
                 <path d="M5.59961 8.00002L7.19961 9.60002L10.3996 6.40002" stroke="#19C379" stroke-width="1.28" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>3/3</span>
+              <span>1/1</span>
             </div>
               </div>
               <p class="text-body-medium requirement-description">Proper error handling for API calls and invalid data scenarios.</p>
@@ -1570,97 +1574,7 @@ body {
                   </div>
                   <div class="test-field">
                     <div class="test-field-label text-body-medium">Analysis / Findings</div>
-                    <div class="test-field-value text-body">Returns 200 with `text/event-stream`, and the stream contains the expected events through to `done`. The `herb_search` tool path (shared `searchHerbs`) still works. This is the only test that makes real OpenAI calls.</div>
-                  </div>
-                </div>
-              </div>
-<div class="test-card">
-                <div class="test-header">
-                  <h4 class="text-body-medium">TC009 test_nutritionist_post_with_invalid_json_body</h4>
-                </div>
-                <div class="test-content">
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Test Code</div>
-                    <div class="test-field-value text-body">
-                      <a href="./code_file" class="text-link">code_file</a>
-                    </div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Test Error</div>
-                    <div class="test-field-value text-body">- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/b71d251d-8eaa-4bab-a789-468cb1db5c56</div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Test Visualization and Result</div>
-                    <div class="test-field-value text-body">
-                      <a href="https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/b71d251d-8eaa-4bab-a789-468cb1db5c56" class="text-link">View Results</a>
-                    </div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Status</div>
-                    <div class="test-field-value">
-                      <div class="status-wrapper">
-                <div class="status-icon">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="7.99961" cy="7.99998" r="6.4" fill="#10A363" fill-opacity="0.2"/>
-                        <path d="M5.59961 8.00002L7.19961 9.60002L10.3996 6.40002" stroke="#19C379" stroke-width="1.28" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <span class="text-body status-pass">Pass</span>
-            </div>
-                    </div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Severity</div>
-                    <div class="test-field-value text-body">LOW</div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Analysis / Findings</div>
-                    <div class="test-field-value text-body">A body that isn't valid JSON returns 400 with `{"error":"Invalid JSON body"}`.</div>
-                  </div>
-                </div>
-              </div>
-<div class="test-card">
-                <div class="test-header">
-                  <h4 class="text-body-medium">TC010 test_nutritionist_post_with_invalid_messages_array</h4>
-                </div>
-                <div class="test-content">
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Test Code</div>
-                    <div class="test-field-value text-body">
-                      <a href="./code_file" class="text-link">code_file</a>
-                    </div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Test Error</div>
-                    <div class="test-field-value text-body">- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/5dc5f4c0-1c06-466e-ae14-022a440ae0cf</div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Test Visualization and Result</div>
-                    <div class="test-field-value text-body">
-                      <a href="https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/5dc5f4c0-1c06-466e-ae14-022a440ae0cf" class="text-link">View Results</a>
-                    </div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Status</div>
-                    <div class="test-field-value">
-                      <div class="status-wrapper">
-                <div class="status-icon">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="7.99961" cy="7.99998" r="6.4" fill="#10A363" fill-opacity="0.2"/>
-                        <path d="M5.59961 8.00002L7.19961 9.60002L10.3996 6.40002" stroke="#19C379" stroke-width="1.28" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <span class="text-body status-pass">Pass</span>
-            </div>
-                    </div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Severity</div>
-                    <div class="test-field-value text-body">LOW</div>
-                  </div>
-                  <div class="test-field">
-                    <div class="test-field-label text-body-medium">Analysis / Findings</div>
-                    <div class="test-field-value text-body">More than 50 messages, or a last message not from the user, returns 400 with a validation error.</div>
+                    <div class="test-field-value text-body">Returns 200 with `text/event-stream`, and the stream contains the expected events through to `done`. The `herb_search` tool path (shared `searchHerbs`, now re-ranked) still works. This test makes real OpenAI and Cohere calls.</div>
                   </div>
                 </div>
               </div>

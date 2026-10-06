@@ -17,7 +17,7 @@
     },
     {
       "type": "assertion",
-      "description": "The 'Welcome to the Herbary' heading is no longer visible"
+      "description": "The empty-state panel below the search bar (its 'Welcome to the Herbary' heading and the suggestion chips) has been replaced by the results list. The 'The Herbary' site title in the page header is separate and is expected to stay visible"
     },
     {
       "type": "assertion",

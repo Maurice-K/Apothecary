@@ -4,9 +4,9 @@
 
 ## 1️⃣ Document Metadata
 - **Project Name:** Apothecary
-- **Date:** 2026-09-28
+- **Date:** 2026-10-06
 - **Prepared by:** TestSprite AI Team
-- **Scope:** Backend. Supabase Edge Functions served locally at `http://localhost:54321/functions/v1` (`npm run functions`, `--no-verify-jwt`, rate limiting disabled via `APOTHECARY_ENV=development`). Run after removing the `recipes` and `recipes-search` functions; TC005–TC007 (which covered `recipes-search`) were dropped from the plan.
+- **Scope:** Backend. Supabase Edge Functions served locally at `http://localhost:54321/functions/v1` (`npm run functions`, `--no-verify-jwt`, rate limiting disabled via `APOTHECARY_ENV=development`). Run on `feature/herb-search-rerank` after adding Cohere re-ranking to `searchHerbs`. Only the tests covering the change ran: TC001–TC004 (`/search`) and TC008 (`/nutritionist` stream). TC001's plan was updated to assert ordering by `relevance`.
 
 ---
 
@@ -15,7 +15,7 @@
 Dashboard: `https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/<test id>`
 
 ### Requirement: Herb Semantic Search (`POST /search`)
-- **Description:** Embeds the query, ranks herbs with pgvector (threshold 0.3), and validates `query` (1–500 chars) and `limit` (number 1–50).
+- **Description:** Embeds the query, pulls 25 pgvector candidates (threshold 0.3), re-ranks them with Cohere Rerank, and validates `query` (1–500 chars) and `limit` (number 1–50).
 
 #### Test TC001 test_semantic_herb_search_with_valid_query_and_limit
 - **Test Code:** [code_file](./TC001_test_semantic_herb_search_with_valid_query_and_limit.py)
@@ -23,7 +23,7 @@ Dashboard: `https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-82
 - **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/878d5c4d-5791-4396-9629-e1b90bf6b73c
 - **Status:** ✅ Passed
 - **Severity:** LOW
-- **Analysis / Findings:** Returns 200. Results are sorted by similarity (descending), every similarity is ≥ 0.3, the count is ≤ limit, and each herb has the documented fields. Confirms `searchHerbs` still works after its optional `client` parameter was removed.
+- **Analysis / Findings:** Returns 200. Every result has a numeric `relevance` in [0, 1], and results are sorted by `relevance` (descending). Every similarity is ≥ 0.3, and the count is ≤ limit. This confirms the reranker ran and its order is what the endpoint returns.
 ---
 
 #### Test TC002 test_semantic_herb_search_with_missing_or_empty_query
@@ -41,16 +41,16 @@ Dashboard: `https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-82
 - **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/7d930cb4-2eff-46e4-a07b-3f236116c8ea
 - **Status:** ✅ Passed
 - **Severity:** LOW
-- **Analysis / Findings:** `limit` values of `"5"` (string), `0`, `51` and `-1` each return 400 with `limit must be a number between 1 and 50`. The first run failed with "No assertions found in test code" because the generated code used `raise AssertionError`. This was a test-generation artifact, not an app bug. The code was regenerated with `assert` statements and passed.
+- **Analysis / Findings:** Invalid `limit` values return 400 with `limit must be a number between 1 and 50`.
 ---
 
 #### Test TC004 test_cors_preflight_on_search_endpoint
 - **Test Code:** [code_file](./TC004_test_cors_preflight_on_search_endpoint.py)
-- **Test Error:**
+- **Test Error:** `AssertionError: Expected Access-Control-Allow-Origin to echo 'https://herbary.app', got '*'`
 - **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/54741985-2aaa-4a39-b6f8-2c90bf5bae7a
-- **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** OPTIONS returns 200, echoes the allowed Origin, and the allowed methods include POST.
+- **Status:** ❌ Failed
+- **Severity:** LOW (environment)
+- **Analysis / Findings:** This is not caused by the rerank change, which doesn't touch `_shared/cors.ts`. The local stack's API gateway (`Server: kong/2.8.1`) now answers the OPTIONS preflight itself with `Access-Control-Allow-Origin: *` and `Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,TRACE,CONNECT`, so the function's `handleCors` is never reached. The local Supabase Docker images were refreshed on this run, which is the likely cause. Recheck against production, or after pinning the local CLI version, before treating it as an app bug.
 ---
 
 ### Requirement: AI Nutritionist Chat (`POST /nutritionist`, SSE)
@@ -62,41 +62,24 @@ Dashboard: `https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-82
 - **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/ca6d66fa-833a-4f8e-8285-49009d3c4cc7
 - **Status:** ✅ Passed
 - **Severity:** LOW
-- **Analysis / Findings:** Returns 200 with `text/event-stream`, and the stream contains the expected events through to `done`. The `herb_search` tool path (shared `searchHerbs`) still works. This is the only test that makes real OpenAI calls.
----
-
-#### Test TC009 test_nutritionist_post_with_invalid_json_body
-- **Test Code:** [code_file](./TC009_test_nutritionist_post_with_invalid_json_body.py)
-- **Test Error:**
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/b71d251d-8eaa-4bab-a789-468cb1db5c56
-- **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** A body that isn't valid JSON returns 400 with `{"error":"Invalid JSON body"}`.
----
-
-#### Test TC010 test_nutritionist_post_with_invalid_messages_array
-- **Test Code:** [code_file](./TC010_test_nutritionist_post_with_invalid_messages_array.py)
-- **Test Error:**
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/5dc5f4c0-1c06-466e-ae14-022a440ae0cf
-- **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** More than 50 messages, or a last message not from the user, returns 400 with a validation error.
+- **Analysis / Findings:** Returns 200 with `text/event-stream`, and the stream contains the expected events through to `done`. The `herb_search` tool path (shared `searchHerbs`, now re-ranked) still works. This test makes real OpenAI and Cohere calls.
 ---
 
 ## 3️⃣ Coverage & Matching Metrics
 
-- **100%** of tests passed (7/7) after TC003 was regenerated. On the first run, 6/7 passed.
+- **80%** of tests run passed (4/5). The one failure (TC004) is a local-gateway artifact. TC009 and TC010 (`/nutritionist` validation) were not re-run because the change doesn't touch them.
 
 | Requirement                            | Total Tests | ✅ Passed | ❌ Failed |
 |----------------------------------------|-------------|-----------|-----------|
-| Herb Semantic Search (`/search`)       | 4           | 4         | 0         |
-| AI Nutritionist Chat (`/nutritionist`) | 3           | 3         | 0         |
+| Herb Semantic Search (`/search`)       | 4           | 3         | 1         |
+| AI Nutritionist Chat (`/nutritionist`) | 1           | 1         | 0         |
 
 ---
 
 ## 4️⃣ Key Gaps / Risks
 
+- **No backend test covers the reranker fallback.** A missing key, a Cohere error or a timeout should return cosine order without `relevance`. This was checked by hand with an invalid key, but can't be automated against the shared local stack.
+- **Local CORS preflight no longer reaches the function** (TC004), so the CORS allowlist isn't currently tested locally.
 - **Untested validation paths on `/nutritionist`:** a non-POST request (405), an invalid `role`, user content that is empty or over 4000 characters, and a non-string `content`.
-- **Rate limiting (429) is not covered.** It is disabled locally (`APOTHECARY_ENV=development`), so it can only be tested against production.
-- **`/search` query length limit (> 500 chars) is not explicitly asserted.**
-- **Tests run against the local stack only.** They need `supabase start` + `npm run functions` and don't verify that production has the same deployed version.
+- **Rate limiting (429) is not covered.** It is disabled locally (`APOTHECARY_ENV=development`).
+- **Tests run against the local stack only.** Production needs `COHERE_API_KEY` set as a Supabase secret and the functions redeployed.

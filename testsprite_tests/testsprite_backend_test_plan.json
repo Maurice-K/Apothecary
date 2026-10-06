@@ -2,7 +2,7 @@
   {
     "id": "TC001",
     "title": "test_semantic_herb_search_with_valid_query_and_limit",
-    "description": "Verify that POST /search with a valid non-empty query string and a numeric limit between 1 and 50 returns a 200 response with ranked herb results sorted by similarity descending, each similarity >= 0.3, and the number of results does not exceed the limit."
+    "description": "Verify that POST /search with a valid non-empty query string and a numeric limit between 1 and 50 returns a 200 response with ranked herb results, each similarity >= 0.3, and the number of results does not exceed the limit. Results are re-ranked by Cohere: when every result has a numeric `relevance` (0-1), results are sorted by relevance descending (similarity order is not asserted); if `relevance` is absent (reranker fallback), results are sorted by similarity descending."
   },
   {
     "id": "TC002",
