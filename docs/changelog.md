@@ -6,6 +6,17 @@ All notable changes to the Apothecary project are documented here. Updated after
 
 ## [Unreleased]
 
+## 2026-10-06 — Re-ranked herb search (Cohere Rerank)
+
+- `searchHerbs()` now pulls 25 cosine candidates from `match_herbs` and re-ranks them with Cohere Rerank (`rerank-v4.0-fast`, new `_shared/rerank.ts`) before keeping the top `limit`. Both the herb search page and the nutritionist's `herb_search` tool get it.
+- The reranker gets the raw query and the embedding keeps the `"Herb for "` stem. Compared on `verify_search.js` queries, the stem ranked slightly worse for the reranker.
+- Results carry a new `relevance` score (0–1) and are ordered by it. The "% match" badge shows `relevance`, falling back to `similarity`. The nutritionist strips `relevance` before results reach the model.
+- If `COHERE_API_KEY` is missing, Cohere errors, or it takes over 2 s, search returns plain cosine order without `relevance`.
+- `scripts/verify_search.js` prints the cosine top-5 next to the reranked top-5.
+- New env var `COHERE_API_KEY` (root `.env`; Supabase secret in production). Needs a production Cohere key, because trial keys are capped at 10 calls/minute.
+- Backend test TC001 now checks ordering by `relevance` instead of `similarity`.
+- TestSprite plan 05: reworded the empty-state assertion. The test agent had mistaken the site title "The Herbary" for the "Welcome to the Herbary" empty-state heading.
+
 ## 2026-09-28 — Nutritionist stream cancellation + dropped-connection handling
 
 - "New chat" and leaving the page now abort the in-flight nutritionist request. The server passes the SSE stream's disconnect signal to OpenAI, so the agent loop stops instead of running (and billing) to completion for nobody.

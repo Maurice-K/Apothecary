@@ -1,17 +1,17 @@
-# Graph Report - Apothecary  (2026-09-28)
+# Graph Report - Apothecary  (2026-10-06)
 
 ## Corpus Check
-- 303 files · ~173,430 words
+- 304 files · ~174,849 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 17 file(s) not represented in the graph (top: .css 13, (none) 3, .toml 1)
 
 ## Summary
-- 1605 nodes · 1584 edges · 252 communities (97 shown, 155 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.81)
+- 1612 nodes · 1597 edges · 252 communities (97 shown, 155 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c25a2729`
+- Built from commit: `5a5d6ed2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -302,7 +302,7 @@
 
 ### Community 0 - "nutritionist/index.ts"
 Cohesion: 0.06
-Nodes (48): ref_jsr_supabase, ref_npm_openai_6, ref_npm_zod, ref_supabase_functions_js, AgentInputItem, ConversationMessage, executeToolCall(), FunctionCallOutput (+40 more)
+Nodes (51): ref_jsr_supabase, ref_npm_openai_6, ref_npm_zod, ref_supabase_functions_js, AgentInputItem, ConversationMessage, executeToolCall(), FunctionCallOutput (+43 more)
 
 ### Community 1 - "enrich_herbs.js"
 Cohesion: 0.18
@@ -326,7 +326,7 @@ Nodes (42): Audit Framework, Audit Report Structure, Canonicalization for Multil
 
 ### Community 6 - "package.json"
 Cohesion: 0.06
-Nodes (31): dependencies, cheerio, dotenv, openai, @supabase/supabase-js, description, devDependencies, npm-run-all (+23 more)
+Nodes (33): dependencies, cheerio, dotenv, openai, @supabase/supabase-js, description, devDependencies, npm-run-all (+25 more)
 
 ### Community 8 - "herbs Table Schema (spec)"
 Cohesion: 0.22
@@ -693,8 +693,8 @@ Nodes (3): Backend API (MCP), Frontend E2E (CLI), TestSprite tests
   CLAUDE.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **967 isolated node(s):** `common.sh script`, `name`, `private`, `version`, `type` (+962 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1186 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **968 isolated node(s):** `common.sh script`, `name`, `private`, `version`, `type` (+963 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1188 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **155 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -702,15 +702,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `Environment Variables Convention` and `Git & Branching Convention`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `SEO Audit` connect `SEO Audit` to `International SEO: Evidence & Sources`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **Why does `nutritionist Edge Function` connect `nutritionist Edge Function` to `ingest.js`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **Why does `SEO Audit` connect `SEO Audit` to `International SEO: Evidence & Sources`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **Why does `React Best Practices` connect `React Best Practices` to `2. Bundle Size Optimization`, `5. Re-render Optimization`, `4. Client-Side Data Fetching`, `7. JavaScript Performance`, `1. Eliminating Waterfalls`, `6. Rendering Performance`, `3. Server-Side Performance`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **What connects `common.sh script`, `name`, `private` to the rest of the system?**
-  _967 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _968 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `nutritionist/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06398809523809523 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06057945566286216 - nodes in this community are weakly interconnected._
 - **Should `nutritionist Edge Function` be split into smaller, more focused modules?**
   _Cohesion score 0.05673758865248227 - nodes in this community are weakly interconnected._

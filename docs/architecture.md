@@ -12,11 +12,12 @@ React Client (Vite)
     │  supabase.functions.invoke('search', { body: { query, limit } })
     ▼
 Supabase Edge Function (supabase/functions/search/index.ts)
-    │  1. Calls OpenAI text-embedding-3-small to embed the query
-    │  2. Calls match_herbs RPC (pgvector cosine similarity)
+    │  1. Calls OpenAI text-embedding-3-small to embed "Herb for {query}"
+    │  2. Calls match_herbs RPC (pgvector cosine similarity) for 25 candidates
+    │  3. Re-ranks the candidates with Cohere Rerank (rerank-v4.0-fast)
+    │     against the raw query and keeps the top `limit`
     ▼
-Supabase PostgreSQL + pgvector
-    │  Returns ranked herbs (id, name, description, how_to_use, category, similarity)
+Returns ranked herbs (all herb columns, similarity, relevance)
     ▼
 React Client renders HerbCard list
 ```
@@ -81,7 +82,7 @@ React SPA built with Vite. Two pages: `/` (herb search) and `/nutritionist` (cha
 | NavBar | Links to Search and Nutritionist pages |
 | SearchBar | Text input + submit |
 | HerbCardList | Maps search results to HerbCard components |
-| HerbCard | Displays name, description, how_to_use, category tags, similarity |
+| HerbCard | Displays name, description, how_to_use, category tags, "% match" badge (rerank `relevance`, else `similarity`) |
 | Chat | Scrollable message list with auto-scroll |
 | ChatMessage | User bubble or nutritionist markdown bubble with inline HerbCards |
 | ChatInput | Auto-grow textarea, Enter to send, rate-limit countdown |
@@ -107,7 +108,7 @@ supabase/functions/nutritionist/index.ts
     │     a. Stream openai.responses.create({ stream: true, tools, ... })
     │     b. Forward response.output_text.delta → SSE event: text_delta
     │     c. On response.completed: dispatch any function_call items
-    │        • herb_search → embed query → match_herbs RPC → SSE: herb_results
+    │        • herb_search → searchHerbs (embed → match_herbs → rerank) → SSE: herb_results
     │        • web_search  → OpenAI-hosted, no client execution needed
     │     d. Append function_call_output items to input, continue loop
     │  3. When no function_calls remain: SSE event: done
@@ -145,7 +146,8 @@ Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres ta
 |------|---------|
 | `_shared/openai.ts` | Initialises the OpenAI SDK client and exports `MODEL`, `MAX_ITERATIONS`, `MAX_OUTPUT_TOKENS` |
 | `_shared/supabase.ts` | Service-role Supabase client (one instance, shared by `tools.ts`, `rate-limit.ts`, `herb-search.ts`) |
-| `_shared/herb-search.ts` | `searchHerbs(query, limit)` — embeds with the `"Herb for "` stem and calls the `match_herbs` RPC (used by both the search and nutritionist functions) |
+| `_shared/herb-search.ts` | `searchHerbs(query, limit)` — embeds with the `"Herb for "` stem, pulls 25 candidates from the `match_herbs` RPC and re-ranks them (used by both the search and nutritionist functions) |
+| `_shared/rerank.ts` | `rerankHerbs(query, herbs, topN)` — Cohere Rerank over the herb text (same labeled format as `buildEmbeddingInput` in `scripts/ingest.js`), adds `relevance`; falls back to cosine order on a missing key, HTTP error or 2 s timeout |
 | `_shared/tools.ts` | Tool definitions (`HERB_SEARCH_TOOL`, `WEB_SEARCH_TOOL`) + `HerbSearchInputSchema` Zod schema |
 | `_shared/sse.ts` | SSE stream helpers |
 | `_shared/rate-limit.ts` | IP extraction + rate-limit RPC wrapper |

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Apothecary ("The Herbary", deployed at `herbary.app`) is a herbal wellness app. The web client has two experiences:
 - **Nutritionist (`/`)** — conversational AI nutritionist powered by the OpenAI Responses API (function tools + hosted web search + SSE streaming). This is the landing page.
-- **Herb Search (`/herb-search`)** — semantic search over 156 herbs using OpenAI embeddings + pgvector cosine similarity.
+- **Herb Search (`/herb-search`)** — semantic search over 156 herbs using OpenAI embeddings + pgvector cosine similarity, re-ranked by Cohere Rerank.
 
 There are no user accounts. Community recipes, login/signup and the Expo mobile app were removed on 2026-09-28 (see `docs/changelog.md`); bring them back from git history if accounts launch.
 
@@ -14,26 +14,27 @@ There are no user accounts. Community recipes, login/signup and the Expo mobile 
 
 ```
 client/ (React 19 + Vite, Vercel) ─> Supabase Edge Functions (Deno) ─┬─> OpenAI (embeddings, Responses API)
-                                       search · nutritionist          └─> Supabase Postgres (pgvector)
+                                       search · nutritionist          ├─> Supabase Postgres (pgvector)
+                                                                      └─> Cohere (rerank)
 ```
 
 Two Edge Functions in `supabase/functions/`, sharing code from `_shared/`:
 
 | Function | Purpose | Notes |
 |---|---|---|
-| `search` | Herb semantic search | `validateSearchRequest` → `searchHerbs()` → `match_herbs` RPC. No rate limit. |
+| `search` | Herb semantic search | `validateSearchRequest` → `searchHerbs()` → `match_herbs` RPC → Cohere rerank. No rate limit. |
 | `nutritionist` | Agentic chat over SSE | See below. Rate-limited per IP. |
 
-**Search flow:** query → `search` → `_shared/herb-search.ts` (`searchHerbs` prepends `"Herb for "`, embeds, threshold 0.3) → `match_herbs` → herb cards. The web client's `useSearch` makes one `search` call per query.
+**Search flow:** query → `search` → `_shared/herb-search.ts` (`searchHerbs` prepends `"Herb for "`, embeds, threshold 0.3) → `match_herbs` (25 candidates) → `_shared/rerank.ts` (Cohere `rerank-v4.0-fast` on the raw query, top `limit`, adds `relevance`) → herb cards. If the reranker fails (no key, HTTP error, 2 s timeout), search returns cosine order without `relevance`. The nutritionist's `herb_search` goes through the same `searchHerbs`. The web client's `useSearch` makes one `search` call per query.
 
 **Nutritionist flow** (`supabase/functions/nutritionist/index.ts`):
 - Model from `_shared/openai.ts`: `OPENAI_MODEL` or `gpt-5-mini`, `reasoning.effort: "low"`, `MAX_ITERATIONS = 6`, `MAX_OUTPUT_TOKENS = 8192`. System prompt is the inline `SYSTEM_PROMPT` constant.
 - Iteration 0 of the *first* user turn forces `herb_search` via `tool_choice`; later iterations use `auto` and chain with `previous_response_id`. On hitting the cap, one final turn runs with `tool_choice: "none"`.
-- Tools (`_shared/tools.ts`): `herb_search` (zod-validated, `limit` default 3, max 10; results stripped of `id`/`how_to_use`/`similarity` before going back to the model) and hosted `web_search` (`search_context_size: "low"`). Tool calls run in parallel.
+- Tools (`_shared/tools.ts`): `herb_search` (zod-validated, `limit` default 3, max 10; results stripped of `id`/`how_to_use`/`similarity`/`relevance` before going back to the model) and hosted `web_search` (`search_context_size: "low"`). Tool calls run in parallel.
 - SSE events (`_shared/sse.ts`): `text_delta {delta}` | `tool_use {name, input}` | `herb_results {herbs}` | `done {}` | `error {message}`.
 - Client side (`useNutritionist.js`): buffers text + the **last** `herb_results` batch until `done`, drives a phase indicator (thinking → searching → researching → composing), then `ChatMessage.jsx` typewriter-renders markdown and shows herb cards after typing finishes. Text is not rendered progressively as it streams.
 
-**Data pipeline:** Chioma's Shopify storefront (`scripts/sources.json`) → `scripts/enrich_herbs.js` (pulls tags, energetics, scientific name, plant part, origin, form) → `chioma_products.json` (156 herbs) → `scripts/ingest.js` embeds a multi-line labeled input (name → tags → category → energetics → plant_part → description) via `text-embedding-3-small` → upserts into `herbs` on `name`. High-signal labels go first so they aren't drowned by the long prose description; `how_to_use` is stored but not embedded (brewing instructions dilute signal). The query-side `"Herb for "` stem lives in `_shared/herb-search.ts` (mirrored in `scripts/verify_search.js`) — keep them in sync. See `docs/herb-catalog-pipeline.md`.
+**Data pipeline:** Chioma's Shopify storefront (`scripts/sources.json`) → `scripts/enrich_herbs.js` (pulls tags, energetics, scientific name, plant part, origin, form) → `chioma_products.json` (156 herbs) → `scripts/ingest.js` embeds a multi-line labeled input (name → tags → category → energetics → plant_part → description) via `text-embedding-3-small` → upserts into `herbs` on `name`. High-signal labels go first so they aren't drowned by the long prose description; `how_to_use` is stored but not embedded (brewing instructions dilute signal). The query-side `"Herb for "` stem lives in `_shared/herb-search.ts` (mirrored in `scripts/verify_search.js`) — keep them in sync. The reranker's document text (`herbDocument` in `_shared/rerank.ts`) mirrors `buildEmbeddingInput` in `ingest.js`, and so does `verify_search.js`. See `docs/herb-catalog-pipeline.md`.
 
 ## Development Commands
 
@@ -85,7 +86,8 @@ Don't edit client code while TestSprite runs are in flight (Vite HMR disturbs th
 ```js
 supabase.functions.invoke('search', { body: { query: "string", limit: 8 } })  // query ≤500 chars, limit 1–50
 // Returns: { results: [{ id, name, description, how_to_use, category,
-//   tags, energetics, botanical_name, plant_part, origin, form, similarity }] }
+//   tags, energetics, botanical_name, plant_part, origin, form, similarity, relevance? }] }
+// Ordered by relevance (Cohere rerank, 0–1); relevance is absent if the reranker fell back to cosine order.
 
 ```
 
@@ -104,7 +106,8 @@ fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
 
 **Backend (`supabase/functions/`)**
 - `search/index.ts`, `nutritionist/index.ts` — the two functions (each has its own `deno.json`)
-- `_shared/herb-search.ts` — `searchHerbs()`; owns the `"Herb for "` stem and 0.3 threshold
+- `_shared/herb-search.ts` — `searchHerbs()`; owns the `"Herb for "` stem, 0.3 threshold and 25-candidate pool
+- `_shared/rerank.ts` — `rerankHerbs()`; Cohere Rerank model, document format, 2 s timeout, cosine fallback
 - `_shared/openai.ts` — OpenAI client, `MODEL`, `MAX_ITERATIONS`, `MAX_OUTPUT_TOKENS`
 - `_shared/tools.ts` — `HERB_SEARCH_TOOL`, `WEB_SEARCH_TOOL`, zod schema
 - `_shared/validation.ts` — request validators for search, nutritionist
@@ -162,7 +165,7 @@ When completing a feature branch or milestone, update `docs/changelog.md`. Updat
 
 ## Environment Variables
 
-- Root `.env` — production credentials: `OPENAI_API_KEY`, `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `APOTHECARY_ENV=development`. Optional: `OPENAI_MODEL` (default `gpt-5-mini`), `PUBLIC_SITE_URL` (extra CORS origin).
+- Root `.env` — production credentials: `OPENAI_API_KEY`, `COHERE_API_KEY` (herb search reranking; set as a Supabase secret in prod), `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `APOTHECARY_ENV=development`. Optional: `OPENAI_MODEL` (default `gpt-5-mini`), `PUBLIC_SITE_URL` (extra CORS origin).
 - Root `.env.local` — local-Supabase overrides (`SUPABASE_URL=http://127.0.0.1:54321`, local keys). Node scripts (`ingest`, `verify_search`) load this first so they target the local stack; `.env` fills in the rest (e.g. `OPENAI_API_KEY`).
 - `client/.env.local` / `client/.env.production` — Vite: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
 

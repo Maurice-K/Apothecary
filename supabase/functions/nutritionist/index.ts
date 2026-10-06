@@ -307,10 +307,10 @@ async function executeToolCall(call: any, sse: SseStream): Promise<unknown> {
   }
 }
 
-// Trim fields the model doesn't need to reason about: id and similarity are
-// noise; how_to_use is brewing prose that dilutes signal (same reason it's
-// excluded from embeddings).
+// Trim fields the model doesn't need to reason about: id and the similarity
+// and relevance scores are noise; how_to_use is brewing prose that dilutes
+// signal (same reason it's excluded from embeddings).
 function herbForModel(herb: Herb) {
-  const { id: _id, how_to_use: _h, similarity: _s, ...rest } = herb;
+  const { id: _id, how_to_use: _h, similarity: _s, relevance: _r, ...rest } = herb;
   return rest;
 }

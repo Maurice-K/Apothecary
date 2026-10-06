@@ -12,6 +12,8 @@ export interface Herb {
   origin: string | null;
   form: string | null;
   similarity: number;
+  /** Cohere rerank score (0–1); absent when reranking was skipped */
+  relevance?: number;
 }
 
 /** Request body for the search endpoint */

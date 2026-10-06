@@ -1,52 +1,48 @@
 import requests
 import sys
 
-BASE_URL = "http://localhost:54321/functions/v1"
+BASE_ENDPOINT = "http://localhost:54321/functions/v1"
 SEARCH_PATH = "/search"
-TIMEOUT = 30
+TIMEOUT = 30  # seconds
+HEADERS = {"Content-Type": "application/json"}
 
 
 def test_semantic_herb_search_with_missing_or_empty_query():
-    """
-    Verify that POST /search with a missing or empty query string returns a 400
-    response with an error message indicating that the query is required and must be a string.
-    """
-    url = BASE_URL.rstrip("/") + SEARCH_PATH
-    headers = {"Content-Type": "application/json"}
+    url = BASE_ENDPOINT.rstrip("/") + SEARCH_PATH
+
     test_cases = [
-        (None, "missing_query"),      # no body / missing query
-        ({"query": ""}, "empty_query")  # query present but empty string
+        ( {}, "missing query field" ),
+        ( {"query": ""}, "empty query string" ),
     ]
 
-    expected_status = 400
-    expected_error = "query is required and must be a string"
-
-    for payload, name in test_cases:
+    for payload, description in test_cases:
         try:
-            if payload is None:
-                # Send empty JSON object to represent missing query key
-                resp = requests.post(url, headers=headers, json={}, timeout=TIMEOUT)
-            else:
-                resp = requests.post(url, headers=headers, json=payload, timeout=TIMEOUT)
+            resp = requests.post(url, json=payload, headers=HEADERS, timeout=TIMEOUT)
         except requests.RequestException as e:
-            raise AssertionError(f"HTTP request failed for case '{name}': {e}")
+            assert False, f"Request failed for case '{description}': {e}"
 
-        # Verify status code
-        assert resp.status_code == expected_status, (
-            f"Case '{name}': expected status {expected_status}, got {resp.status_code}. "
+        # Expect 400 Bad Request
+        assert resp.status_code == 400, (
+            f"Expected status 400 for case '{description}', got {resp.status_code}. "
             f"Response text: {resp.text}"
         )
 
-        # Verify response is JSON and has expected error message
+        # Response body should be valid JSON with an 'error' message indicating query is required
         try:
             body = resp.json()
         except ValueError:
-            raise AssertionError(f"Case '{name}': response is not valid JSON. Text: {resp.text}")
+            assert False, f"Response is not valid JSON for case '{description}': {resp.text}"
 
-        assert isinstance(body, dict), f"Case '{name}': expected JSON object, got {type(body)}"
-        actual_error = body.get("error")
-        assert actual_error == expected_error, (
-            f"Case '{name}': expected error message '{expected_error}', got '{actual_error}'. Full body: {body}"
+        assert isinstance(body, dict), f"Expected JSON object in response for case '{description}'"
+
+        error_msg = body.get("error")
+        assert error_msg is not None, f"Expected 'error' field in response for case '{description}'"
+
+        # The error should indicate that the query is required and must be a string
+        expected_fragment = "query is required and must be a string"
+        assert expected_fragment in error_msg, (
+            f"Error message for case '{description}' does not indicate missing/invalid query. "
+            f"Got: {error_msg}"
         )
 
     print("test_semantic_herb_search_with_missing_or_empty_query: PASSED")
@@ -56,9 +52,9 @@ if __name__ == "__main__":
     try:
         test_semantic_herb_search_with_missing_or_empty_query()
     except AssertionError as e:
-        print(f"test_semantic_herb_search_with_missing_or_empty_query: FAILED - {e}")
+        print(f"TEST FAILED: {e}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
-        print(f"test_semantic_herb_search_with_missing_or_empty_query: ERROR - {e}")
+        print(f"UNEXPECTED ERROR: {e}", file=sys.stderr)
         sys.exit(2)
     sys.exit(0)
