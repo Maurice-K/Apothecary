@@ -1,7 +1,7 @@
 {
   "projectId": "84f4b903-69fa-4200-b9e6-e574d24e6edb",
   "type": "frontend",
-  "name": "Nutritionist \u2014 starter prompt gets an answer with herb cards",
+  "name": "Nutritionist — asks about the concern first, then answers with herb cards",
   "planSteps": [
     {
       "type": "action",
@@ -21,15 +21,29 @@
     },
     {
       "type": "assertion",
-      "description": "An assistant message with at least one sentence of text is shown below the user message"
+      "description": "Right now, before sending any other message: the first assistant reply asks the user at least one question about their sleep, and the conversation area shows no herb cards (no cards with a '% match' badge)"
+    },
+    {
+      "type": "action",
+      "description": "Only after the previous check is done, type 'I wake up around 3am most nights with racing thoughts and can't get back to sleep. It has been about a month and I'm exhausted at work most days. I am not on any medications and not pregnant.' into the message textarea and press Enter"
+    },
+    {
+      "type": "action",
+      "description": "Wait up to 120 seconds for the second assistant reply to finish typing"
     },
     {
       "type": "assertion",
-      "description": "At least one herb card is shown with a herb name heading and a '% match' badge"
+      "description": "A second assistant message with at least one sentence of text is shown below the second user message"
+    },
+    {
+      "type": "assertion",
+      "description": "At least one herb card is shown below the second assistant message, with a herb name heading and a '% match' badge"
     },
     {
       "type": "assertion",
       "description": "A 'New chat' button is visible in the page header"
     }
-  ]
+  ],
+  "description": "The nutritionist first asks about a vague sleep concern without showing any herb cards (diagnosis), then, once the user has answered its questions, replies with recommendations and herb cards (treatment).",
+  "priority": "p1"
 }

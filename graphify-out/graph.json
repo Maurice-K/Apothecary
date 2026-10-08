@@ -60,7 +60,20 @@
       "file_type": "code",
       "norm_label": "agentinputitem",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L42"
+      "source_location": "L41"
+    },
+    {
+      "id": "supabase_functions_nutritionist_index_agenttool",
+      "label": "AgentTool",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "nutritionist/index.ts",
+      "file_type": "code",
+      "norm_label": "agenttool",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L43"
     },
     {
       "id": "supabase_functions_nutritionist_index_conversationmessage",
@@ -73,7 +86,7 @@
       "file_type": "code",
       "norm_label": "conversationmessage",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L31"
+      "source_location": "L30"
     },
     {
       "id": "supabase_functions_nutritionist_index_functioncalloutput",
@@ -86,7 +99,20 @@
       "file_type": "code",
       "norm_label": "functioncalloutput",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L36"
+      "source_location": "L35"
+    },
+    {
+      "id": "supabase_functions_nutritionist_index_stageplan",
+      "label": "StagePlan",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "nutritionist/index.ts",
+      "file_type": "code",
+      "norm_label": "stageplan",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L116"
     },
     {
       "id": "supabase_functions_nutritionist_index_toolchoice",
@@ -99,33 +125,7 @@
       "file_type": "code",
       "norm_label": "toolchoice",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L44"
-    },
-    {
-      "id": "supabase_functions_shared_rate_limit_ratelimitresult",
-      "label": "RateLimitResult",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "ratelimitresult",
-      "source_file": "supabase/functions/_shared/rate-limit.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "supabase_functions_shared_sse_ssestream",
-      "label": "SseStream",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "ssestream",
-      "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L3"
+      "source_location": "L45"
     },
     {
       "id": "supabase_functions_shared_tools_herbsearchinput",
@@ -141,30 +141,69 @@
       "source_location": "L10"
     },
     {
+      "id": "supabase_functions_shared_jev_jevstage",
+      "label": "JevStage",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "jevstage",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L37"
+    },
+    {
+      "id": "supabase_functions_shared_jev_stage",
+      "label": "Stage",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "stage",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "supabase_functions_shared_jev_stageanswers",
+      "label": "StageAnswers",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "stageanswers",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L104"
+    },
+    {
+      "id": "supabase_functions_shared_jev_stagedecision",
+      "label": "StageDecision",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "stagedecision",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L106"
+    },
+    {
       "id": "supabase_functions_shared_types_errorresponse",
       "label": "ErrorResponse",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 14,
+      "community_name": "types.ts",
       "file_type": "code",
       "norm_label": "errorresponse",
       "source_file": "supabase/functions/_shared/types.ts",
       "source_location": "L26"
-    },
-    {
-      "id": "supabase_functions_shared_types_herb",
-      "label": "Herb",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "herb",
-      "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L2"
     },
     {
       "id": "supabase_functions_shared_types_nutritionistmessage",
@@ -172,8 +211,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 14,
+      "community_name": "types.ts",
       "file_type": "code",
       "norm_label": "nutritionistmessage",
       "source_file": "supabase/functions/_shared/types.ts",
@@ -185,8 +224,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 14,
+      "community_name": "types.ts",
       "file_type": "code",
       "norm_label": "nutritionistrequest",
       "source_file": "supabase/functions/_shared/types.ts",
@@ -198,8 +237,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 14,
+      "community_name": "types.ts",
       "file_type": "code",
       "norm_label": "searchrequest",
       "source_file": "supabase/functions/_shared/types.ts",
@@ -211,203 +250,50 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 14,
+      "community_name": "types.ts",
       "file_type": "code",
       "norm_label": "validationerror",
       "source_file": "supabase/functions/_shared/validation.ts",
       "source_location": "L29"
     },
     {
-      "id": "supabase_functions_nutritionist_index_executetoolcall",
-      "label": "executeToolCall()",
+      "id": "supabase_functions_shared_types_herb",
+      "label": "Herb",
       "_callable": true,
+      "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 19,
+      "community_name": "herb-search.ts",
       "file_type": "code",
-      "norm_label": "executetoolcall()",
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L295"
+      "norm_label": "herb",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L2"
     },
     {
-      "id": "supabase_functions_nutritionist_index_handletoolcall",
-      "label": "handleToolCall()",
+      "id": "supabase_functions_shared_rate_limit_ratelimitresult",
+      "label": "RateLimitResult",
       "_callable": true,
+      "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 21,
+      "community_name": "rate-limit.ts",
       "file_type": "code",
-      "norm_label": "handletoolcall()",
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L282"
-    },
-    {
-      "id": "supabase_functions_nutritionist_index_herbformodel",
-      "label": "herbForModel()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "herbformodel()",
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L313"
-    },
-    {
-      "id": "supabase_functions_nutritionist_index_runagentloop",
-      "label": "runAgentLoop()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "runagentloop()",
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L159"
-    },
-    {
-      "id": "supabase_functions_nutritionist_index_runoneturn",
-      "label": "runOneTurn()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "runoneturn()",
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L219"
-    },
-    {
-      "id": "supabase_functions_shared_cors_getallowedorigin",
-      "label": "getAllowedOrigin()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "getallowedorigin()",
-      "source_file": "supabase/functions/_shared/cors.ts",
-      "source_location": "L12"
-    },
-    {
-      "id": "supabase_functions_shared_cors_handlecors",
-      "label": "handleCors()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "handlecors()",
-      "source_file": "supabase/functions/_shared/cors.ts",
-      "source_location": "L27"
-    },
-    {
-      "id": "supabase_functions_shared_embedding_generateembedding",
-      "label": "generateEmbedding()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "generateembedding()",
-      "source_file": "supabase/functions/_shared/embedding.ts",
-      "source_location": "L5"
-    },
-    {
-      "id": "supabase_functions_shared_herb_search_searchherbs",
-      "label": "searchHerbs()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "searchherbs()",
-      "source_file": "supabase/functions/_shared/herb-search.ts",
-      "source_location": "L16"
-    },
-    {
-      "id": "supabase_functions_shared_rate_limit_checkratelimit",
-      "label": "checkRateLimit()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "checkratelimit()",
+      "norm_label": "ratelimitresult",
       "source_file": "supabase/functions/_shared/rate-limit.ts",
-      "source_location": "L21"
+      "source_location": "L3"
     },
     {
-      "id": "supabase_functions_shared_rate_limit_getclientip",
-      "label": "getClientIp()",
+      "id": "supabase_functions_shared_sse_ssestream",
+      "label": "SseStream",
       "_callable": true,
+      "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
+      "community": 35,
+      "community_name": "runAgentLoop",
       "file_type": "code",
-      "norm_label": "getclientip()",
-      "source_file": "supabase/functions/_shared/rate-limit.ts",
-      "source_location": "L10"
-    },
-    {
-      "id": "supabase_functions_shared_rate_limit_isdevmode",
-      "label": "isDevMode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "isdevmode()",
-      "source_file": "supabase/functions/_shared/rate-limit.ts",
-      "source_location": "L32"
-    },
-    {
-      "id": "supabase_functions_shared_rerank_herbdocument",
-      "label": "herbDocument()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "herbdocument()",
-      "source_file": "supabase/functions/_shared/rerank.ts",
-      "source_location": "L15"
-    },
-    {
-      "id": "supabase_functions_shared_rerank_rerankherbs",
-      "label": "rerankHerbs()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "rerankherbs()",
-      "source_file": "supabase/functions/_shared/rerank.ts",
-      "source_location": "L28"
-    },
-    {
-      "id": "supabase_functions_shared_response_errorresponse",
-      "label": "errorResponse()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "errorresponse()",
-      "source_file": "supabase/functions/_shared/response.ts",
-      "source_location": "L20"
-    },
-    {
-      "id": "supabase_functions_shared_response_jsonresponse",
-      "label": "jsonResponse()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "jsonresponse()",
-      "source_file": "supabase/functions/_shared/response.ts",
+      "norm_label": "ssestream",
+      "source_file": "supabase/functions/_shared/sse.ts",
       "source_location": "L3"
     },
     {
@@ -421,78 +307,6 @@
       "norm_label": "createssestream()",
       "source_file": "supabase/functions/_shared/sse.ts",
       "source_location": "L22"
-    },
-    {
-      "id": "supabase_functions_shared_sse_sseheaders",
-      "label": "sseHeaders()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "sseheaders()",
-      "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L11"
-    },
-    {
-      "id": "supabase_functions_shared_sse_ssestream_close",
-      "label": ".close()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": ".close()",
-      "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L8"
-    },
-    {
-      "id": "supabase_functions_shared_sse_ssestream_send",
-      "label": ".send()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": ".send()",
-      "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "supabase_functions_shared_validation_validatenutritionistrequest",
-      "label": "validateNutritionistRequest()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "validatenutritionistrequest()",
-      "source_file": "supabase/functions/_shared/validation.ts",
-      "source_location": "L36"
-    },
-    {
-      "id": "supabase_functions_shared_validation_validatesearchrequest",
-      "label": "validateSearchRequest()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "validatesearchrequest()",
-      "source_file": "supabase/functions/_shared/validation.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "supabase_functions_shared_validation_validationerror_constructor",
-      "label": ".constructor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": ".constructor()",
-      "source_file": "supabase/functions/_shared/validation.ts",
-      "source_location": "L30"
     },
     {
       "id": "scripts_enrich_herbs_canonicalizetag",
@@ -613,6 +427,198 @@
       "norm_label": "toapiurl()",
       "source_file": "scripts/enrich_herbs.js",
       "source_location": "L39"
+    },
+    {
+      "id": "supabase_functions_shared_cors_getallowedorigin",
+      "label": "getAllowedOrigin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "getallowedorigin()",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "supabase_functions_shared_cors_handlecors",
+      "label": "handleCors()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "handlecors()",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L27"
+    },
+    {
+      "id": "supabase_functions_shared_response_errorresponse",
+      "label": "errorResponse()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "errorresponse()",
+      "source_file": "supabase/functions/_shared/response.ts",
+      "source_location": "L20"
+    },
+    {
+      "id": "supabase_functions_shared_response_jsonresponse",
+      "label": "jsonResponse()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "jsonresponse()",
+      "source_file": "supabase/functions/_shared/response.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "supabase_functions_shared_sse_sseheaders",
+      "label": "sseHeaders()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "sseheaders()",
+      "source_file": "supabase/functions/_shared/sse.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "supabase_functions_shared_jev_decidestage",
+      "label": "decideStage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "decidestage()",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L135"
+    },
+    {
+      "id": "supabase_functions_shared_jev_resolvestage",
+      "label": "resolveStage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "resolvestage()",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L111"
+    },
+    {
+      "id": "supabase_functions_shared_validation_validatenutritionistrequest",
+      "label": "validateNutritionistRequest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "types.ts",
+      "file_type": "code",
+      "norm_label": "validatenutritionistrequest()",
+      "source_file": "supabase/functions/_shared/validation.ts",
+      "source_location": "L36"
+    },
+    {
+      "id": "supabase_functions_shared_validation_validatesearchrequest",
+      "label": "validateSearchRequest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "types.ts",
+      "file_type": "code",
+      "norm_label": "validatesearchrequest()",
+      "source_file": "supabase/functions/_shared/validation.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "supabase_functions_shared_validation_validationerror_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "types.ts",
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "supabase/functions/_shared/validation.ts",
+      "source_location": "L30"
+    },
+    {
+      "id": "supabase_functions_shared_embedding_generateembedding",
+      "label": "generateEmbedding()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "generateembedding()",
+      "source_file": "supabase/functions/_shared/embedding.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "supabase_functions_shared_herb_search_searchherbs",
+      "label": "searchHerbs()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "searchherbs()",
+      "source_file": "supabase/functions/_shared/herb-search.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "supabase_functions_shared_rerank_herbdocument",
+      "label": "herbDocument()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "herbdocument()",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "supabase_functions_shared_rerank_rerankherbs",
+      "label": "rerankHerbs()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "rerankherbs()",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L28"
+    },
+    {
+      "id": "supabase_functions_shared_rate_limit_checkratelimit",
+      "label": "checkRateLimit()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "rate-limit.ts",
+      "file_type": "code",
+      "norm_label": "checkratelimit()",
+      "source_file": "supabase/functions/_shared/rate-limit.ts",
+      "source_location": "L21"
+    },
+    {
+      "id": "supabase_functions_shared_rate_limit_getclientip",
+      "label": "getClientIp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "rate-limit.ts",
+      "file_type": "code",
+      "norm_label": "getclientip()",
+      "source_file": "supabase/functions/_shared/rate-limit.ts",
+      "source_location": "L10"
     },
     {
       "id": "client_src_api_nutritionist_streamnutritionist",
@@ -855,6 +861,102 @@
       "source_location": "L15"
     },
     {
+      "id": "supabase_functions_nutritionist_index_executetoolcall",
+      "label": "executeToolCall()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": "executetoolcall()",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L350"
+    },
+    {
+      "id": "supabase_functions_nutritionist_index_handletoolcall",
+      "label": "handleToolCall()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": "handletoolcall()",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L337"
+    },
+    {
+      "id": "supabase_functions_nutritionist_index_herbformodel",
+      "label": "herbForModel()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": "herbformodel()",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L368"
+    },
+    {
+      "id": "supabase_functions_nutritionist_index_runagentloop",
+      "label": "runAgentLoop()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": "runagentloop()",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L203"
+    },
+    {
+      "id": "supabase_functions_nutritionist_index_runoneturn",
+      "label": "runOneTurn()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": "runoneturn()",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L272"
+    },
+    {
+      "id": "supabase_functions_shared_rate_limit_isdevmode",
+      "label": "isDevMode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": "isdevmode()",
+      "source_file": "supabase/functions/_shared/rate-limit.ts",
+      "source_location": "L32"
+    },
+    {
+      "id": "supabase_functions_shared_sse_ssestream_close",
+      "label": ".close()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": ".close()",
+      "source_file": "supabase/functions/_shared/sse.ts",
+      "source_location": "L8"
+    },
+    {
+      "id": "supabase_functions_shared_sse_ssestream_send",
+      "label": ".send()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "runAgentLoop",
+      "file_type": "code",
+      "norm_label": ".send()",
+      "source_file": "supabase/functions/_shared/sse.ts",
+      "source_location": "L7"
+    },
+    {
       "id": "testsprite_tests_tc001_test_semantic_herb_search_with_valid_query_and_limit_test_semantic_herb_search_with_valid_query_and_limit",
       "label": "test_semantic_herb_search_with_valid_query_and_limit()",
       "_callable": true,
@@ -876,7 +978,7 @@
       "file_type": "code",
       "norm_label": "test_semantic_herb_search_with_missing_or_empty_query()",
       "source_file": "testsprite_tests/TC002_test_semantic_herb_search_with_missing_or_empty_query.py",
-      "source_location": "L9"
+      "source_location": "L10"
     },
     {
       "id": "testsprite_tests_tc003_test_semantic_herb_search_with_invalid_limit_test_semantic_herb_search_with_invalid_limit",
@@ -912,7 +1014,7 @@
       "file_type": "code",
       "norm_label": "test_nutritionist_post_with_valid_messages_streaming_response()",
       "source_file": "testsprite_tests/TC008_test_nutritionist_post_with_valid_messages_streaming_response.py",
-      "source_location": "L7"
+      "source_location": "L8"
     },
     {
       "id": "testsprite_tests_tc009_test_nutritionist_post_with_invalid_json_body_test_nutritionist_post_with_invalid_json_body",
@@ -924,7 +1026,7 @@
       "file_type": "code",
       "norm_label": "test_nutritionist_post_with_invalid_json_body()",
       "source_file": "testsprite_tests/TC009_test_nutritionist_post_with_invalid_json_body.py",
-      "source_location": "L10"
+      "source_location": "L6"
     },
     {
       "id": "testsprite_tests_tc010_test_nutritionist_post_with_invalid_messages_array_test_nutritionist_post_with_invalid_messages_array",
@@ -936,7 +1038,19 @@
       "file_type": "code",
       "norm_label": "test_nutritionist_post_with_invalid_messages_array()",
       "source_file": "testsprite_tests/TC010_test_nutritionist_post_with_invalid_messages_array.py",
-      "source_location": "L9"
+      "source_location": "L10"
+    },
+    {
+      "id": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "label": "test_nutritionist_vague_first_message_diagnoses_without_herb_cards()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "requests",
+      "file_type": "code",
+      "norm_label": "test_nutritionist_vague_first_message_diagnoses_without_herb_cards()",
+      "source_file": "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
+      "source_location": "L7"
     },
     {
       "id": "scripts_verify_search_embed",
@@ -948,7 +1062,7 @@
       "file_type": "code",
       "norm_label": "embed()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L54"
+      "source_location": "L55"
     },
     {
       "id": "scripts_verify_search_herbdocument",
@@ -960,7 +1074,7 @@
       "file_type": "code",
       "norm_label": "herbdocument()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L44"
+      "source_location": "L45"
     },
     {
       "id": "scripts_verify_search_pad",
@@ -972,7 +1086,7 @@
       "file_type": "code",
       "norm_label": "pad()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L106"
+      "source_location": "L107"
     },
     {
       "id": "scripts_verify_search_rerank",
@@ -984,7 +1098,7 @@
       "file_type": "code",
       "norm_label": "rerank()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L84"
+      "source_location": "L85"
     },
     {
       "id": "scripts_verify_search_search",
@@ -996,7 +1110,19 @@
       "file_type": "code",
       "norm_label": "search()",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L62"
+      "source_location": "L63"
+    },
+    {
+      "id": "scripts_verify_stage_firststage",
+      "label": "firstStage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "firststage()",
+      "source_file": "scripts/verify_stage.js",
+      "source_location": "L146"
     },
     {
       "id": "scripts_compare_herbs_fetchherbnames",
@@ -1070,235 +1196,15 @@
       "source_location": "L1"
     },
     {
-      "id": "supabase_functions_nutritionist_index_tools",
-      "label": "TOOLS",
+      "id": "supabase_functions_nutritionist_index_stage_plans",
+      "label": "STAGE_PLANS",
       "_origin": "ast",
       "community": 0,
       "community_name": "nutritionist/index.ts",
       "file_type": "code",
-      "norm_label": "tools",
+      "norm_label": "stage_plans",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L29"
-    },
-    {
-      "id": "supabase_functions_search_index",
-      "label": "search/index.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "search/index.ts",
-      "source_file": "supabase/functions/search/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_cors",
-      "label": "cors.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "cors.ts",
-      "source_file": "supabase/functions/_shared/cors.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_cors_allowed_origins",
-      "label": "ALLOWED_ORIGINS",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "allowed_origins",
-      "source_file": "supabase/functions/_shared/cors.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_cors_cors_headers",
-      "label": "CORS_HEADERS",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "cors_headers",
-      "source_file": "supabase/functions/_shared/cors.ts",
-      "source_location": "L21"
-    },
-    {
-      "id": "supabase_functions_shared_cors_productionurl",
-      "label": "productionUrl",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "productionurl",
-      "source_file": "supabase/functions/_shared/cors.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "supabase_functions_shared_embedding",
-      "label": "embedding.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "embedding.ts",
-      "source_file": "supabase/functions/_shared/embedding.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_herb_search",
-      "label": "herb-search.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "herb-search.ts",
-      "source_file": "supabase/functions/_shared/herb-search.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_openai",
-      "label": "openai.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "openai.ts",
-      "source_file": "supabase/functions/_shared/openai.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_openai_apikey",
-      "label": "apiKey",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "apikey",
-      "source_file": "supabase/functions/_shared/openai.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "supabase_functions_shared_openai_max_iterations",
-      "label": "MAX_ITERATIONS",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "max_iterations",
-      "source_file": "supabase/functions/_shared/openai.ts",
-      "source_location": "L11"
-    },
-    {
-      "id": "supabase_functions_shared_openai_max_output_tokens",
-      "label": "MAX_OUTPUT_TOKENS",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "max_output_tokens",
-      "source_file": "supabase/functions/_shared/openai.ts",
-      "source_location": "L14"
-    },
-    {
-      "id": "supabase_functions_shared_openai_model",
-      "label": "MODEL",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "model",
-      "source_file": "supabase/functions/_shared/openai.ts",
-      "source_location": "L10"
-    },
-    {
-      "id": "supabase_functions_shared_openai_openai",
-      "label": "openai",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "openai",
-      "source_file": "supabase/functions/_shared/openai.ts",
-      "source_location": "L8"
-    },
-    {
-      "id": "supabase_functions_shared_rate_limit",
-      "label": "rate-limit.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "rate-limit.ts",
-      "source_file": "supabase/functions/_shared/rate-limit.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_rerank",
-      "label": "rerank.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "rerank.ts",
-      "source_file": "supabase/functions/_shared/rerank.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_rerank_apikey",
-      "label": "apiKey",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "apikey",
-      "source_file": "supabase/functions/_shared/rerank.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "supabase_functions_shared_response",
-      "label": "response.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "response.ts",
-      "source_file": "supabase/functions/_shared/response.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_sse",
-      "label": "sse.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "sse.ts",
-      "source_file": "supabase/functions/_shared/sse.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_supabase",
-      "label": "supabase.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "supabase.ts",
-      "source_file": "supabase/functions/_shared/supabase.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_supabase_supabaseadmin",
-      "label": "supabaseAdmin",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "supabaseadmin",
-      "source_file": "supabase/functions/_shared/supabase.ts",
-      "source_location": "L3"
+      "source_location": "L127"
     },
     {
       "id": "supabase_functions_shared_tools",
@@ -1343,28 +1249,6 @@
       "norm_label": "web_search_tool",
       "source_file": "supabase/functions/_shared/tools.ts",
       "source_location": "L42"
-    },
-    {
-      "id": "supabase_functions_shared_types",
-      "label": "types.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "types.ts",
-      "source_file": "supabase/functions/_shared/types.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "supabase_functions_shared_validation",
-      "label": "validation.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "file_type": "code",
-      "norm_label": "validation.ts",
-      "source_file": "supabase/functions/_shared/validation.ts",
-      "source_location": "L1"
     },
     {
       "id": "scripts_enrich_herbs",
@@ -2047,6 +1931,83 @@
       "source_location": "L8"
     },
     {
+      "id": "supabase_functions_search_index",
+      "label": "search/index.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "search/index.ts",
+      "source_file": "supabase/functions/search/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_cors",
+      "label": "cors.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "cors.ts",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_cors_allowed_origins",
+      "label": "ALLOWED_ORIGINS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "allowed_origins",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_cors_cors_headers",
+      "label": "CORS_HEADERS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "cors_headers",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L21"
+    },
+    {
+      "id": "supabase_functions_shared_cors_productionurl",
+      "label": "productionUrl",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "productionurl",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "supabase_functions_shared_response",
+      "label": "response.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "response.ts",
+      "source_file": "supabase/functions/_shared/response.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_sse",
+      "label": "sse.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "search/index.ts",
+      "file_type": "code",
+      "norm_label": "sse.ts",
+      "source_file": "supabase/functions/_shared/sse.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "agents_skills_vercel_react_native_skills_agents_3_1_animate_transform_and_opacity_instead_of_layout_properties",
       "label": "3.1 Animate Transform and Opacity Instead of Layout Properties",
       "_origin": "ast",
@@ -2723,6 +2684,72 @@
       "source_location": "L8"
     },
     {
+      "id": "supabase_functions_shared_jev",
+      "label": "jev.ts",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "jev.ts",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_jev_apikey",
+      "label": "apiKey",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "apikey",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "supabase_functions_shared_jev_decisionschema",
+      "label": "DecisionSchema",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "decisionschema",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L91"
+    },
+    {
+      "id": "supabase_functions_shared_jev_jev_stages",
+      "label": "JEV_STAGES",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "jev_stages",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L36"
+    },
+    {
+      "id": "supabase_functions_shared_jev_noulanswer",
+      "label": "NoulAnswer",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "noulanswer",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L90"
+    },
+    {
+      "id": "supabase_functions_shared_jev_questions",
+      "label": "QUESTIONS",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "jev.ts",
+      "file_type": "code",
+      "norm_label": "questions",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L42"
+    },
+    {
       "id": "agents_skills_supabase_postgres_best_practices_references_monitor_explain_analyze",
       "label": "monitor-explain-analyze.md",
       "_origin": "ast",
@@ -3021,6 +3048,28 @@
       "norm_label": "choose appropriate data types",
       "source_file": ".agents/skills/supabase-postgres-best-practices/references/schema-data-types.md",
       "source_location": "L8"
+    },
+    {
+      "id": "supabase_functions_shared_types",
+      "label": "types.ts",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "types.ts",
+      "file_type": "code",
+      "norm_label": "types.ts",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_validation",
+      "label": "validation.ts",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "types.ts",
+      "file_type": "code",
+      "norm_label": "validation.ts",
+      "source_file": "supabase/functions/_shared/validation.ts",
+      "source_location": "L1"
     },
     {
       "id": "agents_skills_supabase_postgres_best_practices_references_schema_foreign_key_indexes",
@@ -5135,6 +5184,83 @@
       "source_location": "L8"
     },
     {
+      "id": "supabase_functions_shared_embedding",
+      "label": "embedding.ts",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "embedding.ts",
+      "source_file": "supabase/functions/_shared/embedding.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_openai",
+      "label": "openai.ts",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "openai.ts",
+      "source_file": "supabase/functions/_shared/openai.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_openai_apikey",
+      "label": "apiKey",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "apikey",
+      "source_file": "supabase/functions/_shared/openai.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "supabase_functions_shared_openai_max_iterations",
+      "label": "MAX_ITERATIONS",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "max_iterations",
+      "source_file": "supabase/functions/_shared/openai.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "supabase_functions_shared_openai_max_output_tokens",
+      "label": "MAX_OUTPUT_TOKENS",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "max_output_tokens",
+      "source_file": "supabase/functions/_shared/openai.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "supabase_functions_shared_openai_model",
+      "label": "MODEL",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "model",
+      "source_file": "supabase/functions/_shared/openai.ts",
+      "source_location": "L10"
+    },
+    {
+      "id": "supabase_functions_shared_openai_openai",
+      "label": "openai",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "openai.ts",
+      "file_type": "code",
+      "norm_label": "openai",
+      "source_file": "supabase/functions/_shared/openai.ts",
+      "source_location": "L8"
+    },
+    {
       "id": "agents_skills_vercel_react_best_practices_rules_js_index_maps",
       "label": "js-index-maps.md",
       "_origin": "ast",
@@ -5433,6 +5559,39 @@
       "norm_label": "css content-visibility for long lists",
       "source_file": ".agents/skills/vercel-react-best-practices/rules/rendering-content-visibility.md",
       "source_location": "L8"
+    },
+    {
+      "id": "supabase_functions_shared_herb_search",
+      "label": "herb-search.ts",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "herb-search.ts",
+      "source_file": "supabase/functions/_shared/herb-search.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_rerank",
+      "label": "rerank.ts",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "rerank.ts",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_rerank_apikey",
+      "label": "apiKey",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "herb-search.ts",
+      "file_type": "code",
+      "norm_label": "apikey",
+      "source_file": "supabase/functions/_shared/rerank.ts",
+      "source_location": "L3"
     },
     {
       "id": "agents_skills_vercel_react_best_practices_rules_rendering_hoist_jsx",
@@ -6099,6 +6258,39 @@
       "norm_label": "use transitions for non-urgent updates",
       "source_file": ".agents/skills/vercel-react-best-practices/rules/rerender-transitions.md",
       "source_location": "L8"
+    },
+    {
+      "id": "supabase_functions_shared_rate_limit",
+      "label": "rate-limit.ts",
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "rate-limit.ts",
+      "file_type": "code",
+      "norm_label": "rate-limit.ts",
+      "source_file": "supabase/functions/_shared/rate-limit.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_supabase",
+      "label": "supabase.ts",
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "rate-limit.ts",
+      "file_type": "code",
+      "norm_label": "supabase.ts",
+      "source_file": "supabase/functions/_shared/supabase.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_shared_supabase_supabaseadmin",
+      "label": "supabaseAdmin",
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "rate-limit.ts",
+      "file_type": "code",
+      "norm_label": "supabaseadmin",
+      "source_file": "supabase/functions/_shared/supabase.ts",
+      "source_location": "L3"
     },
     {
       "id": "agents_skills_vercel_react_best_practices_rules_rerender_use_deferred_value",
@@ -10151,22 +10343,22 @@
       "source_location": "L1"
     },
     {
-      "id": "testsprite_tests_tc002_test_semantic_herb_search_with_missing_or_empty_query_rationale_10",
-      "label": "Verify that POST /search with a missing or empty query string returns a 400\u2026",
+      "id": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "label": "TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
       "_origin": "ast",
       "community": 36,
       "community_name": "requests",
-      "file_type": "rationale",
-      "norm_label": "verify that post /search with a missing or empty query string returns a 400...",
-      "source_file": "testsprite_tests/TC002_test_semantic_herb_search_with_missing_or_empty_query.py",
-      "source_location": "L10"
+      "file_type": "code",
+      "norm_label": "tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
+      "source_file": "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
+      "source_location": "L1"
     },
     {
       "id": "testsprite_tests_testsprite_mcp_test_report",
       "label": "testsprite-mcp-test-report.md",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "testsprite-mcp-test-report.md",
@@ -10178,7 +10370,7 @@
       "label": "1\ufe0f\u20e3 Document Metadata",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "1\ufe0f\u20e3 document metadata",
@@ -10190,7 +10382,7 @@
       "label": "2\ufe0f\u20e3 Requirement Validation Summary",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "2\ufe0f\u20e3 requirement validation summary",
@@ -10202,139 +10394,103 @@
       "label": "3\ufe0f\u20e3 Coverage & Matching Metrics",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "3\ufe0f\u20e3 coverage & matching metrics",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L86"
+      "source_location": "L56"
     },
     {
       "id": "testsprite_tests_testsprite_mcp_test_report_4_key_gaps_risks",
       "label": "4\ufe0f\u20e3 Key Gaps / Risks",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "4\ufe0f\u20e3 key gaps / risks",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L97"
+      "source_location": "L66"
     },
     {
-      "id": "testsprite_tests_testsprite_mcp_test_report_requirement_ai_nutritionist_chat_post_nutritionist_sse",
-      "label": "Requirement: AI Nutritionist Chat (`POST /nutritionist`, SSE)",
+      "id": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_request_validation",
+      "label": "Requirement: Nutritionist request validation",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "requirement: ai nutritionist chat (`post /nutritionist`, sse)",
+      "norm_label": "requirement: nutritionist request validation",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L56"
+      "source_location": "L40"
     },
     {
-      "id": "testsprite_tests_testsprite_mcp_test_report_requirement_herb_semantic_search_post_search",
-      "label": "Requirement: Herb Semantic Search (`POST /search`)",
+      "id": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_stage_gate_cards_only_in_treatment",
+      "label": "Requirement: Nutritionist stage gate (cards only in treatment)",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "requirement: herb semantic search (`post /search`)",
+      "norm_label": "requirement: nutritionist stage gate (cards only in treatment)",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L17"
-    },
-    {
-      "id": "testsprite_tests_testsprite_mcp_test_report_test_tc001_test_semantic_herb_search_with_valid_query_and_limit",
-      "label": "Test TC001 test_semantic_herb_search_with_valid_query_and_limit",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "test tc001 test_semantic_herb_search_with_valid_query_and_limit",
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L20"
-    },
-    {
-      "id": "testsprite_tests_testsprite_mcp_test_report_test_tc002_test_semantic_herb_search_with_missing_or_empty_query",
-      "label": "Test TC002 test_semantic_herb_search_with_missing_or_empty_query",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "test tc002 test_semantic_herb_search_with_missing_or_empty_query",
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L29"
-    },
-    {
-      "id": "testsprite_tests_testsprite_mcp_test_report_test_tc003_test_semantic_herb_search_with_invalid_limit",
-      "label": "Test TC003 test_semantic_herb_search_with_invalid_limit",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "test tc003 test_semantic_herb_search_with_invalid_limit",
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L38"
-    },
-    {
-      "id": "testsprite_tests_testsprite_mcp_test_report_test_tc004_test_cors_preflight_on_search_endpoint",
-      "label": "Test TC004 test_cors_preflight_on_search_endpoint",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "test tc004 test_cors_preflight_on_search_endpoint",
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L47"
+      "source_location": "L15"
     },
     {
       "id": "testsprite_tests_testsprite_mcp_test_report_test_tc008_test_nutritionist_post_with_valid_messages_streaming_response",
       "label": "Test TC008 test_nutritionist_post_with_valid_messages_streaming_response",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "test tc008 test_nutritionist_post_with_valid_messages_streaming_response",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L59"
+      "source_location": "L17"
     },
     {
       "id": "testsprite_tests_testsprite_mcp_test_report_test_tc009_test_nutritionist_post_with_invalid_json_body",
       "label": "Test TC009 test_nutritionist_post_with_invalid_json_body",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "test tc009 test_nutritionist_post_with_invalid_json_body",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L68"
+      "source_location": "L42"
     },
     {
       "id": "testsprite_tests_testsprite_mcp_test_report_test_tc010_test_nutritionist_post_with_invalid_messages_array",
       "label": "Test TC010 test_nutritionist_post_with_invalid_messages_array",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "test tc010 test_nutritionist_post_with_invalid_messages_array",
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L77"
+      "source_location": "L49"
+    },
+    {
+      "id": "testsprite_tests_testsprite_mcp_test_report_test_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "label": "Test TC011 test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "_origin": "ast",
+      "community": 37,
+      "community_name": "TestSprite AI Testing Report(MCP)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "test tc011 test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
+      "source_location": "L28"
     },
     {
       "id": "testsprite_tests_testsprite_mcp_test_report_testsprite_ai_testing_report_mcp",
       "label": "TestSprite AI Testing Report(MCP)",
       "_origin": "ast",
       "community": 37,
-      "community_name": "Requirement: Herb Semantic Search (`POST /search`)",
+      "community_name": "TestSprite AI Testing Report(MCP)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "testsprite ai testing report(mcp)",
@@ -15246,7 +15402,7 @@
       "file_type": "code",
       "norm_label": "openai",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L25"
+      "source_location": "L26"
     },
     {
       "id": "scripts_verify_search_queries",
@@ -15257,7 +15413,29 @@
       "file_type": "code",
       "norm_label": "queries",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L33"
+      "source_location": "L34"
+    },
+    {
+      "id": "scripts_verify_stage",
+      "label": "verify_stage.js",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "verify_stage.js",
+      "source_file": "scripts/verify_stage.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_verify_stage_fixtures",
+      "label": "FIXTURES",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "fixtures",
+      "source_file": "scripts/verify_stage.js",
+      "source_location": "L32"
     },
     {
       "id": "package_json_ref_supabase_supabase_js",
@@ -20054,21 +20232,6 @@
       "source_url": null
     },
     {
-      "id": "docs_herb_catalog_pipeline_diagram",
-      "label": "Herb Catalog Pipeline Diagram",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 2,
-      "community_name": "nutritionist Edge Function",
-      "contributor": null,
-      "file_type": "document",
-      "norm_label": "herb catalog pipeline diagram",
-      "source_file": "docs/herb-catalog-pipeline.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "readme_project_structure",
       "label": "README Project Structure",
       "_origin": "semantic",
@@ -20139,6 +20302,21 @@
       "contributor": null,
       "file_type": "concept",
       "norm_label": "scripts/ingest.js (pipeline diagram)",
+      "source_file": "docs/herb-catalog-pipeline.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "docs_herb_catalog_pipeline_diagram",
+      "label": "Herb Catalog Pipeline Diagram",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 64,
+      "community_name": "ingest.js",
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "herb catalog pipeline diagram",
       "source_file": "docs/herb-catalog-pipeline.md",
       "source_location": null,
       "source_url": null
@@ -20339,30 +20517,6 @@
       "source_url": null
     },
     {
-      "id": "ref_jsr_supabase",
-      "label": "ref_jsr_supabase",
-      "_origin": "semantic",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_jsr_supabase",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_npm_openai_6",
-      "label": "ref_npm_openai_6",
-      "_origin": "semantic",
-      "community": 0,
-      "community_name": "nutritionist/index.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_npm_openai_6",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "ref_npm_zod",
       "label": "ref_npm_zod",
       "_origin": "semantic",
@@ -20387,18 +20541,6 @@
       "type": "external"
     },
     {
-      "id": "time",
-      "label": "time",
-      "_origin": "semantic",
-      "community": 11,
-      "community_name": "time",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "time",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "typing",
       "label": "typing",
       "_origin": "semantic",
@@ -20407,6 +20549,42 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "typing",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_npm_openai_6",
+      "label": "ref_npm_openai_6",
+      "_origin": "semantic",
+      "community": 18,
+      "community_name": "openai.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_npm_openai_6",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_jsr_supabase",
+      "label": "ref_jsr_supabase",
+      "_origin": "semantic",
+      "community": 21,
+      "community_name": "rate-limit.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_jsr_supabase",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "traceback",
+      "label": "traceback",
+      "_origin": "semantic",
+      "community": 22,
+      "community_name": "traceback",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "traceback",
       "source_file": "",
       "type": "external"
     },
@@ -20483,14 +20661,14 @@
       "type": "external"
     },
     {
-      "id": "traceback",
-      "label": "traceback",
+      "id": "time",
+      "label": "time",
       "_origin": "semantic",
       "community": 36,
       "community_name": "requests",
       "external": true,
       "file_type": "concept",
-      "norm_label": "traceback",
+      "norm_label": "time",
       "source_file": "",
       "type": "external"
     },
@@ -20551,6 +20729,17 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "client_src_pages_authpage",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "json_decoder",
+      "label": "json_decoder",
+      "community": 36,
+      "community_name": "requests",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "json_decoder",
       "source_file": "",
       "type": "external"
     }
@@ -20793,7 +20982,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -21225,7 +21414,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L302",
+      "source_location": "L357",
       "weight": 1.0
     },
     {
@@ -21237,7 +21426,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L285",
+      "source_location": "L340",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index_runagentloop",
+      "target": "supabase_functions_shared_jev_decidestage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L213",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index_runagentloop",
+      "target": "supabase_functions_shared_rate_limit_isdevmode",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L215",
       "weight": 1.0
     },
     {
@@ -21249,7 +21462,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L180",
+      "source_location": "L229",
       "weight": 1.0
     },
     {
@@ -21261,7 +21474,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L199",
+      "source_location": "L250",
       "weight": 1.0
     },
     {
@@ -21273,7 +21486,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L270",
+      "source_location": "L325",
       "weight": 1.0
     },
     {
@@ -21310,6 +21523,18 @@
       "context": "call",
       "source_file": "supabase/functions/_shared/herb-search.ts",
       "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev_decidestage",
+      "target": "supabase_functions_shared_jev_resolvestage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -21381,7 +21606,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L159",
+      "source_location": "L203",
       "weight": 1.0
     },
     {
@@ -21890,7 +22115,7 @@
     },
     {
       "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_shared_sse_createssestream",
+      "target": "supabase_functions_shared_jev_decidestage",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -21898,6 +22123,30 @@
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
       "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_shared_jev_stage",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_shared_sse_createssestream",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -21909,7 +22158,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -21921,7 +22170,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -21933,7 +22182,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -21945,7 +22194,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -21957,7 +22206,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -21969,7 +22218,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -22225,6 +22474,18 @@
       "weight": 1.0
     },
     {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_types_nutritionistmessage",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "supabase_functions_shared_rate_limit",
       "target": "supabase_functions_shared_supabase_supabaseadmin",
       "relation": "imports",
@@ -22357,18 +22618,6 @@
       "weight": 1.0
     },
     {
-      "source": "testsprite_tests_tc001_test_semantic_herb_search_with_valid_query_and_limit",
-      "target": "traceback",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "testsprite_tests/TC001_test_semantic_herb_search_with_valid_query_and_limit.py",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
       "source": "testsprite_tests_tc002_test_semantic_herb_search_with_missing_or_empty_query",
       "target": "requests",
       "relation": "imports",
@@ -22429,18 +22678,6 @@
       "weight": 1.0
     },
     {
-      "source": "testsprite_tests_tc004_test_cors_preflight_on_search_endpoint",
-      "target": "sys",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "testsprite_tests/TC004_test_cors_preflight_on_search_endpoint.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
       "source": "testsprite_tests_tc008_test_nutritionist_post_with_valid_messages_streaming_response",
       "target": "requests",
       "relation": "imports",
@@ -22466,7 +22703,7 @@
     },
     {
       "source": "testsprite_tests_tc008_test_nutritionist_post_with_valid_messages_streaming_response",
-      "target": "sys",
+      "target": "time",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22514,13 +22751,37 @@
     },
     {
       "source": "testsprite_tests_tc010_test_nutritionist_post_with_invalid_messages_array",
-      "target": "sys",
+      "target": "json",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "testsprite_tests/TC010_test_nutritionist_post_with_invalid_messages_array.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "target": "requests",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
       "source_location": "L2",
       "weight": 1.0
     },
@@ -23181,7 +23442,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -23193,7 +23454,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L12",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_verify_stage",
+      "target": "ref_dotenv",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/verify_stage.js",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -23234,7 +23507,7 @@
     },
     {
       "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_shared_sse",
+      "target": "supabase_functions_shared_jev",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -23246,7 +23519,7 @@
     },
     {
       "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_shared_rate_limit",
+      "target": "supabase_functions_shared_sse",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -23258,6 +23531,18 @@
     },
     {
       "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_shared_rate_limit",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
       "target": "supabase_functions_shared_types",
       "relation": "imports_from",
       "_origin": "ast",
@@ -23265,7 +23550,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L27",
+      "source_location": "L28",
       "type_only": true,
       "weight": 1.0
     },
@@ -23452,6 +23737,31 @@
       "weight": 1.0
     },
     {
+      "source": "supabase_functions_shared_jev",
+      "target": "ref_npm_zod",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_types",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L2",
+      "type_only": true,
+      "weight": 1.0
+    },
+    {
       "source": "supabase_functions_shared_openai",
       "target": "ref_npm_openai_6",
       "relation": "imports_from",
@@ -23550,14 +23860,38 @@
       "weight": 1.0
     },
     {
-      "source": "testsprite_tests_tc009_test_nutritionist_post_with_invalid_json_body",
+      "source": "testsprite_tests_tc004_test_cors_preflight_on_search_endpoint",
       "target": "requests_exceptions",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "testsprite_tests/TC009_test_nutritionist_post_with_invalid_json_body.py",
+      "source_file": "testsprite_tests/TC004_test_cors_preflight_on_search_endpoint.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_tc010_test_nutritionist_post_with_invalid_messages_array",
+      "target": "json_decoder",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "testsprite_tests/TC010_test_nutritionist_post_with_invalid_messages_array.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "target": "requests_exceptions",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
       "source_location": "L3",
       "weight": 1.0
     },
@@ -34954,7 +35288,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L106",
+      "source_location": "L107",
       "weight": 1.0
     },
     {
@@ -34965,7 +35299,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -34976,7 +35310,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -34987,7 +35321,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -34998,7 +35332,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -35009,7 +35343,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L62",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -35020,7 +35354,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/verify_search.js",
-      "source_location": "L84",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_verify_stage",
+      "target": "scripts_verify_stage_firststage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/verify_stage.js",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_verify_stage",
+      "target": "scripts_verify_stage_fixtures",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/verify_stage.js",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -35894,46 +36250,35 @@
     },
     {
       "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_nutritionist_index_stageplan",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_nutritionist_index_stage_plans",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
       "target": "supabase_functions_nutritionist_index_runoneturn",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L219",
-      "weight": 1.0
-    },
-    {
-      "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_nutritionist_index_handletoolcall",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L282",
-      "weight": 1.0
-    },
-    {
-      "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_nutritionist_index_tools",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_nutritionist_index_executetoolcall",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L295",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -35944,18 +36289,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L31",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
       "source": "supabase_functions_nutritionist_index",
-      "target": "supabase_functions_nutritionist_index_herbformodel",
+      "target": "supabase_functions_nutritionist_index_handletoolcall",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L313",
+      "source_location": "L337",
       "weight": 1.0
     },
     {
@@ -35966,7 +36311,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L36",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_nutritionist_index_executetoolcall",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L350",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_nutritionist_index_herbformodel",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L368",
       "weight": 1.0
     },
     {
@@ -35977,7 +36344,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L42",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_nutritionist_index",
+      "target": "supabase_functions_nutritionist_index_agenttool",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/nutritionist/index.ts",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -35988,7 +36366,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -36110,6 +36488,127 @@
       "confidence_score": 1.0,
       "source_file": "supabase/functions/_shared/herb-search.ts",
       "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_stageanswers",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_stagedecision",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_resolvestage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_decidestage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L135",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_jev_stages",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_jevstage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_apikey",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_stage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_questions",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_noulanswer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_shared_jev",
+      "target": "supabase_functions_shared_jev_decisionschema",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "supabase/functions/_shared/jev.ts",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -36582,7 +37081,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/TC002_test_semantic_herb_search_with_missing_or_empty_query.py",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -36615,7 +37114,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/TC008_test_nutritionist_post_with_valid_messages_streaming_response.py",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -36626,7 +37125,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/TC009_test_nutritionist_post_with_invalid_json_body.py",
-      "source_location": "L10",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -36637,7 +37136,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/TC010_test_nutritionist_post_with_invalid_messages_array.py",
-      "source_location": "L9",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "target": "testsprite_tests_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -36653,7 +37163,51 @@
     },
     {
       "source": "testsprite_tests_testsprite_mcp_test_report_2_requirement_validation_summary",
-      "target": "testsprite_tests_testsprite_mcp_test_report_requirement_herb_semantic_search_post_search",
+      "target": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_stage_gate_cards_only_in_treatment",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_testsprite_mcp_test_report_2_requirement_validation_summary",
+      "target": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_request_validation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_request_validation",
+      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc009_test_nutritionist_post_with_invalid_json_body",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_request_validation",
+      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc010_test_nutritionist_post_with_invalid_messages_array",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_stage_gate_cards_only_in_treatment",
+      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc008_test_nutritionist_post_with_valid_messages_streaming_response",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -36663,91 +37217,14 @@
       "weight": 1.0
     },
     {
-      "source": "testsprite_tests_testsprite_mcp_test_report_2_requirement_validation_summary",
-      "target": "testsprite_tests_testsprite_mcp_test_report_requirement_ai_nutritionist_chat_post_nutritionist_sse",
+      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_nutritionist_stage_gate_cards_only_in_treatment",
+      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L56",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_ai_nutritionist_chat_post_nutritionist_sse",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc008_test_nutritionist_post_with_valid_messages_streaming_response",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L59",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_ai_nutritionist_chat_post_nutritionist_sse",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc009_test_nutritionist_post_with_invalid_json_body",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_ai_nutritionist_chat_post_nutritionist_sse",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc010_test_nutritionist_post_with_invalid_messages_array",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L77",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_herb_semantic_search_post_search",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc001_test_semantic_herb_search_with_valid_query_and_limit",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L20",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_herb_semantic_search_post_search",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc002_test_semantic_herb_search_with_missing_or_empty_query",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_herb_semantic_search_post_search",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc003_test_semantic_herb_search_with_invalid_limit",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L38",
-      "weight": 1.0
-    },
-    {
-      "source": "testsprite_tests_testsprite_mcp_test_report_requirement_herb_semantic_search_post_search",
-      "target": "testsprite_tests_testsprite_mcp_test_report_test_tc004_test_cors_preflight_on_search_endpoint",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L47",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -36780,7 +37257,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L86",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -36791,7 +37268,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "testsprite_tests/testsprite-mcp-test-report.md",
-      "source_location": "L97",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -37081,17 +37558,6 @@
       "weight": 1.0
     },
     {
-      "source": "testsprite_tests_tc002_test_semantic_herb_search_with_missing_or_empty_query_rationale_10",
-      "target": "testsprite_tests_tc002_test_semantic_herb_search_with_missing_or_empty_query_test_semantic_herb_search_with_missing_or_empty_query",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "testsprite_tests/TC002_test_semantic_herb_search_with_missing_or_empty_query.py",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
       "source": "agents_skills_seo_audit_skill",
       "target": "agents_skills_seo_audit_references_international_seo",
       "relation": "references",
@@ -37225,7 +37691,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L301",
+      "source_location": "L356",
       "weight": 1.0
     },
     {
@@ -37237,7 +37703,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L194",
+      "source_location": "L214",
       "weight": 1.0
     },
     {
@@ -37249,7 +37715,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L195",
+      "source_location": "L246",
       "weight": 1.0
     },
     {
@@ -37273,7 +37739,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "scripts/verify_search.js",
-      "source_location": "L94",
+      "source_location": "L95",
       "weight": 1.0
     },
     {
@@ -37285,7 +37751,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "supabase/functions/nutritionist/index.ts",
-      "source_location": "L304",
+      "source_location": "L359",
       "weight": 1.0
     },
     {
@@ -38436,5 +38902,5 @@
       "source_file": "docs/architecture.md"
     }
   ],
-  "built_at_commit": "5a5d6ed2d8d3cfa9238a60c062ba8d23a3007a3b"
+  "built_at_commit": "c03ff1c8fd65972365b013ffc53363295cfe83ad"
 }

@@ -1,110 +1,116 @@
 import requests
-import time
 import json
-from requests.exceptions import RequestException
+import time
 
 BASE_URL = "http://localhost:54321/functions/v1"
-PATH = "/nutritionist"
-URL = BASE_URL + PATH
+TIMEOUT = (10, 120)  # connect timeout 10s, read timeout 120s
 
 def test_nutritionist_post_with_valid_messages_streaming_response():
+    url = f"{BASE_URL}/nutritionist"
     headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "text/event-stream"
     }
-    payload = {
-        "messages": [
-            {"role": "user", "content": "I have trouble sleeping. Can you suggest herbs or routines to help me sleep better?"}
-        ]
-    }
+    messages = [
+        {"role": "user", "content": "I can't sleep"},
+        {"role": "assistant", "content": "That sounds exhausting. A few questions so I can point you the right way: is it trouble falling asleep or staying asleep? How long has it been going on? And are you taking any medications?"},
+        {"role": "user", "content": "Staying asleep, I wake at 3am with racing thoughts. About a month. No meds, not pregnant."}
+    ]
+    payload = {"messages": messages}
 
-    # Use generous read timeout per PRD: connect timeout 10s, read timeout 120s
-    timeout = (10, 120)
     resp = None
-
     try:
-        resp = requests.post(URL, headers=headers, json=payload, stream=True, timeout=timeout)
-    except RequestException as e:
-        raise AssertionError(f"Request to {URL} failed: {e}")
+        try:
+            resp = requests.post(url, headers=headers, data=json.dumps(payload), stream=True, timeout=TIMEOUT)
+        except requests.RequestException as e:
+            assert False, f"Request failed: {e}"
 
-    try:
-        # Basic response assertions
-        assert resp.status_code == 200, f"Expected status 200, got {resp.status_code}"
+        assert resp is not None, "No response received"
+        assert resp.status_code == 200, f"Expected 200 OK, got {resp.status_code}"
         content_type = resp.headers.get("Content-Type", "")
-        assert "text/event-stream" in content_type, f"Expected Content-Type to include 'text/event-stream', got '{content_type}'"
+        assert content_type.startswith("text/event-stream"), f"Expected Content-Type text/event-stream, got {content_type}"
 
-        # Read SSE stream until we see a 'done' event or hit our timeout
-        start = time.time()
-        overall_timeout = 120  # seconds, as suggested by PRD
-        current_lines = []
-        seen_events = []
-        # We'll capture at least one text_delta; expect tool_use, herb_results, text_delta, done
-        expected_events = {"tool_use", "herb_results", "text_delta", "done"}
+        events = []
+        cur_event = {"event": None, "data_lines": []}
+        start_time = time.time()
 
-        def process_event_block(lines):
-            event_name = None
-            data_lines = []
-            for l in lines:
-                if l.startswith("event:"):
-                    event_name = l[len("event:"):].strip()
-                elif l.startswith("data:"):
-                    data_lines.append(l[len("data:"):].lstrip())
-            data_str = "\n".join(data_lines).strip()
-            parsed = None
-            if data_str:
+        for raw_line in resp.iter_lines(decode_unicode=True):
+            # Safety timeout in case server stalls beyond socket read timeout
+            if time.time() - start_time > 125:
+                assert False, "Streaming read exceeded allowed time"
+
+            if raw_line is None:
+                continue
+            line = raw_line.strip()
+            if line == "":
+                # end of an event
+                if cur_event["event"] is not None or cur_event["data_lines"]:
+                    data_text = "\n".join(cur_event["data_lines"]).strip()
+                    parsed_data = None
+                    if data_text != "":
+                        try:
+                            parsed_data = json.loads(data_text)
+                        except Exception:
+                            # leave as raw string if not JSON
+                            parsed_data = data_text
+                    events.append({"event": cur_event["event"] or "message", "data": parsed_data})
+                cur_event = {"event": None, "data_lines": []}
+                # stop if done event seen
+                if any(ev["event"] == "done" for ev in events):
+                    break
+                continue
+
+            if line.startswith("event:"):
+                cur_event["event"] = line[len("event:"):].strip()
+            elif line.startswith("data:"):
+                cur_event["data_lines"].append(line[len("data:"):].lstrip())
+            else:
+                # Unexpected line; treat as data
+                cur_event["data_lines"].append(line)
+
+        # Finalize any pending event if stream ended without blank line
+        if (cur_event["event"] is not None or cur_event["data_lines"]) and not any(ev for ev in events if ev.get("data") == cur_event.get("data_lines")):
+            data_text = "\n".join(cur_event["data_lines"]).strip()
+            parsed_data = None
+            if data_text != "":
                 try:
-                    parsed = json.loads(data_str)
+                    parsed_data = json.loads(data_text)
                 except Exception:
-                    parsed = data_str
-            return event_name, parsed
+                    parsed_data = data_text
+            events.append({"event": cur_event["event"] or "message", "data": parsed_data})
 
-        # iterate over response lines
-        try:
-            for raw_line in resp.iter_lines(decode_unicode=True):
-                # Check timeout
-                if time.time() - start > overall_timeout:
-                    raise AssertionError(f"Did not receive 'done' event within {overall_timeout} seconds")
+        # Basic expectations
+        assert len(events) > 0, "No SSE events received"
 
-                # iter_lines can yield None or empty strings; handle accordingly
-                if raw_line is None:
-                    continue
-                line = raw_line.rstrip("\r\n")
-                if line == "":
-                    # blank line indicates end of event
-                    if current_lines:
-                        name, data = process_event_block(current_lines)
-                        if name:
-                            seen_events.append(name)
-                        current_lines = []
-                        # Stop early if we saw done
-                        if name == "done":
-                            break
-                    continue
-                else:
-                    current_lines.append(line)
+        # First event must be 'stage' with {"stage": "treatment"}
+        first = events[0]
+        assert first["event"] == "stage", f"First event expected to be 'stage', got '{first['event']}'"
+        assert isinstance(first["data"], dict), f"Stage event data should be JSON object, got {type(first['data']).__name__}"
+        assert first["data"].get("stage") == "treatment", f"Expected stage 'treatment', got {first['data'].get('stage')}"
 
-            # If loop ended but there is an unprocessed block, process it
-            if current_lines:
-                name, data = process_event_block(current_lines)
-                if name:
-                    seen_events.append(name)
-        finally:
-            resp.close()
+        # Ensure presence and order: tool_use before herb_results before done
+        indices = {}
+        for idx, ev in enumerate(events):
+            if ev["event"] not in indices:
+                indices[ev["event"]] = idx
 
-        seen_set = set(seen_events)
-        missing = expected_events - seen_set
-        assert not missing, f"Missing expected SSE events: {missing}. Seen events sequence: {seen_events}"
+        assert "tool_use" in indices, "Missing tool_use event"
+        assert "herb_results" in indices, "Missing herb_results event"
+        assert "done" in indices, "Missing done event"
 
-        # Ensure ordering: tool_use before herb_results before done
-        try:
-            idx_tool = seen_events.index("tool_use")
-            idx_herbs = seen_events.index("herb_results")
-            idx_done = seen_events.index("done")
-            assert idx_tool < idx_herbs < idx_done, f"Event ordering incorrect: {seen_events}"
-        except ValueError as e:
-            raise AssertionError(f"Expected ordering check failed due to missing event: {e}")
+        assert indices["tool_use"] < indices["herb_results"], "tool_use should come before herb_results"
+        assert indices["herb_results"] < indices["done"], "herb_results should come before done"
 
-        # Ensure at least one text_delta event appears (could be multiple)
-        assert "text_delta" in seen_set, "Expected at least one text_delta event in the stream"
+        # herb_results must contain non-empty herbs array
+        herb_ev = events[indices["herb_results"]]
+        assert isinstance(herb_ev["data"], dict), "herb_results data should be JSON object"
+        herbs = herb_ev["data"].get("herbs")
+        assert isinstance(herbs, list), f"herbs should be a list, got {type(herbs).__name__}"
+        assert len(herbs) > 0, "herb_results.herbs should be non-empty"
+
+        # At least one text_delta event must exist
+        text_delta_exists = any(ev["event"] == "text_delta" for ev in events)
+        assert text_delta_exists, "No text_delta events received"
 
     finally:
         if resp is not None:
@@ -115,4 +121,3 @@ def test_nutritionist_post_with_valid_messages_streaming_response():
 
 if __name__ == "__main__":
     test_nutritionist_post_with_valid_messages_streaming_response()
-    print("TC008 passed.")

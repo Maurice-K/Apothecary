@@ -15,7 +15,8 @@ There are no user accounts. Community recipes, login/signup and the Expo mobile 
 ```
 client/ (React 19 + Vite, Vercel) ─> Supabase Edge Functions (Deno) ─┬─> OpenAI (embeddings, Responses API)
                                        search · nutritionist          ├─> Supabase Postgres (pgvector)
-                                                                      └─> Cohere (rerank)
+                                                                      ├─> Cohere (rerank)
+                                                                      └─> Jev via TypeSafe (nutritionist stage gate)
 ```
 
 Two Edge Functions in `supabase/functions/`, sharing code from `_shared/`:
@@ -28,10 +29,11 @@ Two Edge Functions in `supabase/functions/`, sharing code from `_shared/`:
 **Search flow:** query → `search` → `_shared/herb-search.ts` (`searchHerbs` prepends `"Herb for "`, embeds, threshold 0.3) → `match_herbs` (25 candidates) → `_shared/rerank.ts` (Cohere `rerank-v4.0-fast` on the raw query, top `limit`, adds `relevance`) → herb cards. If the reranker fails (no key, HTTP error, 2 s timeout), search returns cosine order without `relevance`. The nutritionist's `herb_search` goes through the same `searchHerbs`. The web client's `useSearch` makes one `search` call per query.
 
 **Nutritionist flow** (`supabase/functions/nutritionist/index.ts`):
-- Model from `_shared/openai.ts`: `OPENAI_MODEL` or `gpt-5-mini`, `reasoning.effort: "low"`, `MAX_ITERATIONS = 6`, `MAX_OUTPUT_TOKENS = 8192`. System prompt is the inline `SYSTEM_PROMPT` constant.
-- Iteration 0 of the *first* user turn forces `herb_search` via `tool_choice`; later iterations use `auto` and chain with `previous_response_id`. On hitting the cap, one final turn runs with `tool_choice: "none"`.
+- Model from `_shared/openai.ts`: `OPENAI_MODEL` or `gpt-5-mini`, `reasoning.effort: "low"`, `MAX_ITERATIONS = 6`, `MAX_OUTPUT_TOKENS = 8192`. Instructions are `BASE_PROMPT` plus the current stage's prompt block (inline constants).
+- **Stage gate:** before the loop, `decideStage()` (`_shared/jev.ts`) asks Jev (TypeSafe's decision model, via TypeSafe's System One API at `api.typesafe.ai/v1/systemone`) which stage the conversation is in. Code thresholds turn its probabilities into `diagnostic` | `treatment` | `aftercare` | `chat` | `emergency`. `STAGE_PLANS` maps each stage to a prompt block and tool set. `herb_search` (and so the herb cards) is only offered in `treatment`, where iteration 0 forces it. `diagnostic`, `chat` and `emergency` get no tools, and `aftercare` gets `web_search` only. A missing key, an error, or a 3 s timeout gives `fallback`. On the first message, fallback uses the `diagnostic` plan, so there are no cards. Later turns get both tools on `auto` and a prompt telling the model to diagnose first. Tune thresholds with `scripts/verify_stage.js`.
+- Later iterations use `auto` and chain with `previous_response_id`. On hitting the cap, one final turn runs with `tool_choice: "none"`.
 - Tools (`_shared/tools.ts`): `herb_search` (zod-validated, `limit` default 3, max 10; results stripped of `id`/`how_to_use`/`similarity`/`relevance` before going back to the model) and hosted `web_search` (`search_context_size: "low"`). Tool calls run in parallel.
-- SSE events (`_shared/sse.ts`): `text_delta {delta}` | `tool_use {name, input}` | `herb_results {herbs}` | `done {}` | `error {message}`.
+- SSE events (`_shared/sse.ts`): `stage {stage}` (once, first; the client ignores it) | `text_delta {delta}` | `tool_use {name, input}` | `herb_results {herbs}` | `done {}` | `error {message}`.
 - Client side (`useNutritionist.js`): buffers text + the **last** `herb_results` batch until `done`, drives a phase indicator (thinking → searching → researching → composing), then `ChatMessage.jsx` typewriter-renders markdown and shows herb cards after typing finishes. Text is not rendered progressively as it streams.
 
 **Data pipeline:** Chioma's Shopify storefront (`scripts/sources.json`) → `scripts/enrich_herbs.js` (pulls tags, energetics, scientific name, plant part, origin, form) → `chioma_products.json` (156 herbs) → `scripts/ingest.js` embeds a multi-line labeled input (name → tags → category → energetics → plant_part → description) via `text-embedding-3-small` → upserts into `herbs` on `name`. High-signal labels go first so they aren't drowned by the long prose description; `how_to_use` is stored but not embedded (brewing instructions dilute signal). The query-side `"Herb for "` stem lives in `_shared/herb-search.ts` (mirrored in `scripts/verify_search.js`) — keep them in sync. The reranker's document text (`herbDocument` in `_shared/rerank.ts`) mirrors `buildEmbeddingInput` in `ingest.js`, and so does `verify_search.js`. See `docs/herb-catalog-pipeline.md`.
@@ -56,6 +58,7 @@ npm run ingest:prod               # embed + upsert to REMOTE — typed 'yes' con
 npm run compare                   # diff Chioma site against chioma_products.json
 node scripts/verify_search.js     # query failure cases against LOCAL match_herbs
 node scripts/verify_search.js prod  # query against REMOTE
+node scripts/verify_stage.js      # nutritionist stage gate vs labeled conversations (needs npm run functions)
 
 # Deploy Edge Functions to remote (manual, intentional)
 npm run deploy                    # deploys search + nutritionist
@@ -67,7 +70,7 @@ There is no unit-test suite and no CI. Tests run on **TestSprite** against the l
 
 - **Frontend E2E (CLI):** project "Apothecary", id `84f4b903-69fa-4200-b9e6-e574d24e6edb`. Plans live in `testsprite/plans/`. A cloud AI browser agent drives the local Vite app.
   - **Suite:** plans 01–06 (nutritionist 01–03, herb search 04–06).
-- **Backend API (MCP):** `testsprite_tests/TC001`–`TC004` and `TC008`–`TC010` are Python `requests` tests against the local Edge Functions (`localhost:54321/functions/v1`). They cover `search` and `nutritionist` validation, response shapes, CORS and the SSE stream (TC005–TC007 covered the removed `recipes-search`; IDs weren't renumbered). Run them with the TestSprite MCP tool `testsprite_generate_code_and_execute` (pass `testIds` to run a subset). Never re-run `testsprite_bootstrap` while `testsprite_tests/tmp/config.json` exists. Each run regenerates the `TC*.py` files, so change tests via the plan or `additionalInstruction`, not by hand. "No assertions found in test code" is a codegen artifact (the generated code used `raise AssertionError`), not an app bug. TC008 makes a real OpenAI call.
+- **Backend API (MCP):** `testsprite_tests/TC001`–`TC004` and `TC008`–`TC011` are Python `requests` tests against the local Edge Functions (`localhost:54321/functions/v1`). They cover `search` and `nutritionist` validation, response shapes, CORS and the SSE stream, including the stage gate: TC008 checks treatment with cards and TC011 checks diagnostic without them. TC005–TC007 covered the removed `recipes-search`; IDs weren't renumbered. Run them with the TestSprite MCP tool `testsprite_generate_code_and_execute` (pass `testIds` to run a subset). Never re-run `testsprite_bootstrap` while `testsprite_tests/tmp/config.json` exists. Each run regenerates the `TC*.py` files, so change tests via the plan or `additionalInstruction`, not by hand. "No assertions found in test code" is a codegen artifact (the generated code used `raise AssertionError`), not an app bug. TC008 and TC011 make real OpenAI and TypeSafe calls.
 - **Prereqs:** `supabase start`, `npm run dev` (functions on :54321, Vite on `[::1]:5173`), `testsprite` CLI authenticated (`testsprite auth status`).
 
 **Programming loop:** after any change to `client/` or `supabase/functions/` (not docs/config), before reporting the work done:
@@ -75,7 +78,7 @@ There is no unit-test suite and no CI. Tests run on **TestSprite** against the l
 2. Use the `testsprite-verify` skill for frontend flows. Pick the tests covering the change (`testsprite test list --project 84f4b903-69fa-4200-b9e6-e574d24e6edb`) and run them one per call, up to 5 in parallel:
    `testsprite test run <testId> --local 5173 --local-host ::1`
 3. On failure, inspect `testsprite test steps <testId>` and the `error` field, fix the code, and re-run. Distinguish app bugs from test-setup artifacts (e.g. tunnel `ERR_INVALID_HTTP_RESPONSE` is infra, not the app).
-4. For a new flow, add a plan JSON to `testsprite/plans/` and `testsprite test create --plan-from <file> --project <id>`. Steps can't be edited via CLI, so change a test by editing its plan and recreating it.
+4. For a new flow, add a plan JSON to `testsprite/plans/` and `testsprite test create --plan-from <file> --project <id>`. To change an existing test, edit its plan JSON. Then push the steps with `testsprite test plan put <testId> --steps <file with {planSteps}>`, and rename it with `testsprite test update <testId> --name … --description …` (CLI 0.12+).
 5. Credits: Free plan, 150/month; each frontend run costs 0.5. Run only the tests covering the change, not the whole suite, unless asked.
 
 Don't edit client code while TestSprite runs are in flight (Vite HMR disturbs them). `testsprite test open <testId>` opens a test in the dashboard.
@@ -108,6 +111,7 @@ fetch(`${SUPABASE_URL}/functions/v1/nutritionist`, {
 - `search/index.ts`, `nutritionist/index.ts` — the two functions (each has its own `deno.json`)
 - `_shared/herb-search.ts` — `searchHerbs()`; owns the `"Herb for "` stem, 0.3 threshold and 25-candidate pool
 - `_shared/rerank.ts` — `rerankHerbs()`; Cohere Rerank model, document format, 2 s timeout, cosine fallback
+- `_shared/jev.ts` — `decideStage()`; Jev questions, stage thresholds, 3 s timeout, `fallback` stage
 - `_shared/openai.ts` — OpenAI client, `MODEL`, `MAX_ITERATIONS`, `MAX_OUTPUT_TOKENS`
 - `_shared/tools.ts` — `HERB_SEARCH_TOOL`, `WEB_SEARCH_TOOL`, zod schema
 - `_shared/validation.ts` — request validators for search, nutritionist
@@ -165,7 +169,7 @@ When completing a feature branch or milestone, update `docs/changelog.md`. Updat
 
 ## Environment Variables
 
-- Root `.env` — production credentials: `OPENAI_API_KEY`, `COHERE_API_KEY` (herb search reranking; set as a Supabase secret in prod), `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `APOTHECARY_ENV=development`. Optional: `OPENAI_MODEL` (default `gpt-5-mini`), `PUBLIC_SITE_URL` (extra CORS origin).
+- Root `.env` — production credentials: `OPENAI_API_KEY`, `COHERE_API_KEY` (herb search reranking; set as a Supabase secret in prod), `TYPESAFE_API_KEY` (Jev stage gate for the nutritionist; Supabase secret in prod), `SUPABASE_URL` (remote), `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `APOTHECARY_ENV=development`. Optional: `OPENAI_MODEL` (default `gpt-5-mini`), `JEV_MODEL` (default `jev-1.13.0`), `PUBLIC_SITE_URL` (extra CORS origin).
 - Root `.env.local` — local-Supabase overrides (`SUPABASE_URL=http://127.0.0.1:54321`, local keys). Node scripts (`ingest`, `verify_search`) load this first so they target the local stack; `.env` fills in the rest (e.g. `OPENAI_API_KEY`).
 - `client/.env.local` / `client/.env.production` — Vite: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
 

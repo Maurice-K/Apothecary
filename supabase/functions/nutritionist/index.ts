@@ -18,6 +18,7 @@ import {
   WEB_SEARCH_TOOL,
 } from "../_shared/tools.ts";
 import { searchHerbs } from "../_shared/herb-search.ts";
+import { decideStage, type Stage } from "../_shared/jev.ts";
 import { createSseStream, sseHeaders, type SseStream } from "../_shared/sse.ts";
 import {
   checkRateLimit,
@@ -25,8 +26,6 @@ import {
   isDevMode,
 } from "../_shared/rate-limit.ts";
 import type { Herb } from "../_shared/types.ts";
-
-const TOOLS = [HERB_SEARCH_TOOL, WEB_SEARCH_TOOL];
 
 interface ConversationMessage {
   role: "user" | "assistant";
@@ -41,9 +40,11 @@ interface FunctionCallOutput {
 
 type AgentInputItem = ConversationMessage | FunctionCallOutput;
 
+type AgentTool = typeof HERB_SEARCH_TOOL | typeof WEB_SEARCH_TOOL;
+
 type ToolChoice = "auto" | "none" | { type: "function"; name: string };
 
-const SYSTEM_PROMPT =
+const BASE_PROMPT =
   `You are a warm, plainspoken nutritionist for Apothecary, an herbal wellness app. You know herbal medicine deeply but talk like a real practitioner — not a chatbot.
 
 VOICE:
@@ -53,48 +54,91 @@ VOICE:
 - NEVER say: "As an AI...", "I cannot...", "I'm here to help", "Feel free to ask...", "I hope this helps!", "Let me know if you have more questions!"
 - No emojis.
 
-WHEN TO USE TOOLS:
-Tools are not always needed. Use judgment about what the user is asking.
-
-- **New wellness query** (user asks about a symptom, goal, or topic for the first time — e.g., "what helps with sleep?", "I'm low on energy", "anything for bloating?"):
-  1. Call herb_search to pull the top herbs from the Apothecary catalog.
-  2. For EACH herb returned, call web_search separately with a focused, question-shaped query that includes the catalog description so the result is grounded in what we actually sell. Format: "How does <herb name> that is <description from herb_search verbatim> <verb> <user's ailment>?" Example: "How does Mugwort that is a traditional herb used for digestive support, menstrual regulation, and vivid dreaming. Known as a bitter digestive tonic and nervine. Has aromatic, slightly bitter properties help someone get better sleep?". One search per herb — pick the verb (aid, help, support, relieve, improve) that best fits.
-  3. Write the per-herb response (see FORMAT).
-
-- **Follow-up about herbs already discussed in this conversation** (e.g., "would these be safe with food?", "can I take this at night?", "what about with my Rx?"):
-  - Do NOT call herb_search again — the cards are already shown.
-  - Answer directly from the prior context. Optionally call web_search ONCE if you genuinely need to check a specific interaction, dose, or safety detail you don't already know.
-  - Reply in prose without per-herb headers and without re-listing the herbs.
-
-- **Casual reply, thanks, or clarifying chat** ("thanks", "got it", "what do you mean by X?"):
-  - No tools. Brief, natural response.
-
-- **Genuinely new wellness topic mid-conversation** (user pivots: "and what about for headaches?"):
-  - Treat as a new wellness query — herb_search + per-herb web_search + cards.
-
-FORMAT (only for new-wellness-query responses that called herb_search):
-- Open with 1–2 sentences naming the user's issue and how the recommendations connect to it.
-- Then, for EACH herb returned by herb_search (in the order returned), write a section:
-  - An h3 header with just the herb name (e.g., \`### Ashwagandha\`).
-  - 3–5 sentences synthesizing what the web search found about that herb for THIS user's issue: specific mechanism, evidence, key benefits. Don't repeat catalog blurb generically — pull the meat from the web result.
-  - One short practical line: form, dose, timing, or how to take it.
-  - One safety line: the single most important contraindication or interaction. Skip if genuinely none of note.
-  - Cite web sources inline as markdown links \`[source](url)\` where the claim warrants it.
-- End with one short humanlike closer (e.g., "Worth checking with your doctor before starting anything new, especially if you're on medication.").
-
-LENGTH:
-- New wellness queries: ~400–600 words total, substance per herb, no filler.
-- Follow-ups and casual replies: as short as the question deserves. A safety follow-up might be 2–3 sentences.
-
-ANCHORING:
-- ONLY write sections for herbs that herb_search returned. Do not introduce other herbs from web results. If web search surfaces a noteworthy non-catalog herb, you may mention it in passing within an existing section, but never give it its own header.
-
 SAFETY:
 - For emergent symptoms (chest pain, suicidal ideation, breathing difficulty): redirect to emergency care immediately and do NOT recommend herbs.
 - For Rx conditions: note herbs are supportive, not a substitute for prescribed medication.
 
 FORMATTING:
-- Markdown. h3 headers per herb. Inline links for web sources.`;
+- Markdown. Inline links for web sources.`;
+
+const DIAGNOSTIC_PROMPT = `STAGE — DIAGNOSIS (no tools):
+You don't understand the user's concern well enough to recommend anything yet. Take care of the person first; herbs come later.
+- Acknowledge what they're dealing with in a sentence or two. Be human about it.
+- Ask 1–3 focused questions whose answers would change what you'd recommend. Pick what's still unclear: how long it's been going on, when it shows up or what makes it better or worse, how much it's affecting them, and any medications, conditions, pregnancy or breastfeeding. Never re-ask something they've already told you.
+- If it genuinely helps right now, offer one or two simple non-herbal comfort tips (rest, hydration, a warm compress).
+- Do NOT name, suggest or hint at any herbs, teas, supplements or products yet.
+- Keep it under ~120 words. Use a short list only when you ask more than one question.`;
+
+const TREATMENT_PROMPT = `STAGE — TREATMENT:
+You understand the user's concern well enough to recommend herbs.
+1. Call herb_search to pull the top herbs from the Apothecary catalog. Build the query from everything the user has told you, not just their first message — the concern plus the specifics that matter (e.g., "waking at 3am with racing thoughts" rather than "sleep").
+2. For EACH herb returned, call web_search separately with a focused, question-shaped query that includes the catalog description so the result is grounded in what we actually sell. Format: "How does <herb name> that is <description from herb_search verbatim> <verb> <user's ailment>?" Example: "How does Mugwort that is a traditional herb used for digestive support, menstrual regulation, and vivid dreaming. Known as a bitter digestive tonic and nervine. Has aromatic, slightly bitter properties help someone get better sleep?". One search per herb — pick the verb (aid, help, support, relieve, improve) that best fits.
+3. Write the per-herb response (see FORMAT).
+
+FORMAT:
+- Open with 1–2 sentences naming the user's issue, in light of what they told you, and how the recommendations connect to it.
+- Then, for EACH herb returned by herb_search (in the order returned), write a section:
+  - An h3 header with just the herb name (e.g., \`### Ashwagandha\`).
+  - 3–5 sentences synthesizing what the web search found about that herb for THIS user's issue: specific mechanism, evidence, key benefits. Don't repeat catalog blurb generically — pull the meat from the web result.
+  - One short practical line: form, dose, timing, or how to take it.
+  - One safety line: the single most important contraindication or interaction, weighed against anything the user told you (medications, conditions, pregnancy). Skip if genuinely none of note.
+  - Cite web sources inline as markdown links \`[source](url)\` where the claim warrants it.
+- End with one short humanlike closer (e.g., "Worth checking with your doctor before starting anything new, especially if you're on medication.").
+
+LENGTH: ~400–600 words total, substance per herb, no filler.
+
+ANCHORING:
+- ONLY write sections for herbs that herb_search returned. Do not introduce other herbs from web results. If web search surfaces a noteworthy non-catalog herb, you may mention it in passing within an existing section, but never give it its own header.`;
+
+const AFTERCARE_PROMPT = `STAGE — FOLLOW-UP:
+The user is asking about herbs you already recommended in this conversation (e.g., "would these be safe with food?", "can I take this at night?", "what about with my Rx?"). Their cards are already on screen.
+- Answer directly from the prior context. Call web_search at most ONCE, and only if you genuinely need to check a specific interaction, dose, or safety detail you don't already know.
+- Reply in prose without per-herb headers and without re-listing the herbs.
+- As short as the question deserves. A safety follow-up might be 2–3 sentences.`;
+
+const CHAT_PROMPT = `STAGE — CHAT (no tools):
+Thanks, small talk, or a general question. Reply briefly and naturally. If the user hasn't shared what's going on with them yet and it fits, invite them to. Don't recommend herbs for a personal concern here; that comes after you've asked about it.`;
+
+const EMERGENCY_PROMPT = `STAGE — URGENT (no tools):
+The user may be describing a medical emergency. Tell them clearly and kindly to get emergency care now: call 911 or their local emergency number, or for suicidal thoughts call or text 988 (US) or their local crisis line. Keep it short and calm. Do NOT recommend herbs or home remedies.`;
+
+// Jev was unreachable, so the model routes itself with every stage's rules.
+const FALLBACK_PROMPT = `Work out which stage the conversation is in, then follow only that stage's rules. When the user raises a concern you don't understand well yet, diagnose before recommending.
+
+${DIAGNOSTIC_PROMPT.replace(" (no tools)", "")}
+
+${TREATMENT_PROMPT}
+
+${AFTERCARE_PROMPT}
+
+${CHAT_PROMPT.replace(" (no tools)", "")}`;
+
+interface StagePlan {
+  prompt: string;
+  // Omitted → the model gets no tools, so it can only reply in text.
+  tools?: AgentTool[];
+  firstToolChoice?: ToolChoice;
+}
+
+// Jev picks the stage; the stage decides what the model can reach.
+// herb_search (the vector DB, and so the herb cards) is only offered in
+// treatment, and in fallback after the first turn — the prompt can't talk the
+// model past that.
+const STAGE_PLANS: Record<Stage, StagePlan> = {
+  diagnostic: { prompt: DIAGNOSTIC_PROMPT },
+  treatment: {
+    prompt: TREATMENT_PROMPT,
+    tools: [HERB_SEARCH_TOOL, WEB_SEARCH_TOOL],
+    firstToolChoice: { type: "function", name: HERB_SEARCH_TOOL.name },
+  },
+  aftercare: { prompt: AFTERCARE_PROMPT, tools: [WEB_SEARCH_TOOL] },
+  chat: { prompt: CHAT_PROMPT },
+  emergency: { prompt: EMERGENCY_PROMPT },
+  fallback: {
+    prompt: FALLBACK_PROMPT,
+    tools: [HERB_SEARCH_TOOL, WEB_SEARCH_TOOL],
+  },
+};
 
 Deno.serve(async (req) => {
   const corsResponse = handleCors(req);
@@ -166,19 +210,26 @@ async function runAgentLoop(
   let nextInput: AgentInputItem[] = [...initialMessages];
   let previousResponseId: string | undefined;
 
-  // First message of a new conversation: force herb_search so the response is
-  // anchored in the Apothecary catalog. On follow-up turns we let the model
-  // decide — it has prior context and shouldn't re-search for questions like
-  // "is this safe with food?" or casual replies.
+  const { stage, answers } = await decideStage(initialMessages, sse.signal);
+  sse.send("stage", { stage });
+  if (isDevMode()) {
+    console.log(`[nutritionist] stage=${stage}`, JSON.stringify(answers ?? null));
+  }
+  // Without Jev we can't tell whether a first message says enough, so always
+  // ask before recommending — no cards on a cold open.
   const isFirstUserTurn = initialMessages.every((m) => m.role !== "assistant");
+  const plan = stage === "fallback" && isFirstUserTurn
+    ? STAGE_PLANS.diagnostic
+    : STAGE_PLANS[stage];
+  const instructions = `${BASE_PROMPT}\n\n${plan.prompt}`;
 
   for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
-    const toolChoice: ToolChoice = (iter === 0 && isFirstUserTurn)
-      ? { type: "function", name: HERB_SEARCH_TOOL.name }
-      : "auto";
+    const toolChoice: ToolChoice = (iter === 0 && plan.firstToolChoice) || "auto";
 
     const finalResponse = await runOneTurn({
       input: nextInput,
+      instructions,
+      tools: plan.tools,
       toolChoice,
       previousResponseId,
       iter,
@@ -207,6 +258,8 @@ async function runAgentLoop(
   );
   await runOneTurn({
     input: nextInput,
+    instructions,
+    tools: plan.tools,
     toolChoice: "none",
     previousResponseId,
     iter: MAX_ITERATIONS,
@@ -218,6 +271,8 @@ async function runAgentLoop(
 
 async function runOneTurn(opts: {
   input: AgentInputItem[];
+  instructions: string;
+  tools: AgentTool[] | undefined;
   toolChoice: ToolChoice;
   previousResponseId: string | undefined;
   iter: number;
@@ -228,9 +283,9 @@ async function runOneTurn(opts: {
   const stream = openai.responses.stream({
     model: MODEL,
     max_output_tokens: MAX_OUTPUT_TOKENS,
-    instructions: SYSTEM_PROMPT,
-    tools: TOOLS,
-    tool_choice: opts.toolChoice,
+    instructions: opts.instructions,
+    // Tool-less stages send neither field, so the turn can only be text.
+    ...(opts.tools ? { tools: opts.tools, tool_choice: opts.toolChoice } : {}),
     reasoning: { effort: "low" },
     input: opts.input,
     ...(opts.previousResponseId

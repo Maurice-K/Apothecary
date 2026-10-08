@@ -150,8 +150,8 @@
     "semantic_hash": "08805e126a99fd8d22c072f183a26ab4"
   },
   "client/src/components/HerbCard.jsx": {
-    "mtime": 1791302381.5611696,
-    "seen": 1791302389.7809181,
+    "mtime": 1791317593.0671055,
+    "seen": 1791317898.161161,
     "ast_hash": "dfdf8084817e06c5e7d2565a33bd6382",
     "semantic_hash": ""
   },
@@ -258,9 +258,9 @@
     "semantic_hash": "8fd7baa83444f7299726c8e34943d3c1"
   },
   "scripts/verify_search.js": {
-    "mtime": 1791302381.5621953,
-    "seen": 1791302389.78093,
-    "ast_hash": "579d666d67599b193eae494ab9e1ea4c",
+    "mtime": 1791317593.071739,
+    "seen": 1791317898.161173,
+    "ast_hash": "0216370b5bc554240f7c00176bcf35b8",
     "semantic_hash": ""
   },
   "skills-lock.json": {
@@ -282,8 +282,8 @@
     "semantic_hash": "e16f3f8bf555bbcd488a968c5334a83a"
   },
   "supabase/functions/_shared/herb-search.ts": {
-    "mtime": 1791302381.5624084,
-    "seen": 1791302389.7809331,
+    "mtime": 1791317593.0718968,
+    "seen": 1791317898.1611772,
     "ast_hash": "bcdeaf166654133e65202ed2a4c4ab24",
     "semantic_hash": ""
   },
@@ -324,8 +324,8 @@
     "semantic_hash": "a407325e02ab922630ce5251ca5a90e2"
   },
   "supabase/functions/_shared/types.ts": {
-    "mtime": 1791302381.5626447,
-    "seen": 1791302389.780939,
+    "mtime": 1791317593.0721276,
+    "seen": 1791317898.161184,
     "ast_hash": "bc36bef29099fada590b704d48a395bc",
     "semantic_hash": ""
   },
@@ -342,9 +342,9 @@
     "semantic_hash": "e173dbef9be864e78b4d1f3a4f4d071e"
   },
   "supabase/functions/nutritionist/index.ts": {
-    "mtime": 1791302381.5629616,
-    "seen": 1791302389.780941,
-    "ast_hash": "1dea502961834fc9a8a94e4080f6ecda",
+    "mtime": 1791420246.7526221,
+    "seen": 1791420817.3199658,
+    "ast_hash": "ec83825900e9e01a6f57b9969d7100e5",
     "semantic_hash": ""
   },
   "supabase/functions/search/deno.json": {
@@ -384,9 +384,9 @@
     "semantic_hash": "4515dfe38612a55cd5af395527b77aa1"
   },
   "CLAUDE.md": {
-    "mtime": 1791302381.5608854,
-    "seen": 1791302389.781106,
-    "ast_hash": "f3a8eca0bd69378247b9adcc60c24889",
+    "mtime": 1791420839.3914301,
+    "seen": 1791424323.4652421,
+    "ast_hash": "fca6bfb9d8281896201fe972cca3c9d6",
     "semantic_hash": ""
   },
   "README.md": {
@@ -408,9 +408,9 @@
     "semantic_hash": "3f01850e9fce601d04d6dba39204c1d8"
   },
   "docs/architecture.md": {
-    "mtime": 1791302381.561513,
-    "seen": 1791302389.78111,
-    "ast_hash": "52af3ef439063497279ba4230742c2a5",
+    "mtime": 1791424028.8657062,
+    "seen": 1791424323.465246,
+    "ast_hash": "f6420cdd93de9dc1c1b7951d8742461f",
     "semantic_hash": ""
   },
   "docs/brainstorms/2026-03-31-mobile-app-brainstorm.md": {
@@ -420,9 +420,9 @@
     "semantic_hash": "d5f2188211a743ac24e883273b6c8b7f"
   },
   "docs/changelog.md": {
-    "mtime": 1791302381.5618942,
-    "seen": 1791302389.781111,
-    "ast_hash": "3c3503680a869f4b558906a297e7fb7a",
+    "mtime": 1791424028.8659418,
+    "seen": 1791424323.465247,
+    "ast_hash": "a08c3439ad5bf5be008f52f11cbb1d18",
     "semantic_hash": ""
   },
   "docs/herb-catalog-pipeline.md": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "testsprite/plans/02-nutritionist-chat.json": {
-    "mtime": 1790289040.8575907,
-    "seen": 1790293874.187572,
-    "ast_hash": "e5d5b08592a84ac786ef2f8fcdb19b08",
+    "mtime": 1791423478.5000157,
+    "seen": 1791424323.4650629,
+    "ast_hash": "1dffb38040278c00fa1ecd8624946c3e",
     "semantic_hash": ""
   },
   "testsprite/plans/03-nutritionist-new-chat.json": {
@@ -480,9 +480,9 @@
     "semantic_hash": ""
   },
   "testsprite/plans/05-herb-search-chip.json": {
-    "mtime": 1790699620.827222,
-    "seen": 1791302389.7809489,
-    "ast_hash": "a98a73f25dec9c2fce0b950cdf8789f4",
+    "mtime": 1791317593.0724812,
+    "seen": 1791317898.161196,
+    "ast_hash": "58581119446771173e0ca0334dfddf32",
     "semantic_hash": ""
   },
   "testsprite/plans/06-herb-card-preparation.json": {
@@ -1758,51 +1758,51 @@
     "semantic_hash": ""
   },
   "testsprite/README.md": {
-    "mtime": 1790699620.826718,
-    "seen": 1791302389.7811148,
-    "ast_hash": "c499641a39841a2bc81f8bf6b8e62328",
+    "mtime": 1791420815.5368683,
+    "seen": 1791420817.320163,
+    "ast_hash": "317aedc8a01ef298ffa15035609451e0",
     "semantic_hash": ""
   },
   "testsprite_tests/TC001_test_semantic_herb_search_with_valid_query_and_limit.py": {
-    "mtime": 1790699620.827416,
-    "seen": 1791302389.780951,
-    "ast_hash": "9386cb60e0c9a0aa1c7028c229a01505",
+    "mtime": 1791317593.0726318,
+    "seen": 1791317898.1611981,
+    "ast_hash": "99aa751c3562e6a914f9946e31ff8afe",
     "semantic_hash": ""
   },
   "testsprite_tests/TC002_test_semantic_herb_search_with_missing_or_empty_query.py": {
-    "mtime": 1790699620.8277009,
-    "seen": 1791302389.780952,
-    "ast_hash": "2c8f1d5356f1717bd6c31a58bd211741",
+    "mtime": 1791317593.0727699,
+    "seen": 1791317898.1611981,
+    "ast_hash": "742a82b045090ce9ef3ac5d1fb61837e",
     "semantic_hash": ""
   },
   "testsprite_tests/TC003_test_semantic_herb_search_with_invalid_limit.py": {
-    "mtime": 1790699620.8279853,
-    "seen": 1791302389.780952,
-    "ast_hash": "29949aad0e291ca44e3fb4b24fc8a620",
+    "mtime": 1791317593.0729141,
+    "seen": 1791317898.161199,
+    "ast_hash": "a27ec94944ce6462a3e556c81bc3f88b",
     "semantic_hash": ""
   },
   "testsprite_tests/TC004_test_cors_preflight_on_search_endpoint.py": {
-    "mtime": 1790699620.8286214,
-    "seen": 1791302389.7809532,
-    "ast_hash": "96240f1b1220aea7e11818e63014c2ab",
+    "mtime": 1791317593.0730426,
+    "seen": 1791317898.1612,
+    "ast_hash": "1881ac81b4c89b0f31d4337ddab0629e",
     "semantic_hash": ""
   },
   "testsprite_tests/TC008_test_nutritionist_post_with_valid_messages_streaming_response.py": {
-    "mtime": 1790699620.8289123,
-    "seen": 1791302389.7809541,
-    "ast_hash": "8c0945fa5c706e5614c2f23ffdb314e8",
+    "mtime": 1791424080.5362847,
+    "seen": 1791424323.4650712,
+    "ast_hash": "585acf2b50fb513639a8d58727b11db5",
     "semantic_hash": ""
   },
   "testsprite_tests/TC009_test_nutritionist_post_with_invalid_json_body.py": {
-    "mtime": 1790699620.8291194,
-    "seen": 1791302389.7809548,
-    "ast_hash": "91988ea309f66751f589349b0fe228f1",
+    "mtime": 1791424080.5371878,
+    "seen": 1791424323.4650722,
+    "ast_hash": "04221866ed4134e5be594cc5827491be",
     "semantic_hash": ""
   },
   "testsprite_tests/TC010_test_nutritionist_post_with_invalid_messages_array.py": {
-    "mtime": 1790699620.8293638,
-    "seen": 1791302389.7809548,
-    "ast_hash": "54b9c5c11368288781535a97e1d55236",
+    "mtime": 1791424080.5373766,
+    "seen": 1791424323.4650729,
+    "ast_hash": "e6f0e7b70ecb3155d5f4e22214f687be",
     "semantic_hash": ""
   },
   "testsprite_tests/standard_prd.json": {
@@ -1812,21 +1812,21 @@
     "semantic_hash": ""
   },
   "testsprite_tests/testsprite_backend_test_plan.json": {
-    "mtime": 1791302381.5631824,
-    "seen": 1791302389.780957,
-    "ast_hash": "016df10c51dc41437afc174401e6c72b",
+    "mtime": 1791420577.881415,
+    "seen": 1791420817.319985,
+    "ast_hash": "63bc67ff65fae0760392bd91c76d3a3c",
     "semantic_hash": ""
   },
   "testsprite_tests/testsprite-mcp-test-report.html": {
-    "mtime": 1790699620.8301897,
-    "seen": 1791302389.781116,
-    "ast_hash": "b40ba9c92fe3eee9d4eee11d7c2be5cd",
+    "mtime": 1791424106.007596,
+    "seen": 1791424323.465253,
+    "ast_hash": "f60ecefcc596b13a1a5036ebc6714eff",
     "semantic_hash": ""
   },
   "testsprite_tests/testsprite-mcp-test-report.md": {
-    "mtime": 1790699620.8304605,
-    "seen": 1791302389.781116,
-    "ast_hash": "63c1ac29f5a3813731786fd2e95ab7b0",
+    "mtime": 1791424100.926589,
+    "seen": 1791424323.465253,
+    "ast_hash": "b86364d1e21be6a9bcef12d6c584c650",
     "semantic_hash": ""
   },
   "supabase/migrations/20260928181241_drop_recipes.sql": {
@@ -1836,9 +1836,27 @@
     "semantic_hash": ""
   },
   "supabase/functions/_shared/rerank.ts": {
-    "mtime": 1791301907.353922,
-    "seen": 1791302389.7809348,
+    "mtime": 1791317593.0720184,
+    "seen": 1791317898.16118,
     "ast_hash": "bb397fdca6834fade6dab317c770381f",
+    "semantic_hash": ""
+  },
+  "scripts/verify_stage.js": {
+    "mtime": 1791423895.2862358,
+    "seen": 1791424323.4650419,
+    "ast_hash": "01e9d24a6141da8d73c975cb3052d73e",
+    "semantic_hash": ""
+  },
+  "supabase/functions/_shared/jev.ts": {
+    "mtime": 1791423885.2459855,
+    "seen": 1791424323.4650471,
+    "ast_hash": "172668f49231607ec1f828e35b18b7c5",
+    "semantic_hash": ""
+  },
+  "testsprite_tests/TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py": {
+    "mtime": 1791424080.537562,
+    "seen": 1791424323.4650738,
+    "ast_hash": "415a9cf02ed451b11d7f3784205c79a8",
     "semantic_hash": ""
   }
 }

@@ -6,6 +6,17 @@ All notable changes to the Apothecary project are documented here. Updated after
 
 ## [Unreleased]
 
+## 2026-10-06 — Nutritionist stage gate (Jev): diagnose before recommending
+
+- The nutritionist no longer forces `herb_search` on the first message. Each turn, `decideStage()` (new `_shared/jev.ts`) asks **Jev**, TypeSafe AI's decision model, which stage the conversation is in. Jev is called directly on TypeSafe's System One API (`api.typesafe.ai/v1/systemone`, pinned to `jev-1.13.0`) and never writes text. Code thresholds pick `diagnostic`, `treatment`, `aftercare`, `chat` or `emergency`.
+- **Diagnostic** replies acknowledge the concern and ask 1–3 focused questions (duration, pattern, severity, meds/conditions), with no tools and no herbs. **Treatment** forces `herb_search`, built from everything the user told us, then runs the usual per-herb write-up and cards. `herb_search` is only offered in treatment, so the code enforces that cards wait for diagnosis.
+- Users move to treatment when they answer the nutritionist's questions (a dedicated `questions_answered` question to Jev), when Jev judges the concern understood (a complete first message counts), when they ask to skip questions, or after two rounds of questions. A new concern mid-chat goes back to diagnosis.
+- The system prompt is split into a shared base plus one block per stage. The old prose routing ("WHEN TO USE TOOLS") is gone, since Jev routes now.
+- New SSE event `stage { stage }`, sent once before any text. The web client ignores it.
+- If `TYPESAFE_API_KEY` is missing, Jev errors or returns an unexpected shape, or it takes over 3 s, the stage is `fallback`. A first message then gets the diagnostic plan, so there are no cards on a cold open. Later turns get both tools on `auto` and a prompt telling the model to diagnose first.
+- New `scripts/verify_stage.js` checks the gate against 11 labeled conversations, reading only the `stage` event.
+- New env vars `TYPESAFE_API_KEY` (root `.env`; Supabase secret in production) and optional `JEV_MODEL` (default `jev-1.13.0`).
+
 ## 2026-10-06 — Re-ranked herb search (Cohere Rerank)
 
 - `searchHerbs()` now pulls 25 cosine candidates from `match_herbs` and re-ranks them with Cohere Rerank (`rerank-v4.0-fast`, new `_shared/rerank.ts`) before keeping the top `limit`. Both the herb search page and the nutritionist's `herb_search` tool get it.

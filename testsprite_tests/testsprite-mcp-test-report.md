@@ -4,82 +4,73 @@
 
 ## 1️⃣ Document Metadata
 - **Project Name:** Apothecary
-- **Date:** 2026-10-06
+- **Date:** 2026-10-07
 - **Prepared by:** TestSprite AI Team
-- **Scope:** Backend. Supabase Edge Functions served locally at `http://localhost:54321/functions/v1` (`npm run functions`, `--no-verify-jwt`, rate limiting disabled via `APOTHECARY_ENV=development`). Run on `feature/herb-search-rerank` after adding Cohere re-ranking to `searchHerbs`. Only the tests covering the change ran: TC001–TC004 (`/search`) and TC008 (`/nutritionist` stream). TC001's plan was updated to assert ordering by `relevance`.
+- **Scope:** nutritionist Edge Function after the Jev stage gate moved to TypeSafe's System One API and gained the `questions_answered` signal (`feature/jev-stage-gate`). Run: TC008–TC011 against local functions (`localhost:54321/functions/v1`, `APOTHECARY_ENV=development`, `TYPESAFE_API_KEY` set).
 
 ---
 
 ## 2️⃣ Requirement Validation Summary
 
-Dashboard: `https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/<test id>`
-
-### Requirement: Herb Semantic Search (`POST /search`)
-- **Description:** Embeds the query, pulls 25 pgvector candidates (threshold 0.3), re-ranks them with Cohere Rerank, and validates `query` (1–500 chars) and `limit` (number 1–50).
-
-#### Test TC001 test_semantic_herb_search_with_valid_query_and_limit
-- **Test Code:** [code_file](./TC001_test_semantic_herb_search_with_valid_query_and_limit.py)
-- **Test Error:**
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/878d5c4d-5791-4396-9629-e1b90bf6b73c
-- **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** Returns 200. Every result has a numeric `relevance` in [0, 1], and results are sorted by `relevance` (descending). Every similarity is ≥ 0.3, and the count is ≤ limit. This confirms the reranker ran and its order is what the endpoint returns.
----
-
-#### Test TC002 test_semantic_herb_search_with_missing_or_empty_query
-- **Test Code:** [code_file](./TC002_test_semantic_herb_search_with_missing_or_empty_query.py)
-- **Test Error:**
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/77895b50-ab24-4e77-9b5d-2d1c2cd4e0cf
-- **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** A missing or empty `query` returns 400 with `query is required and must be a string`.
----
-
-#### Test TC003 test_semantic_herb_search_with_invalid_limit
-- **Test Code:** [code_file](./TC003_test_semantic_herb_search_with_invalid_limit.py)
-- **Test Error:**
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/7d930cb4-2eff-46e4-a07b-3f236116c8ea
-- **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** Invalid `limit` values return 400 with `limit must be a number between 1 and 50`.
----
-
-#### Test TC004 test_cors_preflight_on_search_endpoint
-- **Test Code:** [code_file](./TC004_test_cors_preflight_on_search_endpoint.py)
-- **Test Error:** `AssertionError: Expected Access-Control-Allow-Origin to echo 'https://herbary.app', got '*'`
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/54741985-2aaa-4a39-b6f8-2c90bf5bae7a
-- **Status:** ❌ Failed
-- **Severity:** LOW (environment)
-- **Analysis / Findings:** This is not caused by the rerank change, which doesn't touch `_shared/cors.ts`. The local stack's API gateway (`Server: kong/2.8.1`) now answers the OPTIONS preflight itself with `Access-Control-Allow-Origin: *` and `Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,TRACE,CONNECT`, so the function's `handleCors` is never reached. The local Supabase Docker images were refreshed on this run, which is the likely cause. Recheck against production, or after pinning the local CLI version, before treating it as an app bug.
----
-
-### Requirement: AI Nutritionist Chat (`POST /nutritionist`, SSE)
-- **Description:** Validates the request before any rate-limit or model call, then streams `tool_use` / `herb_results` / `text_delta` / `done` events.
+### Requirement: Nutritionist stage gate (cards only in treatment)
 
 #### Test TC008 test_nutritionist_post_with_valid_messages_streaming_response
-- **Test Code:** [code_file](./TC008_test_nutritionist_post_with_valid_messages_streaming_response.py)
-- **Test Error:**
+- **Test Code:** [TC008_test_nutritionist_post_with_valid_messages_streaming_response.py](./TC008_test_nutritionist_post_with_valid_messages_streaming_response.py)
 - **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/ca6d66fa-833a-4f8e-8285-49009d3c4cc7
 - **Status:** ✅ Passed
-- **Severity:** LOW
-- **Analysis / Findings:** Returns 200 with `text/event-stream`, and the stream contains the expected events through to `done`. The `herb_search` tool path (shared `searchHerbs`, now re-ranked) still works. This test makes real OpenAI and Cohere calls.
+- **Analysis / Findings:**
+  - Input: a conversation where the user has already answered the nutritionist's diagnostic questions.
+  - The first SSE event was `stage {"stage":"treatment"}`.
+  - The stream then had `tool_use` → `herb_results` (a non-empty herbs array) → `text_delta` → `done`, in that order.
+  - Conclusion: answering the questions moves the chat to treatment, and cards are sent.
+---
+
+#### Test TC011 test_nutritionist_vague_first_message_diagnoses_without_herb_cards
+- **Test Code:** [TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py](./TC011_test_nutritionist_vague_first_message_diagnoses_without_herb_cards.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/34769d0e-5b16-4f35-bdcf-f2cb92dacacc
+- **Status:** ✅ Passed
+- **Analysis / Findings:**
+  - Input: "I can't sleep".
+  - The first SSE event was `stage {"stage":"diagnostic"}`.
+  - There were no `tool_use` or `herb_results` events.
+  - The reply text contains a question, and the stream ends with `done`.
+  - Conclusion: diagnosis asks questions and shows no cards.
+---
+
+### Requirement: Nutritionist request validation
+
+#### Test TC009 test_nutritionist_post_with_invalid_json_body
+- **Test Code:** [TC009_test_nutritionist_post_with_invalid_json_body.py](./TC009_test_nutritionist_post_with_invalid_json_body.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/b71d251d-8eaa-4bab-a789-468cb1db5c56
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Malformed JSON is rejected with 400 before the stage gate runs.
+---
+
+#### Test TC010 test_nutritionist_post_with_invalid_messages_array
+- **Test Code:** [TC010_test_nutritionist_post_with_invalid_messages_array.py](./TC010_test_nutritionist_post_with_invalid_messages_array.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b57c9086-9219-55c0-8272-62607a8acfb2/test/5dc5f4c0-1c06-466e-ae14-022a440ae0cf
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Requests with more than 50 messages, or whose last message isn't from the user, get 400 with a validation error.
 ---
 
 ## 3️⃣ Coverage & Matching Metrics
 
-- **80%** of tests run passed (4/5). The one failure (TC004) is a local-gateway artifact. TC009 and TC010 (`/nutritionist` validation) were not re-run because the change doesn't touch them.
+- **100.00%** of tests passed
 
-| Requirement                            | Total Tests | ✅ Passed | ❌ Failed |
-|----------------------------------------|-------------|-----------|-----------|
-| Herb Semantic Search (`/search`)       | 4           | 3         | 1         |
-| AI Nutritionist Chat (`/nutritionist`) | 1           | 1         | 0         |
-
+| Requirement                                       | Total Tests | ✅ Passed | ❌ Failed |
+|---------------------------------------------------|-------------|-----------|-----------|
+| Nutritionist stage gate (cards only in treatment) | 2           | 2         | 0         |
+| Nutritionist request validation                   | 2           | 2         | 0         |
 ---
 
 ## 4️⃣ Key Gaps / Risks
-
-- **No backend test covers the reranker fallback.** A missing key, a Cohere error or a timeout should return cosine order without `relevance`. This was checked by hand with an invalid key, but can't be automated against the shared local stack.
-- **Local CORS preflight no longer reaches the function** (TC004), so the CORS allowlist isn't currently tested locally.
-- **Untested validation paths on `/nutritionist`:** a non-POST request (405), an invalid `role`, user content that is empty or over 4000 characters, and a non-string `content`.
-- **Rate limiting (429) is not covered.** It is disabled locally (`APOTHECARY_ENV=development`).
-- **Tests run against the local stack only.** Production needs `COHERE_API_KEY` set as a Supabase secret and the functions redeployed.
+- **Not run this time:** search tests TC001–TC004, since search was untouched. TC004 fails locally because Kong returns `*` on OPTIONS; that's not an app bug.
+- **TypeSafe is a new runtime dependency:**
+  - If `TYPESAFE_API_KEY` is missing, or TypeSafe errors or takes over 3 s, the stage becomes `fallback`. A first message then gets the diagnostic plan (no cards), which was checked manually with the key unset.
+  - Production needs the key set as a Supabase secret before deploy.
+- **Probability sensitivity:**
+  - On the user's answers to the diagnostic questions, the `stage` choice alone splits about 50/50.
+  - That step now uses the `questions_answered` noul instead. Answers score about 0.9, non-answers under 0.1, and the threshold is 0.7.
+  - `scripts/verify_stage.js` (11 fixtures) tracks this.
+- **Real model calls:** TC008 and TC011 call OpenAI and TypeSafe, so they cost a little and can vary slightly between runs.
+---
