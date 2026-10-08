@@ -104,24 +104,68 @@ React client (/nutritionist)
     ▼
 supabase/functions/nutritionist/index.ts
     │  1. Validate request + check per-IP rate limit
-    │  2. Run agentic tool-use loop (max 6 iterations):
+    │  2. Ask Jev which stage the conversation is in → SSE event: stage
+    │     (diagnostic | treatment | aftercare | chat | emergency | fallback)
+    │     The stage sets the prompt block and which tools the model gets
+    │  3. Run agentic tool-use loop (max 6 iterations):
     │     a. Stream openai.responses.create({ stream: true, tools, ... })
     │     b. Forward response.output_text.delta → SSE event: text_delta
     │     c. On response.completed: dispatch any function_call items
     │        • herb_search → searchHerbs (embed → match_herbs → rerank) → SSE: herb_results
     │        • web_search  → OpenAI-hosted, no client execution needed
     │     d. Append function_call_output items to input, continue loop
-    │  3. When no function_calls remain: SSE event: done
+    │  4. When no function_calls remain: SSE event: done
     ▼
 React client
     │  Accumulates text_delta into streaming message bubble
     │  Attaches herb_results as inline HerbCard row
 ```
 
+### Stage gate (Jev)
+
+Herb cards only appear once the nutritionist understands the user's concern. Before the agent loop, `decideStage()` in `_shared/jev.ts` sends the last 12 messages (2,000 chars each) to **Jev**, TypeSafe AI's decision model, through TypeSafe's System One API (`POST https://api.typesafe.ai/v1/systemone`, model `jev-1.13.0`). Jev never writes text. It answers four typed questions with probabilities:
+
+- `stage` (choice): `diagnostic` | `treatment` | `aftercare` | `chat` | `emergency`
+- `questions_answered` (noul): the user's latest message answers most of the assistant's clarifying questions
+- `skip_requested` (noul): the user asked to skip questions and get recommendations now
+- `already_probed` (noul): the assistant has already asked about this concern in two or more replies
+
+Thresholds in code turn the answers into a stage:
+
+1. `p(emergency) ≥ 0.3` → emergency.
+2. Jev picks `treatment` or `diagnostic`. The result is treatment if any of these hold:
+   - `p(treatment) ≥ 0.5`;
+   - `questions_answered ≥ 0.7`;
+   - `skip_requested ≥ 0.7`;
+   - `already_probed ≥ 0.8`.
+
+   Otherwise it's diagnostic.
+3. Otherwise Jev's top choice.
+
+Why `questions_answered` exists:
+- On a user's answers to the diagnostic questions, the `stage` choice is unreliable: it scored treatment anywhere from 0.49 to 0.64 in live runs.
+- The `questions_answered` noul separates answers (about 0.9) from everything else (under 0.1), so it drives the diagnosis → treatment step.
+- A complete first message, with what, how long, pattern, severity and meds all given, scores about 0.55–0.65 for treatment, so it skips diagnosis.
+- `skip_requested` and `already_probed` cap diagnosis at two rounds of questions.
+
+The stage decides the prompt block and the tools:
+
+| Stage | Tools | Behavior |
+|---|---|---|
+| `diagnostic` | none | Acknowledge, ask 1–3 focused questions (duration, pattern, severity, meds/conditions), no herbs |
+| `treatment` | `herb_search` (forced first) + `web_search` | Per-herb recommendations and cards; the search query folds in what the user told us |
+| `aftercare` | `web_search` | Follow-up on herbs already shown, in prose |
+| `chat` | none | Short reply |
+| `emergency` | none | Send the user to emergency care |
+| `fallback` | none on the first turn; `herb_search` + `web_search` after | Jev unreachable: the first message is treated as `diagnostic`; later turns let the model route itself, diagnose-first |
+
+`herb_search` is only offered in `treatment` (and `fallback` after the first turn), so cards can't appear during diagnosis whatever the model decides. A pivot to a new concern mid-chat goes back to `diagnostic`. If `TYPESAFE_API_KEY` is missing, Jev errors or returns an unexpected shape, or it takes over 3 s, the stage is `fallback` and the chat keeps working. `scripts/verify_stage.js` checks the gate against labeled conversations and is the place to tune the thresholds.
+
 ### SSE event protocol
 
 | Event | Data | Description |
 |-------|------|-------------|
+| `stage` | `{ stage }` | Stage Jev picked for this turn; sent once, before any text (the web client ignores it) |
 | `text_delta` | `{ delta: string }` | Incremental text from the model |
 | `herb_results` | `{ herbs: Herb[] }` | Herbs returned by herb_search tool |
 | `tool_use` | `{ name, input }` | Tool call being dispatched |
@@ -148,6 +192,7 @@ Per-IP, two-window strategy backed by the `nutritionist_rate_limits` Postgres ta
 | `_shared/supabase.ts` | Service-role Supabase client (one instance, shared by `tools.ts`, `rate-limit.ts`, `herb-search.ts`) |
 | `_shared/herb-search.ts` | `searchHerbs(query, limit)` — embeds with the `"Herb for "` stem, pulls 25 candidates from the `match_herbs` RPC and re-ranks them (used by both the search and nutritionist functions) |
 | `_shared/rerank.ts` | `rerankHerbs(query, herbs, topN)` — Cohere Rerank over the herb text (same labeled format as `buildEmbeddingInput` in `scripts/ingest.js`), adds `relevance`; falls back to cosine order on a missing key, HTTP error or 2 s timeout |
+| `_shared/jev.ts` | `decideStage(messages, signal)` — asks Jev for the conversation stage, applies the thresholds; `fallback` on a missing key, HTTP error, bad shape or 3 s timeout |
 | `_shared/tools.ts` | Tool definitions (`HERB_SEARCH_TOOL`, `WEB_SEARCH_TOOL`) + `HerbSearchInputSchema` Zod schema |
 | `_shared/sse.ts` | SSE stream helpers |
 | `_shared/rate-limit.ts` | IP extraction + rate-limit RPC wrapper |

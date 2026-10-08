@@ -22,7 +22,7 @@
   {
     "id": "TC008",
     "title": "test_nutritionist_post_with_valid_messages_streaming_response",
-    "description": "Verify that POST /nutritionist with a valid JSON body containing a messages array (1-50 items, last message role user) returns a 200 response with Content-Type text/event-stream and events including tool_use, herb_results, text_delta, and done."
+    "description": "Verify that POST /nutritionist where the user has already answered the nutritionist's diagnostic questions (send exactly this messages array: [{\"role\": \"user\", \"content\": \"I can't sleep\"}, {\"role\": \"assistant\", \"content\": \"That sounds exhausting. A few questions so I can point you the right way: is it trouble falling asleep or staying asleep? How long has it been going on? And are you taking any medications?\"}, {\"role\": \"user\", \"content\": \"Staying asleep, I wake at 3am with racing thoughts. About a month. No meds, not pregnant.\"}]) returns 200 with Content-Type text/event-stream. The first SSE event is 'stage' with data {\"stage\": \"treatment\"}; the stream then includes tool_use, herb_results (non-empty herbs array), text_delta and done, with tool_use before herb_results before done. Use a 120 s read timeout."
   },
   {
     "id": "TC009",
@@ -33,5 +33,10 @@
     "id": "TC010",
     "title": "test_nutritionist_post_with_invalid_messages_array",
     "description": "Verify that POST /nutritionist with messages array exceeding 50 entries or last message not from user returns a 400 response with a validation error message."
+  },
+  {
+    "id": "TC011",
+    "title": "test_nutritionist_vague_first_message_diagnoses_without_herb_cards",
+    "description": "Verify that POST /nutritionist with messages [{\"role\": \"user\", \"content\": \"I can't sleep\"}] returns 200 with Content-Type text/event-stream. The first SSE event is 'stage' with data {\"stage\": \"diagnostic\"}; the stream contains at least one text_delta and ends with done, and contains NO herb_results event and NO tool_use event. The concatenated text_delta text contains a question mark. Use a 120 s read timeout."
   }
 ]

@@ -1,17 +1,17 @@
-# Graph Report - Apothecary  (2026-10-06)
+# Graph Report - Apothecary  (2026-10-07)
 
 ## Corpus Check
-- 304 files · ~174,849 words
+- 307 files · ~178,225 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 17 file(s) not represented in the graph (top: .css 13, (none) 3, .toml 1)
+- Unclassified: 18 file(s) not represented in the graph (top: .css 13, (none) 3, .toml 1)
 
 ## Summary
-- 1612 nodes · 1597 edges · 252 communities (97 shown, 155 thin omitted)
+- 1628 nodes · 1621 edges · 259 communities (104 shown, 155 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5a5d6ed2`
+- Built from commit: `c03ff1c8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,12 +26,18 @@
 - client-localstorage-schema.md
 - herbs Table Schema (spec)
 - client_src_pages_authpage
-- time
+- search/index.ts
 - typing
+- jev.ts
+- types.ts
 - 4. Client-Side Data Fetching
 - common.sh
 - Native Tabs
+- openai.ts
+- herb-search.ts
 - 20260209_initial_setup.sql
+- rate-limit.ts
+- traceback
 - nutritionist/deno.json
 - search/deno.json
 - 20260511_create_nutritionist_rate_limits.sql
@@ -43,8 +49,9 @@
 - Native Controls
 - Icons (SF Symbols)
 - Rules
+- runAgentLoop
 - requests
-- Requirement: Herb Semantic Search (`POST /search`)
+- TestSprite AI Testing Report(MCP)
 - React Composition Patterns
 - Common Issues & Solutions
 - Writing Guidelines for Postgres References
@@ -298,11 +305,11 @@
 - **Herb Ingestion Pipeline Documented Across Files** — claude_data_pipeline, docs_architecture_ingestion_pipeline, docs_herb_catalog_pipeline_diagram, project_spec_ingest_script [INFERRED 0.85]
 - **Nutritionist Agent: Plan → Implementation → Architecture Docs → Migration** — docs_plans_2026_05_11_feat_conversational_herb_agent_plan_agent_loop, docs_changelog_nutritionist_launch, docs_changelog_openai_migration, docs_architecture_nutritionist_agent_loop, claude_nutritionist_edge_function [INFERRED 0.85]
 
-## Communities (252 total, 155 thin omitted)
+## Communities (259 total, 155 thin omitted)
 
 ### Community 0 - "nutritionist/index.ts"
-Cohesion: 0.06
-Nodes (51): ref_jsr_supabase, ref_npm_openai_6, ref_npm_zod, ref_supabase_functions_js, AgentInputItem, ConversationMessage, executeToolCall(), FunctionCallOutput (+43 more)
+Cohesion: 0.15
+Nodes (14): ref_npm_zod, ref_supabase_functions_js, AgentInputItem, AgentTool, ConversationMessage, FunctionCallOutput, STAGE_PLANS, StagePlan (+6 more)
 
 ### Community 1 - "enrich_herbs.js"
 Cohesion: 0.18
@@ -310,7 +317,7 @@ Nodes (16): canonicalizeTag(), __dirname, ENERGETIC_TOKENS, extractHtmlMetadata(
 
 ### Community 2 - "nutritionist Edge Function"
 Cohesion: 0.06
-Nodes (48): Environment Variables Convention, Git & Branching Convention, gpt-5-mini Model, Herb Search Feature, match_herbs RPC, nutritionist Edge Function, Nutritionist Feature, OpenAI Responses API (+40 more)
+Nodes (47): Environment Variables Convention, Git & Branching Convention, gpt-5-mini Model, Herb Search Feature, match_herbs RPC, nutritionist Edge Function, Nutritionist Feature, OpenAI Responses API (+39 more)
 
 ### Community 3 - "HomePage.jsx"
 Cohesion: 0.07
@@ -326,11 +333,23 @@ Nodes (42): Audit Framework, Audit Report Structure, Canonicalization for Multil
 
 ### Community 6 - "package.json"
 Cohesion: 0.06
-Nodes (33): dependencies, cheerio, dotenv, openai, @supabase/supabase-js, description, devDependencies, npm-run-all (+25 more)
+Nodes (34): dependencies, cheerio, dotenv, openai, @supabase/supabase-js, description, devDependencies, npm-run-all (+26 more)
 
 ### Community 8 - "herbs Table Schema (spec)"
 Cohesion: 0.22
 Nodes (10): Initial Apothecary Idea (bulk herbs plain-English search), Project Setup Changelog Entry, Key Design Decisions (embed name+description only, cosine threshold 0.3), React Frontend Components (spec), herbs Table Schema (spec), Data Ingestion Script (spec), match_herbs SQL Function (spec), Apothecary Semantic Herb Search Spec (+2 more)
+
+### Community 11 - "search/index.ts"
+Cohesion: 0.35
+Nodes (8): ALLOWED_ORIGINS, CORS_HEADERS, getAllowedOrigin(), handleCors(), productionUrl, errorResponse(), jsonResponse(), sseHeaders()
+
+### Community 13 - "jev.ts"
+Cohesion: 0.18
+Nodes (11): apiKey, decideStage(), DecisionSchema, JEV_STAGES, JevStage, NoulAnswer, QUESTIONS, resolveStage() (+3 more)
+
+### Community 14 - "types.ts"
+Cohesion: 0.31
+Nodes (7): ErrorResponse, NutritionistMessage, NutritionistRequest, SearchRequest, validateNutritionistRequest(), validateSearchRequest(), ValidationError
 
 ### Community 15 - "4. Client-Side Data Fetching"
 Cohesion: 0.40
@@ -343,6 +362,18 @@ Nodes (25): check-prerequisites.sh script, check_dir(), check_file(), find_speci
 ### Community 17 - "Native Tabs"
 Cohesion: 0.06
 Nodes (30): After (Native Tabs), Basic Usage, Before (JS Tabs), Behavior Options, Bottom Accessory (SDK 55+), Common Issues, Conditional Tabs, Custom Web Layout (+22 more)
+
+### Community 18 - "openai.ts"
+Cohesion: 0.29
+Nodes (6): ref_npm_openai_6, apiKey, MAX_ITERATIONS, MAX_OUTPUT_TOKENS, MODEL, openai
+
+### Community 19 - "herb-search.ts"
+Cohesion: 0.43
+Nodes (6): generateEmbedding(), searchHerbs(), apiKey, herbDocument(), rerankHerbs(), Herb
+
+### Community 21 - "rate-limit.ts"
+Cohesion: 0.33
+Nodes (5): ref_jsr_supabase, checkRateLimit(), getClientIp(), RateLimitResult, supabaseAdmin
 
 ### Community 23 - "nutritionist/deno.json"
 Cohesion: 0.40
@@ -380,13 +411,17 @@ Nodes (19): Animated Symbols, Animation Effects, Basic Usage, Best Practices, Ca
 Cohesion: 0.10
 Nodes (19): Animation (HIGH), Core Rendering (CRITICAL), Creating a New Rule, Design System (MEDIUM), Fonts (LOW), JavaScript (LOW), List Performance (HIGH), Monorepo (LOW) (+11 more)
 
-### Community 36 - "requests"
-Cohesion: 0.13
-Nodes (7): json, requests, requests_exceptions, sys, Verify that POST /search with a missing or empty query string returns a 400…, test_semantic_herb_search_with_missing_or_empty_query(), traceback
+### Community 35 - "runAgentLoop"
+Cohesion: 0.31
+Nodes (7): executeToolCall(), handleToolCall(), herbForModel(), runAgentLoop(), runOneTurn(), isDevMode(), SseStream
 
-### Community 37 - "Requirement: Herb Semantic Search (`POST /search`)"
-Cohesion: 0.13
-Nodes (14): 1️⃣ Document Metadata, 2️⃣ Requirement Validation Summary, 3️⃣ Coverage & Matching Metrics, 4️⃣ Key Gaps / Risks, Requirement: AI Nutritionist Chat (`POST /nutritionist`, SSE), Requirement: Herb Semantic Search (`POST /search`), Test TC001 test_semantic_herb_search_with_valid_query_and_limit, Test TC002 test_semantic_herb_search_with_missing_or_empty_query (+6 more)
+### Community 36 - "requests"
+Cohesion: 0.12
+Nodes (6): json, json_decoder, requests, requests_exceptions, sys, time
+
+### Community 37 - "TestSprite AI Testing Report(MCP)"
+Cohesion: 0.17
+Nodes (11): 1️⃣ Document Metadata, 2️⃣ Requirement Validation Summary, 3️⃣ Coverage & Matching Metrics, 4️⃣ Key Gaps / Risks, Requirement: Nutritionist request validation, Requirement: Nutritionist stage gate (cards only in treatment), Test TC008 test_nutritionist_post_with_valid_messages_streaming_response, Test TC009 test_nutritionist_post_with_invalid_json_body (+3 more)
 
 ### Community 38 - "React Composition Patterns"
 Cohesion: 0.12
@@ -489,8 +524,8 @@ Cohesion: 0.18
 Nodes (10): 3.10 Use after() for Non-Blocking Operations, 3.1 Authenticate Server Actions Like API Routes, 3.2 Avoid Duplicate Serialization in RSC Props, 3.3 Avoid Shared Module State for Request Data, 3.4 Cross-Request LRU Caching, 3.5 Hoist Static I/O to Module Level, 3.6 Minimize Serialization at RSC Boundaries, 3.7 Parallel Data Fetching with Component Composition (+2 more)
 
 ### Community 64 - "ingest.js"
-Cohesion: 0.20
-Nodes (8): chioma_products.json, scripts/compare_herbs.js (pipeline diagram), scripts/ingest.js (pipeline diagram), ref_readline, herbs, inputs, openai, rows
+Cohesion: 0.18
+Nodes (9): chioma_products.json, scripts/compare_herbs.js (pipeline diagram), Herb Catalog Pipeline Diagram, scripts/ingest.js (pipeline diagram), ref_readline, herbs, inputs, openai (+1 more)
 
 ### Community 65 - "speckit-plan/SKILL.md"
 Cohesion: 0.18
@@ -693,8 +728,8 @@ Nodes (3): Backend API (MCP), Frontend E2E (CLI), TestSprite tests
   CLAUDE.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **968 isolated node(s):** `common.sh script`, `name`, `private`, `version`, `type` (+963 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1188 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **976 isolated node(s):** `common.sh script`, `name`, `private`, `version`, `type` (+971 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1197 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **155 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -704,13 +739,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **Why does `nutritionist Edge Function` connect `nutritionist Edge Function` to `ingest.js`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **Why does `SEO Audit` connect `SEO Audit` to `International SEO: Evidence & Sources`?**
+- **Why does `dotenv` connect `package.json` to `ingest.js`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **Why does `React Best Practices` connect `React Best Practices` to `2. Bundle Size Optimization`, `5. Re-render Optimization`, `4. Client-Side Data Fetching`, `7. JavaScript Performance`, `1. Eliminating Waterfalls`, `6. Rendering Performance`, `3. Server-Side Performance`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **What connects `common.sh script`, `name`, `private` to the rest of the system?**
-  _968 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `nutritionist/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06057945566286216 - nodes in this community are weakly interconnected._
+  _976 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `nutritionist Edge Function` be split into smaller, more focused modules?**
-  _Cohesion score 0.05673758865248227 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.058279370952821465 - nodes in this community are weakly interconnected._
+- **Should `HomePage.jsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.07227891156462585 - nodes in this community are weakly interconnected._
